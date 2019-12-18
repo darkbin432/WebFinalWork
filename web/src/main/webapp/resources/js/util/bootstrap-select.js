@@ -2635,13 +2635,13 @@
             if (cache[i] && li.type !== 'optgroup-label') cacheArr.push(i);
           }
 
-          for (var i = 0, cacheLen = cacheArr.length; i < cacheLen; i++) {
+          for (var i = 0, cachznun = cacheArr.length; i < cachznun; i++) {
             var index = cacheArr[i],
                 prevIndex = cacheArr[i - 1],
                 li = that.selectpicker.main.data[index],
                 liPrev = that.selectpicker.main.data[prevIndex];
 
-            if (li.type !== 'divider' || (li.type === 'divider' && liPrev && liPrev.type !== 'divider' && cacheLen - 1 !== i)) {
+            if (li.type !== 'divider' || (li.type === 'divider' && liPrev && liPrev.type !== 'divider' && cachznun - 1 !== i)) {
               that.selectpicker.search.data.push(li);
               searchMatch.push(that.selectpicker.main.elements[index]);
 

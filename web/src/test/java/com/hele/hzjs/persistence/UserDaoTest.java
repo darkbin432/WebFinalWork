@@ -1,8 +1,8 @@
-package com.hele.hzjs.persistence;
+package com.hznu.lwb.persistence;
 
-import com.hele.hzjs.model.User;
-import com.hele.utils.MD5Util;
-import com.hele.utils.UUIDGenerator;
+import com.hznu.lwb.model.User;
+import com.hznu.utils.MD5Util;
+import com.hznu.utils.UUIDGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import java.util.HashMap;
  *
  * @author xuzou
  * @date 6/15/16
- * @copyright: copyright @ HeleTech 2016
+ * @copyright: copyright @ hznuTech 2016
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})

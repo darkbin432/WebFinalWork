@@ -8,14 +8,14 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.hele.hzjs"/>
+    <context:component-scan base-package="com.hznu.lwb"/>
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
             <bean
                     class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
-                    <bean class="com.hele.hzjs.utils.JsonObjectMapper">
+                    <bean class="com.hznu.lwb.utils.JsonObjectMapper">
                         <property name="timeZone" value="GMT+8"/>
                         <!--                     <property name="serializationInclusion"> -->
                         <!--                         <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value> -->
@@ -36,7 +36,7 @@
     <!--<mvc:exclude-mapping path="/login**"/>-->
     <!--<mvc:exclude-mapping path="/api/**"/>-->
     <!--<mvc:exclude-mapping path="/resources/**"/>-->
-    <!--&lt;!&ndash;<bean class="com.hele.pay.interceptor.AuthInterceptor"></bean>&ndash;&gt;-->
+    <!--&lt;!&ndash;<bean class="com.hznu.pay.interceptor.AuthInterceptor"></bean>&ndash;&gt;-->
     <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
 

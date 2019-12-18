@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.ActivityDao">
+<mapper namespace="com.hznu.lwb.persistence.ActivityDao">
 
-    <insert id="insertInfo" parameterType="com.hele.hzjs.model.Activity" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertInfo" parameterType="com.hznu.lwb.model.Activity" useGeneratedKeys="true" keyProperty="id">
 		insert into activity(project_id, create_member_scope_id,approval_id, check_status, title,initiator_id,  head_member_id, activity_area, start_time, end_time,enroll_time, huiyuan_limit,volunteer_limit, description, attachment, summary, created_time, updated_time, version, status)
 		values (#{projectId}, #{createMemberScopeId},#{approvalId}, #{checkStatus}, #{title}, #{initiatorId}, #{headMemberId}, #{activityArea}, #{startTime}, #{endTime}, #{enrollTime}, #{huiyuanLimit}, #{volunteerLimit}, #{description}, #{attachment}, #{summary}, now(), now(), #{version}, #{status})
 	</insert>
@@ -12,7 +12,7 @@
 		values (#{activityId},#{scopeId},now(),now(),#{version},#{status});
     </insert>
 
-    <select id="getOne" parameterType="int" resultType="com.hele.hzjs.model.Activity">
+    <select id="getOne" parameterType="int" resultType="com.hznu.lwb.model.Activity">
         SELECT *,
         (SELECT COUNT(huiyuan_activity.id) FROM huiyuan_activity WHERE huiyuan_activity.activity_id = activity.id AND
         huiyuan_activity.status = 1) AS huiyuan_count,
@@ -27,7 +27,7 @@
 		limit 1;
     </select>
 
-    <update id="updateInfo" parameterType="com.hele.hzjs.model.Activity">
+    <update id="updateInfo" parameterType="com.hznu.lwb.model.Activity">
         update activity
         set
         <if test="approvalId!=null">
@@ -82,7 +82,7 @@
         where id = #{id};
     </update>
 
-    <update id="updateRelationship" parameterType="com.hele.hzjs.model.Activity">
+    <update id="updateRelationship" parameterType="com.hznu.lwb.model.Activity">
         update activity_scope_relationship
         set
         <if test="scopeId!=null">
@@ -130,7 +130,7 @@
         </where>
     </select>
 
-    <select id="selectActivityInfo" parameterType="hashmap" resultType="com.hele.hzjs.model.Activity">
+    <select id="selectActivityInfo" parameterType="hashmap" resultType="com.hznu.lwb.model.Activity">
         SELECT DISTINCT activity.*,
         (SELECT COUNT(huiyuan_activity.id) FROM huiyuan_activity WHERE huiyuan_activity.activity_id = activity.id AND
         huiyuan_activity.status = 1) AS huiyuan_count,
@@ -169,7 +169,7 @@
         </if>
     </select>
 
-    <select id="getAcitvityVounteers" parameterType="hashmap" resultType="com.hele.hzjs.model.HuiyuanActivity">
+    <select id="getAcitvityVounteers" parameterType="hashmap" resultType="com.hznu.lwb.model.HuiyuanActivity">
         SELECT * FROM huiyuan LEFT JOIN huiyuan_activity ON huiyuan.id = huiyuan_activity.huiyuan_id
         <where>
             huiyuan.status = 1 AND huiyuan_activity.status = 1
@@ -196,7 +196,7 @@
         </where>
     </select>
 
-    <select id="getAcitvityVounteer" parameterType="hashmap" resultType="com.hele.hzjs.model.Huiyuan">
+    <select id="getAcitvityVounteer" parameterType="hashmap" resultType="com.hznu.lwb.model.Huiyuan">
         SELECT * FROM huiyuan LEFT JOIN huiyuan_activity ON huiyuan.id = huiyuan_activity.huiyuan_id
         <where>
             huiyuan.status = 1 AND huiyuan_activity.status = 1 AND huiyuan_activity.activity_id = #{activityId} AND
@@ -217,11 +217,11 @@
         </where>
     </update>
 
-    <select id="getOneProject" parameterType="int" resultType="com.hele.hzjs.model.Project">
+    <select id="getOneProject" parameterType="int" resultType="com.hznu.lwb.model.Project">
         select * from project where id = #{id};
     </select>
 
-    <select id="getAllProject" resultType="com.hele.hzjs.model.Project">
+    <select id="getAllProject" resultType="com.hznu.lwb.model.Project">
         SELECT *
         FROM project
         WHERE status = 1;
@@ -251,7 +251,7 @@
         </where>
     </select>
 
-    <select id="getApprovalInfo" parameterType="hashmap" resultType="com.hele.hzjs.model.Activity">
+    <select id="getApprovalInfo" parameterType="hashmap" resultType="com.hznu.lwb.model.Activity">
         SELECT *,
         (SELECT organization_member.id FROM organization_member WHERE organization_member.id = activity.initiator_id) AS
         create_member_id,
@@ -283,7 +283,7 @@
         </where>
     </select>
 
-    <insert id="insertRecord" parameterType="com.hele.hzjs.model.ActivityApprovalRecord">
+    <insert id="insertRecord" parameterType="com.hznu.lwb.model.ActivityApprovalRecord">
         insert into activity_approval_record
         <trim prefix="(" suffix=")" suffixOverrides=",">
             activity_id,approval_id,approval_name,result,created_time,updated_time,status
@@ -299,14 +299,14 @@
         </trim>
     </insert>
 
-    <select id="getActivityApprovalRecordPageCount" parameterType="com.hele.hzjs.model.param.ApprovalParam"
+    <select id="getActivityApprovalRecordPageCount" parameterType="com.hznu.lwb.model.param.ApprovalParam"
             resultType="Integer">
       select count(*) from activity_approval_record
       where approval_id = #{approvalId} and status = 1;
   </select>
 
-    <select id="getActivityApprovalRecord" parameterType="com.hele.hzjs.model.param.ApprovalParam"
-            resultType="com.hele.hzjs.model.ActivityApprovalRecord">
+    <select id="getActivityApprovalRecord" parameterType="com.hznu.lwb.model.param.ApprovalParam"
+            resultType="com.hznu.lwb.model.ActivityApprovalRecord">
         select aar.*,activity.title as title,activity.initiator_id as create_member_id,
         (SELECT organization_member.name FROM organization_member WHERE organization_member.id = activity.initiator_id)
         AS create_member_name

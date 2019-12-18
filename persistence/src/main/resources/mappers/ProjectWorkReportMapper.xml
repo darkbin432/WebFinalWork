@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.ProjectWorkReportDao">
+<mapper namespace="com.hznu.lwb.persistence.ProjectWorkReportDao">
 
-    <insert id="insertProjectWorkReport" parameterType="com.hele.hzjs.model.report.ProjectWorkReport">
+    <insert id="insertProjectWorkReport" parameterType="com.hznu.lwb.model.report.ProjectWorkReport">
         insert into project_work_report(scope_id,is_filed,xuanchuanjyhdcs,xuanchuanjyfwrs,yewupxhdcs,yewupxfwrs,jiankangfwhdcs,jiankangfwfwrs,jishengjtbfhdcs,jishengjtbffwrs,qingchunjkhdcs,qingchunjkfwrs,liudongrkfwhdcs,liudongrkfwfwrs,quanyiwhhdcs,qitahdcs,qitafwrs,created_time,updated_time,version,status)
         values(#{scopeId},1,#{xuanchuanjyhdcs},#{xuanchuanjyfwrs},#{yewupxhdcs},#{yewupxfwrs},#{jiankangfwhdcs},#{jiankangfwfwrs},#{jishengjtbfhdcs},#{jishengjtbffwrs},#{qingchunjkhdcs},#{qingchunjkfwrs},#{liudongrkfwhdcs},#{liudongrkfwfwrs},#{quanyiwhhdcs},#{qitahdcs},#{qitafwrs},now(),now(),#{version},1)
     </insert>
@@ -19,7 +19,7 @@
     where is_filed = 1 and year(created_time) = #{year}
   </select>
 
-    <select id="getProjectWorkReportByTable" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+    <select id="getProjectWorkReportByTable" parameterType="int" resultType="com.hznu.lwb.model.report.ProjectWorkReport">
         select project_work_report.*, relation.name as scope_name
         from project_work_report left join organization_scope_relationship relation on project_work_report.scope_id = relation.scope_id
         where year(project_work_report.created_time) = #{year} and project_work_report.status = 1 and project_work_report.is_filed = 1
@@ -27,7 +27,7 @@
         order by project_work_report.scope_id;
     </select>
 
-    <select id="getProjectWorkReportTotalByTable" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+    <select id="getProjectWorkReportTotalByTable" parameterType="int" resultType="com.hznu.lwb.model.report.ProjectWorkReport">
         select sum(xuanchuanjyhdcs) as xuanchuanjyhdcs,
         sum(yewupxhdcs) as yewupxhdcs,
         sum(jiankangfwhdcs) as jiankangfwhdcs,
@@ -47,7 +47,7 @@
         where year(created_time) = #{year} and status = 1 and is_filed = 1
     </select>
 
-    <select id="getProjectWorkReport" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+    <select id="getProjectWorkReport" parameterType="int" resultType="com.hznu.lwb.model.report.ProjectWorkReport">
         select xuanchuanjyhdcs,
         yewupxhdcs,
         jiankangfwhdcs,
@@ -121,7 +121,7 @@
         where hd.relation != 0
     </select>
 
-    <select id="getProjectWorkReportTotal" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+    <select id="getProjectWorkReportTotal" parameterType="int" resultType="com.hznu.lwb.model.report.ProjectWorkReport">
         select xuanchuanjyhdcs,
         yewupxhdcs,
         jiankangfwhdcs,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.FloatingPopulationReportDao">
+<mapper namespace="com.hznu.lwb.persistence.FloatingPopulationReportDao">
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.hznu.lwb.model.report.FloatingPopulationReport">
     select *
     from floating_population_report
     where id = #{id} and status = 1
@@ -13,7 +13,7 @@
     updated_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <insert id="insert" parameterType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <insert id="insert" parameterType="com.hznu.lwb.model.report.FloatingPopulationReport">
     insert into floating_population_report (scope_id, name, report_person_id,
       level, type, address, 
       zhigong_number, liudongrk_number, liudongrkjsxjl_date, 
@@ -29,7 +29,7 @@
       now(), now(), #{version,jdbcType=VARCHAR},
       1)
   </insert>
-  <insert id="insertSelective" parameterType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <insert id="insertSelective" parameterType="com.hznu.lwb.model.report.FloatingPopulationReport">
     insert into floating_population_report
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="scopeId != null">
@@ -144,7 +144,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hznu.lwb.model.report.FloatingPopulationReport">
     update floating_population_report
     <set>
       <if test="scopeId != null">
@@ -201,7 +201,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <update id="updateByPrimaryKey" parameterType="com.hznu.lwb.model.report.FloatingPopulationReport">
     update floating_population_report
     set scope_id = #{scopeId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -229,7 +229,7 @@
       order by year(created_time) desc;
   </select>
 
-  <select id="selectChildrenStatus" resultType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <select id="selectChildrenStatus" resultType="com.hznu.lwb.model.report.FloatingPopulationReport">
     select organization_name ,sum(child_status) as child_status,scope_id
     from(select o.name as organization_name,
     case when year(fpr.created_time) = year(now()) and fpr.scope_id = osr.scope_id then 1 else null end as child_status,
@@ -245,7 +245,7 @@
     </if>
   </select>
 
-  <select id="selectByConditionPageCount" parameterType="com.hele.hzjs.model.param.FloatingPopulationReportParam" resultType="int">
+  <select id="selectByConditionPageCount" parameterType="com.hznu.lwb.model.param.FloatingPopulationReportParam" resultType="int">
       select count(*)
       from floating_population_report fpr left join organization_member om on fpr.report_person_id = om.id
       left join organization_scope_relationship osr on fpr.scope_id = osr.scope_id
@@ -253,7 +253,7 @@
       order by fpr.created_time desc
   </select>
 
-  <select id="selectByCondition" parameterType="com.hele.hzjs.model.param.FloatingPopulationReportParam" resultType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <select id="selectByCondition" parameterType="com.hznu.lwb.model.param.FloatingPopulationReportParam" resultType="com.hznu.lwb.model.report.FloatingPopulationReport">
       select fpr.*,om.name as report_person_name,osr.name as scopeName
       from floating_population_report fpr left join organization_member om on fpr.report_person_id = om.id
       left join organization_scope_relationship osr on fpr.scope_id = osr.scope_id
@@ -261,7 +261,7 @@
       order by fpr.created_time desc
   </select>
 
-  <select id="selectByQu" parameterType="com.hele.hzjs.model.param.FloatingPopulationReportParam" resultType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <select id="selectByQu" parameterType="com.hznu.lwb.model.param.FloatingPopulationReportParam" resultType="com.hznu.lwb.model.report.FloatingPopulationReport">
       select relation.scope_id as scope_id, relation.name as scope_name,zhigong_number,liudongrk_number,huiyuan_number,
       liudong_male_number,liudong_female_number,liudong_unmarried_number,liudong_married_number
       from organization_scope_relationship relation
@@ -283,7 +283,7 @@
       where relation.scope_id % 10000 = 0 and relation.scope_id != 0
   </select>
 
-  <select id="selectTotal" parameterType="com.hele.hzjs.model.param.FloatingPopulationReportParam" resultType="com.hele.hzjs.model.report.FloatingPopulationReport">
+  <select id="selectTotal" parameterType="com.hznu.lwb.model.param.FloatingPopulationReportParam" resultType="com.hznu.lwb.model.report.FloatingPopulationReport">
       select fpr.scope_id as scope_id,
       sum(fpr.zhigong_number) as zhigong_number,
       sum(fpr.liudongrk_number) as liudongrk_number,

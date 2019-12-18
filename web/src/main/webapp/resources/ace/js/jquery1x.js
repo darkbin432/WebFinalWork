@@ -896,7 +896,7 @@ function Sizzle( selector, context, results, seed ) {
 /**
  * Create key-value caches of limited size
  * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+ *	property name the (space-suffixed) string and (if the cache is larger than Expr.cachznungth)
  *	deleting the oldest entry
  */
 function createCache() {
@@ -904,7 +904,7 @@ function createCache() {
 
 	function cache( key, value ) {
 		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
-		if ( keys.push( key + " " ) > Expr.cacheLength ) {
+		if ( keys.push( key + " " ) > Expr.cachznungth ) {
 			// Only keep the most recent entries
 			delete cache[ keys.shift() ];
 		}
@@ -1567,7 +1567,7 @@ getText = Sizzle.getText = function( elem ) {
 Expr = Sizzle.selectors = {
 
 	// Can be adjusted by the imUser
-	cacheLength: 50,
+	cachznungth: 50,
 
 	createPseudo: markFunction,
 

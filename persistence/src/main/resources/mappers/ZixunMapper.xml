@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.ZixunDao">
+<mapper namespace="com.hznu.lwb.persistence.ZixunDao">
 
-    <select id="getMany" parameterType="int" resultType="com.hele.hzjs.model.Zixun">
+    <select id="getMany" parameterType="int" resultType="com.hznu.lwb.model.Zixun">
 		select * from zixun
 		where status = 1
 		order by id desc
 		limit  #{num}
 	</select>
 
-    <select id="getOne" parameterType="int" resultType="com.hele.hzjs.model.Zixun">
+    <select id="getOne" parameterType="int" resultType="com.hznu.lwb.model.Zixun">
 		SELECT *,
         (SELECT organization.name
         FROM organization, organization_scope_relationship
@@ -19,7 +19,7 @@
 		where zixun.status = 1 and zixun.id = #{id};
 	</select>
 
-    <insert id="insert" parameterType="com.hele.hzjs.model.Zixun" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.hznu.lwb.model.Zixun" useGeneratedKeys="true" keyProperty="id">
         insert into zixun(
         title,
         create_member_scope_id,
@@ -67,7 +67,7 @@
 		where id = #{id};
 	</update>
 
-    <update id="updateInfo" parameterType="com.hele.hzjs.model.Zixun">
+    <update id="updateInfo" parameterType="com.hznu.lwb.model.Zixun">
         update zixun
         set
         <if test="title!=null">
@@ -129,8 +129,8 @@
         </where>
     </select>
 
-    <select id="selectzixunInfo" parameterType="com.hele.hzjs.model.param.ZixunParam"
-            resultType="com.hele.hzjs.model.Zixun">
+    <select id="selectzixunInfo" parameterType="com.hznu.lwb.model.param.ZixunParam"
+            resultType="com.hznu.lwb.model.Zixun">
         SELECT *, (SELECT organization_member.name FROM organization_member WHERE organization_member.id =
         zixun.created_member_id) AS create_member_name
         FROM zixun

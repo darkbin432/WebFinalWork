@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.XuanjiaoDao">
+<mapper namespace="com.hznu.lwb.persistence.XuanjiaoDao">
 
-    <select id="getMany" parameterType="int" resultType="com.hele.hzjs.model.Xuanjiao">
+    <select id="getMany" parameterType="int" resultType="com.hznu.lwb.model.Xuanjiao">
 		select * from xuanjiao
 		where status = 1
 		order by id desc
 		limit #{num};
 	</select>
 
-    <select id="getManyIndex" parameterType="int" resultType="com.hele.hzjs.model.Xuanjiao">
+    <select id="getManyIndex" parameterType="int" resultType="com.hznu.lwb.model.Xuanjiao">
 		select * from xuanjiao
 		where status = 1 and type = 3
 		order by id desc
 		limit #{num};
 	</select>
 
-    <select id="getOne" parameterType="int" resultType="com.hele.hzjs.model.Xuanjiao">
+    <select id="getOne" parameterType="int" resultType="com.hznu.lwb.model.Xuanjiao">
 		SELECT *,
         (SELECT organization.name
         FROM organization, organization_scope_relationship
@@ -26,7 +26,7 @@
 		where status = 1 and id = #{id};
 	</select>
 
-    <insert id="insert" parameterType="com.hele.hzjs.model.Xuanjiao" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.hznu.lwb.model.Xuanjiao" useGeneratedKeys="true" keyProperty="id">
 		insert into xuanjiao(create_member_scope_id, video,name,type,attachment,pdf,pdfName,content,created_time,updated_time,version,status)
 		values (#{createMemberScopeId},#{video}, #{name},#{type},#{attachment}, #{pdf}, #{pdfName}, #{content}, now(),now(),#{version},#{status});
 	</insert>
@@ -37,7 +37,7 @@
 		where id = #{id};
 	</update>
 
-    <update id="updateInfo" parameterType="com.hele.hzjs.model.Xuanjiao">
+    <update id="updateInfo" parameterType="com.hznu.lwb.model.Xuanjiao">
         update xuanjiao
         set
         <if test="name!=null">
@@ -92,7 +92,7 @@
         </where>
     </select>
 
-    <select id="selectXuanjiaoInfo" parameterType="hashmap" resultType="com.hele.hzjs.model.Xuanjiao">
+    <select id="selectXuanjiaoInfo" parameterType="hashmap" resultType="com.hznu.lwb.model.Xuanjiao">
         SELECT * FROM xuanjiao
         <where>
             xuanjiao.status = 1

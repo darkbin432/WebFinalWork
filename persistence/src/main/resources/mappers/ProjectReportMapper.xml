@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.ProjectReportDao">
+<mapper namespace="com.hznu.lwb.persistence.ProjectReportDao">
 
-    <insert id="insertProjectReportDao" parameterType="com.hele.hzjs.model.report.ProjectReport">
+    <insert id="insertProjectReportDao" parameterType="com.hznu.lwb.model.report.ProjectReport">
         INSERT INTO project_report (organization_id,
         project1_activity, project1_people,
         project2_activity, project2_people,
@@ -27,7 +27,7 @@
         );
     </insert>
 
-    <update id="updateProjectReport" parameterType="com.hele.hzjs.model.report.ProjectReport">
+    <update id="updateProjectReport" parameterType="com.hznu.lwb.model.report.ProjectReport">
         UPDATE project_report
         <set>
             <if test="project1Activity != null">
@@ -90,7 +90,7 @@
         WHERE year = #{year} AND organization_id = #{organizationId} AND is_filed = 0;
     </update>
 
-    <select id="getOneYearProjectReport" parameterType="hashmap" resultType="com.hele.hzjs.model.report.ProjectReport">
+    <select id="getOneYearProjectReport" parameterType="hashmap" resultType="com.hznu.lwb.model.report.ProjectReport">
         SELECT *
         FROM project_report
         WHERE year = #{year} AND status = 1 AND organization_id = #{organizationId}

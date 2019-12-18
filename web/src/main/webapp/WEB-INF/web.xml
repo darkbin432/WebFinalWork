@@ -46,7 +46,7 @@
 
     <filter>
         <filter-name>cors</filter-name>
-        <filter-class>com.hele.hzjs.filter.SimpleCORSFilter</filter-class>
+        <filter-class>com.hznu.lwb.filter.SimpleCORSFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>cors</filter-name>

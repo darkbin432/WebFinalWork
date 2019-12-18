@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.HuiyuanActivityDao">
+<mapper namespace="com.hznu.lwb.persistence.HuiyuanActivityDao">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
          insert into huiyuan_activity(
          huiyuan_id, activity_id,

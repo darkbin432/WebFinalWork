@@ -14,7 +14,7 @@
 
 <context:property-placeholder location="classpath:database.properties"/>
 
-    <mybatis:scan base-package="com.hele.hzjs.persistence"/>
+    <mybatis:scan base-package="com.hznu.lwb.persistence"/>
 
     <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"-->
           <!--destroy-method="close">-->
@@ -63,7 +63,7 @@
         </property>
         <property name="mapperLocations"
                   value="classpath:mappers/*Mapper.xml"/>
-        <property name="typeAliasesPackage" value="com.hele.hzjs.model"/>
+        <property name="typeAliasesPackage" value="com.hznu.lwb.model"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
 
     </bean>

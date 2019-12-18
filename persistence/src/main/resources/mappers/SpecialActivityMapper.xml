@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.SpecialActivityDao">
+<mapper namespace="com.hznu.lwb.persistence.SpecialActivityDao">
 
-    <insert id="insertInfo" parameterType="com.hele.hzjs.model.SpecialActivity" useGeneratedKeys="true"
+    <insert id="insertInfo" parameterType="com.hznu.lwb.model.SpecialActivity" useGeneratedKeys="true"
             keyProperty="id">
 		INSERT INTO special_activity(name, project, area, head_member, summarize,attachment, start_time, end_time, created_time, updated_time, version, status)
 		VALUES (#{name}, #{project}, #{area}, #{headMember}, #{summarize},#{attachment}, #{startTime}, #{endTime}, now(), now(), #{version}, #{status})
 	</insert>
 
-    <update id="updateInfo" parameterType="com.hele.hzjs.model.SpecialActivity">
+    <update id="updateInfo" parameterType="com.hznu.lwb.model.SpecialActivity">
         UPDATE special_activity
         SET
         <if test="name!=null">
@@ -46,7 +46,7 @@
 		where id = #{id};
 	</update>
 
-    <select id="getOne" parameterType="int" resultType="com.hele.hzjs.model.SpecialActivity">
+    <select id="getOne" parameterType="int" resultType="com.hznu.lwb.model.SpecialActivity">
 		SELECT *
 		FROM special_activity
 		WHERE id = #{id} AND status = 1
@@ -67,7 +67,7 @@
         </where>
     </select>
 
-    <select id="getAllSpecialActivity" parameterType="hashmap" resultType="com.hele.hzjs.model.SpecialActivity">
+    <select id="getAllSpecialActivity" parameterType="hashmap" resultType="com.hznu.lwb.model.SpecialActivity">
         SELECT *, YEAR(created_time) AS year
         FROM special_activity
         <where>
@@ -85,7 +85,7 @@
         </if>
     </select>
 
-    <select id="getAllYear" parameterType="hashmap" resultType="com.hele.hzjs.model.SpecialActivity">
+    <select id="getAllYear" parameterType="hashmap" resultType="com.hznu.lwb.model.SpecialActivity">
         SELECT YEAR(created_time) AS year
         FROM special_activity
         WHERE special_activity.status = 1

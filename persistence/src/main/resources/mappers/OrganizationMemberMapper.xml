@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.OrganizationMemberDao">
+<mapper namespace="com.hznu.lwb.persistence.OrganizationMemberDao">
 
     <select id="getMaxId" parameterType="string" resultType="int">
 		select max(id) from #{table};
@@ -17,7 +17,7 @@
         where id = #{id} and status = 1
     </select>
 
-    <select id="getMembers" parameterType="int" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="getMembers" parameterType="int" resultType="com.hznu.lwb.model.OrganizationMember">
         select * from organization_member
         where organization_id = #{organizationId} and status = 1
         order by sequence;
@@ -34,17 +34,17 @@
         limit 1;
     </select>
 
-    <select id="listAll" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="listAll" resultType="com.hznu.lwb.model.OrganizationMember">
         select id,username,name,mobile,type,organization_id from organization_member
     </select>
 
-    <select id="selectMember" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="selectMember" resultType="com.hznu.lwb.model.OrganizationMember">
         select om.id,om.username,om.name,om.mobile,o.name as organizationName from organization_member om left join organization o on om.organization_id = o.id
         where om.name like "%"#{term}"%" or om.username like "%"#{term}"%" and om.status = 1
         order by om.sequence;
     </select>
 
-    <select id="selectMember2" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="selectMember2" resultType="com.hznu.lwb.model.OrganizationMember">
         select om.id,om.name,o.name as organizationName,om.organization_id from organization_member om left join organization o on om.organization_id = o.id
         where om.name like "%"#{term}"%" or o.name like "%"#{term}"%" and om.status = 1 and o.status = 1
         order by om.sequence;
@@ -55,7 +55,7 @@
         where organization_id = #{organizationId};
     </select>
 
-    <select id="getOneToJudge" parameterType="hashmap" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="getOneToJudge" parameterType="hashmap" resultType="com.hznu.lwb.model.OrganizationMember">
         select om.*,organization.name as organization_name from organization_member om left join organization on om.organization_id = organization.id
         where om.name = #{name} and om.mobile = #{mobile};
     </select>
@@ -95,7 +95,7 @@
         where organization_id = #{organizationId};
     </update>
 
-    <select id="selectByScopeId" parameterType="int" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="selectByScopeId" parameterType="int" resultType="com.hznu.lwb.model.OrganizationMember">
         SELECT organization_member.id, organization_member.name
         FROM organization_member, organization, organization_scope_relationship
         WHERE organization.status = 1
@@ -126,7 +126,7 @@
         AND organization_member.id = #{id};
     </select>
 
-    <select id="selectAllOrganizationAdmin" parameterType="int" resultType="com.hele.hzjs.model.OrganizationMember">
+    <select id="selectAllOrganizationAdmin" parameterType="int" resultType="com.hznu.lwb.model.OrganizationMember">
         SELECT *
         FROM organization_member
         WHERE

@@ -91,7 +91,7 @@ function loadingFormData(seletor) {
 }
 
 function loading(seletor) {
-    $(seletor).append('<div class="message-loading-overlay loadingClass"><i class="fa-spin ace-icon fa fa-spinner hele-blue bigger-300"></i></div>');
+    $(seletor).append('<div class="message-loading-overlay loadingClass"><i class="fa-spin ace-icon fa fa-spinner hznu-blue bigger-300"></i></div>');
 }
 
 function dismiss() {

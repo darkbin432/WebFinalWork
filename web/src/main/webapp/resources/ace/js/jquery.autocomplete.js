@@ -414,7 +414,7 @@ $.Autocompleter.defaults = {
 	matchCase: false,
 	matchSubset: true,
 	matchContains: false,
-	cacheLength: 10,
+	cachznungth: 10,
 	max: 100,
 	mustMatch: false,
 	extraParams: {},
@@ -449,7 +449,7 @@ $.Autocompleter.Cache = function(options) {
 	};
 	
 	function add(q, value) {
-		if (length > options.cacheLength){
+		if (length > options.cachznungth){
 			flush();
 		}
 		if (!data[q]){ 
@@ -465,7 +465,7 @@ $.Autocompleter.Cache = function(options) {
 			nullData = 0;
 
 		// no url was specified, we need to adjust the cache length to make sure it fits the local data store
-		if( !options.url ) options.cacheLength = 1;
+		if( !options.url ) options.cachznungth = 1;
 		
 		// track all options for minChars = 0
 		stMatchSets[""] = [];
@@ -504,7 +504,7 @@ $.Autocompleter.Cache = function(options) {
 		// add the data items to the cache
 		$.each(stMatchSets, function(i, value) {
 			// increase the cache size
-			options.cacheLength++;
+			options.cachznungth++;
 			// add to the cache
 			add(i, value);
 		});
@@ -523,7 +523,7 @@ $.Autocompleter.Cache = function(options) {
 		add: add,
 		populate: populate,
 		load: function(q) {
-			if (!options.cacheLength || !length)
+			if (!options.cachznungth || !length)
 				return null;
 			/* 
 			 * if dealing w/local data and matchContains than we must make sure

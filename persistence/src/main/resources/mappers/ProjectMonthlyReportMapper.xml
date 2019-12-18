@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.ProjectMonthlyReportDao">
+<mapper namespace="com.hznu.lwb.persistence.ProjectMonthlyReportDao">
 
-    <insert id="insertMonthlyAlonePerson" parameterType="com.hele.hzjs.model.report.ProjectMonthlyReport"
+    <insert id="insertMonthlyAlonePerson" parameterType="com.hznu.lwb.model.report.ProjectMonthlyReport"
             useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO monthly_alone_person(information_coding, father_name, father_id_card, mother_name, mother_id_card, address, alone_time, reason, mobile,  scope_id, created_time, updated_time, version, status)
         VALUES (#{informationCoding}, #{fatherName}, #{fatherIdCard}, #{motherName}, #{motherIdCard}, #{address}, #{aloneTime}, #{reason}, #{mobile},  #{scopeId}, now(), now(), #{version}, #{status})
     </insert>
 
-    <insert id="insertMonthlyMentalityPerson" parameterType="com.hele.hzjs.model.report.ProjectMonthlyReport"
+    <insert id="insertMonthlyMentalityPerson" parameterType="com.hznu.lwb.model.report.ProjectMonthlyReport"
             useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO monthly_mentality_person(information_coding, father_name, father_id_card, mother_name, mother_id_card, address, alone_time, reason, mobile,  scope_id, created_time, updated_time, version, status)
         VALUES (#{informationCoding}, #{fatherName}, #{fatherIdCard}, #{motherName}, #{motherIdCard}, #{address}, #{aloneTime}, #{reason}, #{mobile},  #{scopeId}, now(), now(), #{version}, #{status})
     </insert>
 
-    <insert id="insertMonthlyChangePerson" parameterType="com.hele.hzjs.model.report.ProjectMonthlyReport"
+    <insert id="insertMonthlyChangePerson" parameterType="com.hznu.lwb.model.report.ProjectMonthlyReport"
             useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO monthly_change_person(information_coding, father_name, father_id_card, mother_name, mother_id_card, reason, delete_time, address,  scope_id, created_time, updated_time, version, status)
         VALUES (#{informationCoding}, #{fatherName}, #{fatherIdCard}, #{motherName}, #{motherIdCard}, #{reason}, #{deleteTime}, #{address}, #{scopeId}, now(), now(), #{version}, #{status})
     </insert>
 
-    <insert id="insertMonthlyMigratePerson" parameterType="com.hele.hzjs.model.report.ProjectMonthlyReport"
+    <insert id="insertMonthlyMigratePerson" parameterType="com.hznu.lwb.model.report.ProjectMonthlyReport"
             useGeneratedKeys="true"
             keyProperty="id">
         INSERT INTO monthly_migrate_person(information_coding, father_name, father_id_card, mother_name, mother_id_card, old_address, new_address, reason,  migrate_time, scope_id, created_time, updated_time, version, status)
         VALUES (#{informationCoding}, #{fatherName}, #{fatherIdCard}, #{motherName}, #{motherIdCard}, #{oldAddress}, #{newAddress}, #{reason}, #{migrateTime}, #{scopeId}, now(), now(), #{version}, #{status})
     </insert>
 
-    <insert id="insertMonthlyActivity" parameterType="com.hele.hzjs.model.report.ProjectMonthlyReport"
+    <insert id="insertMonthlyActivity" parameterType="com.hznu.lwb.model.report.ProjectMonthlyReport"
             useGeneratedKeys="true" keyProperty="id">
         INSERT INTO monthly_activity(head_member_name, description, scope_id, created_time, updated_time, version, status)
         VALUES (#{headMemberName}, #{description}, #{scopeId}, now(), now(), #{version}, #{status})
@@ -61,7 +61,7 @@
 		where id = #{id};
 	</update>
 
-    <update id="updateMonthlyActivity" parameterType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <update id="updateMonthlyActivity" parameterType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         UPDATE monthly_activity
         <set>
             <if test="headMemberName!=null">
@@ -75,7 +75,7 @@
         WHERE id = #{id}
     </update>
 
-    <select id="getMonthlyAlonePersonPageCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyAlonePersonPageCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_alone_person
@@ -95,7 +95,7 @@
         </where>
     </select>
 
-    <select id="getMonthlyAlonePersonTotalCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyAlonePersonTotalCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_alone_person
@@ -115,7 +115,7 @@
         </where>
     </select>
 
-    <select id="getOneMonthlyAlonePersonPage" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getOneMonthlyAlonePersonPage" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT count(*)
         FROM monthly_alone_person
@@ -136,8 +136,8 @@
         LIMIT 1;
     </select>
 
-    <select id="getMonthlyAlonePerson" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
-            resultType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <select id="getMonthlyAlonePerson" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
+            resultType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         SELECT *
         FROM monthly_alone_person
         LEFT JOIN organization_scope_relationship ON monthly_alone_person.scope_id = organization_scope_relationship.scope_id
@@ -160,7 +160,7 @@
         </if>
     </select>
 
-    <select id="getMonthlyMentalityPersonPageCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyMentalityPersonPageCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_mentality_person
@@ -180,7 +180,7 @@
         </where>
     </select>
 
-    <select id="getMonthlyMentalityPersonTotalCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyMentalityPersonTotalCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_mentality_person
@@ -200,7 +200,7 @@
         </where>
     </select>
 
-    <select id="getOneMonthlyMentalityPersonPage" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getOneMonthlyMentalityPersonPage" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT count(*)
         FROM monthly_mentality_person
@@ -221,8 +221,8 @@
         LIMIT 1;
     </select>
 
-    <select id="getMonthlyMentalityPerson" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
-            resultType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <select id="getMonthlyMentalityPerson" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
+            resultType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         SELECT *
         FROM monthly_mentality_person
         LEFT JOIN organization_scope_relationship ON monthly_mentality_person.scope_id = organization_scope_relationship.scope_id
@@ -245,7 +245,7 @@
         </if>
     </select>
 
-    <select id="getMonthlyChangePersonPageCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyChangePersonPageCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_change_person
@@ -265,7 +265,7 @@
         </where>
     </select>
 
-    <select id="getMonthlyChangePersonTotalCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyChangePersonTotalCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_change_person
@@ -285,7 +285,7 @@
         </where>
     </select>
 
-    <select id="getOneMonthlyChangePersonPage" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getOneMonthlyChangePersonPage" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT count(*)
         FROM monthly_change_person
@@ -306,8 +306,8 @@
         LIMIT 1;
     </select>
 
-    <select id="getMonthlyChangePerson" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
-            resultType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <select id="getMonthlyChangePerson" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
+            resultType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         SELECT *
         FROM monthly_change_person
         LEFT JOIN organization_scope_relationship ON monthly_change_person.scope_id = organization_scope_relationship.scope_id
@@ -330,7 +330,7 @@
         </if>
     </select>
 
-    <select id="getMonthlyMigratePersonPageCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyMigratePersonPageCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_migrate_person
@@ -350,7 +350,7 @@
         </where>
     </select>
 
-    <select id="getMonthlyMigratePersonTotalCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getMonthlyMigratePersonTotalCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(*)
         FROM monthly_migrate_person
@@ -370,7 +370,7 @@
         </where>
     </select>
 
-    <select id="getOneMonthlyMigratePersonPage" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getOneMonthlyMigratePersonPage" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT count(*)
         FROM monthly_migrate_person
@@ -391,8 +391,8 @@
         LIMIT 1;
     </select>
 
-    <select id="getMonthlyMigratePerson" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
-            resultType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <select id="getMonthlyMigratePerson" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
+            resultType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         SELECT *
         FROM monthly_migrate_person
         LEFT JOIN organization_scope_relationship ON monthly_migrate_person.scope_id = organization_scope_relationship.scope_id
@@ -415,8 +415,8 @@
         </if>
     </select>
 
-    <select id="getMonthlyActivity" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
-            resultType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <select id="getMonthlyActivity" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
+            resultType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         SELECT *
         FROM monthly_activity
         LEFT JOIN organization_scope_relationship ON monthly_activity.scope_id = organization_scope_relationship.scope_id
@@ -436,7 +436,7 @@
         LIMIT 1;
     </select>
 
-    <select id="getChildOrganizationCount" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
+    <select id="getChildOrganizationCount" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
             resultType="int">
         SELECT COUNT(organization_scope_relationship.id)
         FROM organization
@@ -455,8 +455,8 @@
         </where>
     </select>
 
-    <select id="selectChildOrganization" parameterType="com.hele.hzjs.model.param.ProjectMonthlyReportParam"
-            resultType="com.hele.hzjs.model.report.ProjectMonthlyReport">
+    <select id="selectChildOrganization" parameterType="com.hznu.lwb.model.param.ProjectMonthlyReportParam"
+            resultType="com.hznu.lwb.model.report.ProjectMonthlyReport">
         SELECT organization_scope_relationship.`name` AS organization_name, organization_scope_relationship.scope_id
         FROM organization
         LEFT JOIN organization_scope_relationship ON organization.id = organization_scope_relationship.organization_id

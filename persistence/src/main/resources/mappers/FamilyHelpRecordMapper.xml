@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.FamilyHelpRecordDao">
+<mapper namespace="com.hznu.lwb.persistence.FamilyHelpRecordDao">
 
-    <insert id="insertRecord" parameterType="com.hele.hzjs.model.param.FamilyHelpRecordParam">
+    <insert id="insertRecord" parameterType="com.hznu.lwb.model.param.FamilyHelpRecordParam">
         insert into family_help_record(huiyuan_id,organization_member_id,fs_date,created_time,updated_time,status)
         values(#{huiyuanId},#{organizationMemberId},now(),now(),now(),1)
         ON DUPLICATE key update status = 1
     </insert>
 
-    <select id="getPageCount" parameterType="com.hele.hzjs.model.param.FamilyHelpRecordParam" resultType="Integer">
+    <select id="getPageCount" parameterType="com.hznu.lwb.model.param.FamilyHelpRecordParam" resultType="Integer">
         select count(*)
         from family_help_record fhr
         left join huiyuan on huiyuan.id = fhr.huiyuan_id
@@ -21,7 +21,7 @@
         </where>;
     </select>
 
-    <select id="getRecord" parameterType="com.hele.hzjs.model.param.FamilyHelpRecordParam" resultType="com.hele.hzjs.model.report.FamilyHelpRecord">
+    <select id="getRecord" parameterType="com.hznu.lwb.model.param.FamilyHelpRecordParam" resultType="com.hznu.lwb.model.report.FamilyHelpRecord">
         select fhr.id as id,
         huiyuan.id as huiyuanId,
         huiyuan.name as huiyuanName,

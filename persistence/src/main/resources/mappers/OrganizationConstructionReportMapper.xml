@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.OrganizationConstructionReportDao">
+<mapper namespace="com.hznu.lwb.persistence.OrganizationConstructionReportDao">
 
-  <insert id="insert" parameterType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <insert id="insert" parameterType="com.hznu.lwb.model.report.OrganizationConstructionReport">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -52,7 +52,7 @@
     where is_filed = 1 and year(created_time) = #{year}
   </select>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hznu.lwb.model.report.OrganizationConstructionReport">
     update organization_construction_report
     <set>
       <if test="scopeId != null">
@@ -198,13 +198,13 @@
       order by year(created_time) desc;
     </select>
 
-  <select id="getOne" parameterType="com.hele.hzjs.model.param.OrganizationConstructionReportParam" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="getOne" parameterType="com.hznu.lwb.model.param.OrganizationConstructionReportParam" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
       select ocr.* ,osr.name as scope_name
       from organization_construction_report ocr left join organization_scope_relationship osr on ocr.scope_id = osr.scope_id
       where year(ocr.created_time) = #{year} and ocr.scope_id = #{scopeId}
   </select>
 
-  <select id="getLici" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="getLici" parameterType="int" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
       select ocr.*,om.name as report_person_name,osr.name as scope_name
       from organization_construction_report ocr left join organization_member om on ocr.report_person_id = om.id
       left join organization_scope_relationship osr on ocr.scope_id = osr.scope_id
@@ -212,7 +212,7 @@
       order by ocr.created_time desc
   </select>
 
-    <select id="selectChildrenStatusPageCount" parameterType="com.hele.hzjs.model.param.OrganizationConstructionReportParam" resultType="int">
+    <select id="selectChildrenStatusPageCount" parameterType="com.hznu.lwb.model.param.OrganizationConstructionReportParam" resultType="int">
         select count(distinct organization_name)
         from(select o.name as organization_name,
         case when year(ocr.created_time) = #{year} and ocr.scope_id = osr.scope_id then 1 else null end as child_status,
@@ -223,7 +223,7 @@
         WHERE o.parent_organization_id = #{parentOrganizationId} and (year(ocr.created_time) = #{year} or osr.id is not null) and osr.status = 1) as tmp
     </select>
 
-  <select id="selectChildrenStatus" parameterType="com.hele.hzjs.model.param.OrganizationConstructionReportParam" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="selectChildrenStatus" parameterType="com.hznu.lwb.model.param.OrganizationConstructionReportParam" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
       select organization_name ,sum(child_status) as child_status,scope_id
       from(select o.name as organization_name,
       case when year(ocr.created_time) = #{year} and ocr.scope_id = osr.scope_id then 1 else null end as child_status,
@@ -239,7 +239,7 @@
       </if>
   </select>
 
-  <select id="getShequji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="getShequji" parameterType="int" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
     select sum(xingzhengqsl) as xingzhengqsl,
     sum(jigousl) as jigousl,
     sum(jianzhipydqtrys) as jianzhipydqtrys,
@@ -256,7 +256,7 @@
     where year(created_time) = #{year} and scope_id % 100 != 0
   </select>
 
-  <select id="getJiedaoji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="getJiedaoji" parameterType="int" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
     select sum(xingzhengqsl) as xingzhengqsl,
     sum(jigousl) as jigousl,
     sum(jianzhipydqtrys) as jianzhipydqtrys,
@@ -277,7 +277,7 @@
     where year(created_time) = #{year} and scope_id % 10000 != 0 and scope_id % 100 = 0
   </select>
 
-  <select id="getQuji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="getQuji" parameterType="int" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
     select sum(xingzhengqsl) as xingzhengqsl,
     sum(jigousl) as jigousl,
     sum(ruxu) as ruxu,
@@ -309,7 +309,7 @@
     where year(created_time) = #{year} and scope_id != 0 and scope_id % 10000 = 0
   </select>
 
-  <select id="getShiji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+  <select id="getShiji" parameterType="int" resultType="com.hznu.lwb.model.report.OrganizationConstructionReport">
     select sum(xingzhengqsl) as xingzhengqsl,
     sum(jigousl) as jigousl,
     sum(dangzhibsl) as dangzhibsl,

@@ -7,7 +7,7 @@
 	<properties resource="database.properties"/>
 
 	<typeAliases>
-		<package name="com.hele.hzjs.model"/>
+		<package name="com.hznu.lwb.model"/>
 	</typeAliases>
 
 	<environments default="development">

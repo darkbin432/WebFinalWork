@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.UserDao">
+<mapper namespace="com.hznu.lwb.persistence.UserDao">
 
-	<!--<insert id="insert" parameterType="com.hele.hzjs.model.User" useGeneratedKeys="true" keyProperty="id">-->
+	<!--<insert id="insert" parameterType="com.hznu.lwb.model.User" useGeneratedKeys="true" keyProperty="id">-->
 		<!--insert into user(code,name,password,created_at,updated_at)-->
 		<!--values(#{code},#{name},#{password},now(),now())-->
 	<!--</insert>-->
 
-	<select id="getUser" parameterType="hashmap" resultType="User">
-		select * from organization_member
+	<select id="getUser" parameterType="String" resultType="com.hznu.lwb.model.User">
+		select * from user
 		where status = 1 and username = #{username}
 		limit  1;
 	</select>
 
-	<update id="updateInfo" parameterType="com.hele.hzjs.model.User" >
-		update organization_member
+	<update id="updateInfo" parameterType="com.hznu.lwb.model.User" >
+		update user
 		<set>
 			<if test="mobile != null">
 				mobile = #{mobile},
@@ -38,10 +38,9 @@
 		select max(id) from organization_member
 	</select>
 
-	<select id="login" parameterType="hashMap" resultType="OrganizationMember">
-		select om.*,osr.scope_id as scope_id from organization_member om
-		left join organization_scope_relationship osr on om.organization_id = osr.organization_id
-		where om.username = #{loginName}
+	<select id="login" parameterType="String" resultType="com.hznu.lwb.model.User">
+		select * from user
+		where username = #{username}
 		limit 1;
 	</select>
 

@@ -42,7 +42,7 @@
 		</property>
 	</bean>
 
-	<bean id="myShiroRealm" class="com.hele.hzjs.shiro.UserRealm">
+	<bean id="myShiroRealm" class="com.hznu.lwb.shiro.UserRealm">
 		<!--验证方式 -->
 		<property name="credentialsMatcher">
 			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">

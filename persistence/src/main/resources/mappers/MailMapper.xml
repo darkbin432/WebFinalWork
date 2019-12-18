@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hele.hzjs.persistence.MailDao">
+<mapper namespace="com.hznu.lwb.persistence.MailDao">
 
 	<select id="getMaxId" parameterType="string" resultType="int">
 		select max(id) from #{table};
 	</select>
 
-	<insert id="insert" parameterType="com.hele.hzjs.model.Mail">
+	<insert id="insert" parameterType="com.hznu.lwb.model.Mail">
 		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
@@ -84,7 +84,7 @@
 		values (#{mailId},#{organizationMemberId},0,0,0,now(),now(),1);
 	</insert>
 
-	<select id="getRecievePageCount" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Integer">
+	<select id="getRecievePageCount" parameterType="com.hznu.lwb.model.param.MailParam" resultType="Integer">
 		select count(distinct mail.id)
 		from (mail left join mail_people_relationship mpr on mail.id = mpr.mail_id) left join organization_member om on om.id = mail.in_mail
 		<where>
@@ -108,7 +108,7 @@
 		order by mail.date desc
 	</select>
 
-    <select id="listRecieveMail" parameterType="com.hele.hzjs.model.param.MailParam" resultType="com.hele.hzjs.model.Mail">
+    <select id="listRecieveMail" parameterType="com.hznu.lwb.model.param.MailParam" resultType="com.hznu.lwb.model.Mail">
 		select distinct mail.id,mail.*,mpr.*,om.name as in_name
 		from (mail left join mail_people_relationship mpr on mail.id = mpr.mail_id) left join organization_member om on om.id = mail.in_mail
 		<where>
@@ -136,7 +136,7 @@
 		</if>
 	</select>
 
-	<select id="getSendPageCount" parameterType="com.hele.hzjs.model.param.MailParam" resultType="int">
+	<select id="getSendPageCount" parameterType="com.hznu.lwb.model.param.MailParam" resultType="int">
 		select count(*)
 		from mail
 		<where>
@@ -151,7 +151,7 @@
 		order by date desc
 	</select>
 
-	<select id="getSendMail" parameterType="com.hele.hzjs.model.param.MailParam" resultType="com.hele.hzjs.model.Mail">
+	<select id="getSendMail" parameterType="com.hznu.lwb.model.param.MailParam" resultType="com.hznu.lwb.model.Mail">
 		select *
 		from mail
 		<where>
@@ -169,7 +169,7 @@
 			</if>
 	</select>
 
-	<select id="getOne" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Mail">
+	<select id="getOne" parameterType="com.hznu.lwb.model.param.MailParam" resultType="Mail">
 		select mail.*,mpr.to_star from mail left join mail_people_relationship mpr on mail.id = mpr.mail_id
 		where mail.id = #{id} and mpr.organization_member_id = #{organizationMemberId} and mail.status = 1;
 	</select>
@@ -180,13 +180,13 @@
 		order by updated_time;
 	</select>
 
-	<select id="getOneByAddressee" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Mail">
+	<select id="getOneByAddressee" parameterType="com.hznu.lwb.model.param.MailParam" resultType="Mail">
 		select *,organization_member.name as in_name,organization_member.mobile as in_mobile,organization.name as in_organization_name from (mail left join mail_people_relationship on mail.id = mail_people_relationship.mail_id) left join organization_member on organization_member.id = mail.in_mail left join organization on organization.id = organization_member.organization_id
 		where mail.id = #{id} and mail_people_relationship.organization_member_id = #{organizationMemberId}
 		order by mail.date;
 	</select>
 
-	<select id="getOneMail" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Mail">
+	<select id="getOneMail" parameterType="com.hznu.lwb.model.param.MailParam" resultType="Mail">
 		select mail.*,mpr.*,organization_member.name as in_name ,organization_member.username as in_userName,organization_member.mobile as in_mobile,organization.name as in_organization_name
 		from mail left join organization_member on mail.in_mail = organization_member.id left join organization on organization.id = organization_member.organization_id left join mail_people_relationship mpr on mail.id = mpr.mail_id
 		where mail.id = #{id} and (mpr.organization_member_id = #{organizationMemberId} or mail.in_mail = #{organizationMemberId})
@@ -198,7 +198,7 @@
 		where organization_member_id = #{id} and is_read = 0 and is_garbage = 0 and status = 1;
 	</select>
 
-	<update id="updateInfo" parameterType="com.hele.hzjs.model.Mail">
+	<update id="updateInfo" parameterType="com.hznu.lwb.model.Mail">
 		update mail
 		<set>
 			<if test="sendStatus != null">

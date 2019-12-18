@@ -1005,7 +1005,7 @@ jQuery(function ($) {
                             "                    </div>";
                     }
                     html += "<div id=\"uploadImgs\">\n" +
-                        "                        <div><img src=\"/hzjs/resources/icon/tianjiakaobei2.png\"></div>\n" +
+                        "                        <div><img src=\"/webFinal/resources/icon/tianjiakaobei2.png\"></div>\n" +
                         "                        <div><span>上传图片</span></div>\n" +
                         "                        <div><span>jpg png</span></div>\n" +
                         "                    </div>";
