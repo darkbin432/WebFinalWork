@@ -24,27 +24,6 @@
 
 	<mappers>
 		<mapper resource="mappers/UserMapper.xml"/>
-		<mapper resource="mappers/AnnouncementMapper.xml"/>
-		<mapper resource="mappers/MailMapper.xml"/>
-		<mapper resource="mappers/OrganizationMemberMapper.xml"/>
-		<mapper resource="mappers/ZixunMapper.xml"/>
-		<mapper resource="mappers/XuanjiaoMapper.xml"/>
-		<mapper resource="mappers/OrganizationMapper.xml"/>
-		<mapper resource="mappers/HuiyuanMapper.xml"/>
-		<mapper resource="mappers/ActivityMapper.xml"/>
-		<mapper resource="mappers/ProjectMapper.xml"/>
-		<mapper resource="mappers/HuiyuanReportMapper.xml"/>
-		<mapper resource="mappers/VolunteerReportMapper.xml"/>
-		<mapper resource="mappers/ProjectReportMapper.xml"/>
-		<mapper resource="mappers/OrganizationConstructionReportMapper.xml"/>
-		<mapper resource="mappers/SpecialActivityMapper.xml"/>
-		<mapper resource="mappers/YearReportMapper.xml"/>
-		<mapper resource="mappers/ProjectMonthlyReportMapper.xml"/>
-		<mapper resource="mappers/ProjectWorkReportMapper.xml"/>
-		<mapper resource="mappers/FamilyHelpRecordMapper.xml"/>
-		<mapper resource="mappers/FloatingPopulationReportMapper.xml"/>
-		<mapper resource="mappers/WarmHeartReportMapper.xml"/>
-		<mapper resource="mappers/OfficialDocumentMapper.xml"/>
 	</mappers>
 
 
