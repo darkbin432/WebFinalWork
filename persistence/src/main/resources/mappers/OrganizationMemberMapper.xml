@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.OrganizationMemberDao">
+
+    <select id="getMaxId" parameterType="string" resultType="int">
+		select max(id) from #{table};
+	</select>
+
+    <select id="getMemberId" parameterType="int" resultType="int">
+        select id from organization_member
+        where organization_id = #{id} and status = 1
+        order by sequence;
+    </select>
+
+    <select id = "getOne" parameterType="int" resultType="OrganizationMember">
+        select * from organization_member
+        where id = #{id} and status = 1
+    </select>
+
+    <select id="getMembers" parameterType="int" resultType="com.hele.hzjs.model.OrganizationMember">
+        select * from organization_member
+        where organization_id = #{organizationId} and status = 1
+        order by sequence;
+    </select>
+
+    <select id="getIdByUserName" parameterType="string" resultType="int">
+        select id from organization_member
+        where username = #{username} and status = 1;
+    </select>
+
+    <select id="getScope" parameterType="int" resultType="int">
+        select scope_id from organization_scope_relationship
+        where organization_id = #{id} and status = 1
+        limit 1;
+    </select>
+
+    <select id="listAll" resultType="com.hele.hzjs.model.OrganizationMember">
+        select id,username,name,mobile,type,organization_id from organization_member
+    </select>
+
+    <select id="selectMember" resultType="com.hele.hzjs.model.OrganizationMember">
+        select om.id,om.username,om.name,om.mobile,o.name as organizationName from organization_member om left join organization o on om.organization_id = o.id
+        where om.name like "%"#{term}"%" or om.username like "%"#{term}"%" and om.status = 1
+        order by om.sequence;
+    </select>
+
+    <select id="selectMember2" resultType="com.hele.hzjs.model.OrganizationMember">
+        select om.id,om.name,o.name as organizationName,om.organization_id from organization_member om left join organization o on om.organization_id = o.id
+        where om.name like "%"#{term}"%" or o.name like "%"#{term}"%" and om.status = 1 and o.status = 1
+        order by om.sequence;
+    </select>
+
+    <select id="getMaxSequence" parameterType="int" resultType="int">
+        select max(sequence) from organization_member
+        where organization_id = #{organizationId};
+    </select>
+
+    <select id="getOneToJudge" parameterType="hashmap" resultType="com.hele.hzjs.model.OrganizationMember">
+        select om.*,organization.name as organization_name from organization_member om left join organization on om.organization_id = organization.id
+        where om.name = #{name} and om.mobile = #{mobile};
+    </select>
+
+    <insert id="insertOne" parameterType="OrganizationMember">
+        insert into organization_member(username,password,name,sequence,mobile,telephone,organization_id,position,address,type,created_time,updated_time,version,status)
+        values (#{username},#{password},#{name},#{sequence},#{mobile},#{telephone},#{organizationId},#{position},#{address},#{type},now(),now(),#{version},1)
+    </insert>
+
+    <select id="isUsernameUnique" parameterType="string" resultType="int">
+        select count(*) from organization_member
+        where username = #{username};
+    </select>
+
+    <update id="updateOne" parameterType="Organization">
+        update organization_member
+        <set>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            name = #{name},mobile = #{mobile},telephone = #{telephone},position = #{position},address = #{address},type = #{type},updated_time = now(),version = #{version}
+        </set>
+        where id = #{id};
+    </update>
+
+    <update id="deleteOne" parameterType="int">
+        update organization_member
+        set status = 0,
+        updated_time = now()
+        where id = #{id};
+    </update>
+
+    <update id="deleteByOrganization">
+        update organization_member
+        set status = 0,
+        updated_time = now()
+        where organization_id = #{organizationId};
+    </update>
+
+    <select id="selectByScopeId" parameterType="int" resultType="com.hele.hzjs.model.OrganizationMember">
+        SELECT organization_member.id, organization_member.name
+        FROM organization_member, organization, organization_scope_relationship
+        WHERE organization.status = 1
+        AND organization_member.status = 1
+        AND organization_scope_relationship.status = 1
+        AND organization_scope_relationship.organization_id = organization.id
+        AND organization.id = organization_member.organization_id
+        AND organization_scope_relationship.scope_id = #{scopeId}
+        order by organization_member.sequence;
+    </select>
+
+    <select id="getOneScopeId" parameterType="int" resultType="int">
+        SELECT organization_scope_relationship.scope_id
+        FROM organization_member, organization_scope_relationship
+        WHERE organization_member.status = 1
+        AND organization_scope_relationship.status = 1
+        AND organization_member.organization_id = organization_scope_relationship.organization_id
+        AND organization_member.id = #{id};
+    </select>
+
+    <select id="selectApprovalId" parameterType="int" resultType="int">
+        SELECT organization.parent_organization_id
+        FROM organization, organization_member
+        WHERE
+        organization.status = 1
+        AND organization_member.status = 1
+        AND organization.id = organization_member.organization_id
+        AND organization_member.id = #{id};
+    </select>
+
+    <select id="selectAllOrganizationAdmin" parameterType="int" resultType="com.hele.hzjs.model.OrganizationMember">
+        SELECT *
+        FROM organization_member
+        WHERE
+        status = 1
+        AND type = 1
+        AND organization_id = #{id}
+        order by sequence;
+    </select>
+
+    <update id="updateMemberSequence" parameterType="hashmap">
+        update organization_member
+        set sequence = #{sequence}
+        where id = #{id};
+    </update>
+
+</mapper>

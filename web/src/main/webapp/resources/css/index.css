@@ -1,0 +1,638 @@
+
+.myContainer > div:nth-child(1) {
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.myButtons {
+    height: 140px;
+    width: 1440px;
+    display: flex;
+    margin: auto;
+    align-items: center;
+}
+
+.myButton {
+    width: 200px;
+    height: 90px;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #cecece;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.tip {
+    position: absolute;
+    border-radius: 50%;
+    background-color: red;
+    color: #ffffff;
+    top: 0;
+    right: 0;
+    font-size: 8px !important;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.myButton:nth-child(1) {
+    margin-left: 96px;
+}
+
+.myButton:nth-child(n+2) {
+    margin-left: 28px;
+}
+
+.myButton img {
+    margin: 0 22px;
+    cursor: pointer;
+}
+
+.myButton span {
+    color: #666666;
+    font-size: 18px !important;
+    cursor: pointer;
+}
+
+.myInfos {
+    width: 100%;
+    height: auto;
+    background-color: #f5f5f5;
+    margin-bottom: 20px;
+}
+
+.infos {
+    width: 1440px;
+    height: auto;
+    margin: auto;
+    padding-top: 20px;
+    overflow: hidden;
+}
+
+.info {
+    float: left;
+    height: auto;
+    border-radius: 8px;
+    width: 668px;
+    background-color: #ffffff;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.info:nth-child(1) {
+    margin-left: 40px;
+}
+
+.info:nth-child(2) {
+    margin-left: 24px;
+}
+
+.info-top {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    background-color: #d8e3ec;
+    position: relative;
+}
+
+.info-top > div {
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: right;
+}
+
+.info-title {
+    color: #333;
+    font-size: 16px !important;
+    margin-left: 24px;
+}
+
+.info-more {
+    color: #a6abae;
+    font-size: 12px !important;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.info-top > div > img {
+    margin-right: 20px;
+}
+
+.announcement-row {
+    width: 100%;
+    height: 40px;
+}
+
+.announcement-row > div {
+    height: 100%;
+    display: inline-block;
+    float: left;
+    line-height: 40px;
+}
+
+.announcement-row-hover {
+    color: #1890ff !important;
+    text-decoration: none;
+}
+
+.announcement-row > div:nth-child(1) {
+    width: calc(100% - 140px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 24px;
+    text-align: left;
+
+}
+
+.announcement-row > div:nth-child(1) a {
+    text-decoration: none;
+    color: #314659;
+    cursor: pointer;
+}
+
+.announcement-row > div:nth-child(2) {
+    width: 140px;
+    padding-left: 24px;
+    color: #aaa;
+    text-align: right;
+    padding-right: 24px;
+}
+
+.info-line {
+    width: 620px;
+    height: 1px;
+    background: #ebedf0;
+    margin: auto;
+}
+
+.information-row {
+    width: 100%;
+    height: 80px;
+}
+
+.information-row img {
+    float: left;
+    width: 84px;
+    height: 54px;
+    border-radius: 4px;
+    margin-left: 20px;
+}
+
+.information-row > div:nth-child(1) {
+    text-align: left;
+    display: flex;
+    width: 104px;
+    align-items: center;
+    float: left;
+    height: 100%;
+    line-height: 80px;
+}
+
+.information-row > div:nth-child(2) {
+    float: left;
+    height: 100%;
+    width: 552px;
+    margin-left: 12px;
+    text-align: left;
+}
+
+.information-content > div:nth-child(1) {
+    width: 412px;
+    margin-top: 16px;
+    color: #314659;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.information-row-hover {
+    color: #1890ff !important;
+    cursor: pointer;
+}
+
+.information-main {
+    margin-top: 6px;
+    color: #888;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.information-main div:nth-child(1) {
+    width: 412px;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.information-main div:nth-child(2) {
+    float: left;
+    box-sizing: padding-box;
+    color: #aaa;
+    position: absolute;
+    right: 24px;
+    top: 0;
+}
+
+.mail-row {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: default;
+}
+
+.mail-row div {
+    float: left;
+}
+
+.mail-row img {
+    margin-left: 24px;
+}
+
+.mail-row span {
+    color: #314659;
+}
+
+.mail-row-hover {
+    color: #1890ff !important;
+    cursor: pointer;
+}
+
+.mail-row span:nth-child(2) {
+    width: 98px;
+    margin-left: 36px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+}
+
+.mail-row span:nth-child(2):hover {
+    color: #314659;
+}
+
+.mail-row span:nth-child(3) {
+    width: 112px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+}
+
+.mail-row span:nth-child(4) {
+    width: 240px;
+    color: #888;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+}
+
+.mail-row div:nth-child(5) {
+    color: #aaa;
+    position: absolute;
+    right: 24px;
+    top: 0;
+    height: 40px;
+    line-height: 40px;
+}
+@media all and (max-width: 1439px){
+    .myButtons{
+        width: 1280px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .myButton {
+        width: calc(210px * 1280 /1440);
+    }
+
+    .myButton:nth-child(1) {
+        margin-left: 0;
+    }
+
+    .myButton:nth-child(n+2) {
+        margin-left: 16px;
+    }
+
+    .myButton img {
+        margin: 0 calc(22px * 1280 / 1440);
+    }
+
+
+    .infos {
+        width: 1280px;
+    }
+
+    .info {
+        width: calc(668px * 1280 / 1440);
+    }
+
+    .info:nth-child(1) {
+        margin-left: calc(40px * 1280 / 1440);
+    }
+
+    .info:nth-child(2) {
+        margin-left: calc(24px * 1280 / 1440);
+    }
+
+    .info-top {
+        height: calc(40px * 1280 / 1440);
+    }
+
+
+
+    .announcement-row {
+        height: calc(40px * 1280 / 1440);
+    }
+
+    .announcement-row > div {
+        line-height: calc(40px * 1280 / 1440);
+
+    }
+
+    .information-main{
+        margin-top: 6px;
+    }
+    .info-line {
+        width: calc(620px * 1280 / 1440);
+    }
+
+    .information-row {
+        height:calc(80px * 1280 / 1440);
+    }
+
+    .information-row img {
+        width: calc(84px * 1280 / 1440);
+        height: calc(54px * 1280 / 1440);
+    }
+
+    .information-row > div:nth-child(1) {
+        /*width: calc(104px * 1280 / 1440);*/
+        line-height: calc(80px * 1280 / 1440);
+    }
+
+    .information-row > div:nth-child(2) {
+        width: calc(100% - 116px);
+        margin-left: 0;
+    }
+
+    .information-content > div:nth-child(1) {
+        width: calc(412px * 1280 / 1440);
+        margin-top: 8px;
+    }
+
+
+    .information-main div:nth-child(1) {
+        width: calc(412px * 1280 / 1440);
+    }
+    .mail-row {
+        height: calc(40px * 1280 / 1440);
+    }
+    .mail-row span:nth-child(2) {
+        width: calc(98px * 1280 / 1440);
+    }
+
+    .mail-row span:nth-child(3) {
+        width: calc(112px * 1280 / 1440);
+    }
+
+    .mail-row span:nth-child(4) {
+        width: calc(240px * 1280 / 1440);
+    }
+
+    .mail-row div:nth-child(5) {
+        line-height: calc(40px * 1280 / 1440);
+        height: calc(40px * 1280 / 1440);
+    }
+}
+@media all and (min-width: 1440px){
+    .myButtons{
+        width: 1440px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .myButton:nth-child(1) {
+        margin-left: 0;
+    }
+
+    .myButton:nth-child(n+2) {
+        margin-left: 24px;
+    }
+
+    .myButton img {
+        margin: 0 calc(22px * 1440 /1440);
+    }
+
+
+    .infos {
+        width: 1440px;
+    }
+
+    .info {
+        width: calc(668px * 1440 /1440);
+    }
+
+    .info:nth-child(1) {
+        margin-left: calc(40px * 1440 /1440);
+    }
+
+    .info:nth-child(2) {
+        margin-left: calc(24px * 1440 /1440);
+    }
+
+    .info-top {
+        height: calc(40px * 1440 /1440);
+    }
+
+
+
+    .announcement-row {
+        height: calc(40px * 1440 /1440);
+    }
+
+    .announcement-row > div {
+        line-height: calc(40px * 1440 /1440);
+    }
+
+    .information-main{
+        margin-top: 8px;
+    }
+    .info-line {
+        width: calc(620px * 1440 /1440);
+    }
+
+    .information-row {
+        height:calc(80px * 1440 /1440);
+    }
+
+    .information-row img {
+        width: calc(84px * 1440 /1440);
+        height: calc(54px * 1440 /1440);
+    }
+
+    .information-row > div:nth-child(1) {
+        width: calc(104px * 1440 /1440);
+        line-height: calc(80px * 1440 /1440);
+    }
+
+    .information-row > div:nth-child(2) {
+        width: calc(552px * 1440 /1440);
+    }
+
+    .information-content > div:nth-child(1) {
+        width: calc(412px * 1440 /1440);
+    }
+
+
+    .information-main div:nth-child(1) {
+        width: calc(412px * 1440 /1440);
+    }
+    .mail-row {
+        height: calc(40px * 1440 /1440);
+    }
+    .mail-row span:nth-child(2) {
+        width: calc(98px * 1440 /1440);
+    }
+
+    .mail-row span:nth-child(3) {
+        width: calc(112px * 1440 /1440);
+    }
+
+    .mail-row span:nth-child(4) {
+        width: calc(240px * 1440 /1440);
+    }
+
+    .mail-row div:nth-child(5) {
+        line-height: calc(40px * 1440 /1440);
+        height: calc(40px * 1440 /1440);
+    }
+}
+@media all and (min-width: 1680px){
+    .myButtons{
+        width: 1680px;
+        display: flex;
+        justify-content: center;
+    }
+    .myButton{
+        width: 224px;
+    }
+
+    .myButton:nth-child(1) {
+        margin-left: 0;
+    }
+
+    .myButton:nth-child(n+2) {
+        margin-left: calc(28px * 1680 /1440);
+    }
+
+    .myButton img {
+        margin: 0 calc(22px * 1680 /1440);
+    }
+
+
+
+    .infos {
+        width: 1680px;
+    }
+
+    .info {
+        width: calc(668px * 1680 /1440);
+    }
+
+    .info:nth-child(1) {
+        margin-left: calc(40px * 1680 /1440);
+    }
+
+    .info:nth-child(2) {
+        margin-left: calc(24px * 1680 /1440);
+    }
+
+    .info-top {
+        height: calc(40px * 1680 /1440);
+    }
+
+
+
+    .announcement-row {
+        height: calc(40px * 1680 /1440);
+    }
+
+    .announcement-row > div {
+        line-height: calc(40px * 1680 /1440);
+    }
+
+    .information-main{
+        margin-top: 12px;
+    }
+    .info-line {
+        width: calc(620px * 1680 /1440);
+    }
+
+    .information-row {
+        height:calc(80px * 1680 /1440);
+    }
+
+    .information-row img {
+        width: calc(84px * 1680 /1440);
+        height: calc(54px * 1680 /1440);
+    }
+
+    .information-row > div:nth-child(1) {
+        width: calc(104px * 1680 /1440);
+        line-height: calc(80px * 1680 /1440);
+    }
+
+    .information-row > div:nth-child(2) {
+        width: calc(552px * 1680 /1440);
+    }
+
+    .information-content > div:nth-child(1) {
+        width: calc(412px * 1680 /1440);
+    }
+
+
+    .information-main div:nth-child(1) {
+        width: calc(412px * 1680 /1440);
+    }
+    .mail-row {
+        height: calc(40px * 1680 /1440);
+    }
+    .mail-row span:nth-child(2) {
+        width: calc(98px * 1680 /1440);
+    }
+
+    .mail-row span:nth-child(3) {
+        width: calc(112px * 1680 /1440);
+    }
+
+    .mail-row span:nth-child(4) {
+        width: calc(240px * 1680 /1440);
+    }
+
+    .mail-row div:nth-child(5) {
+        line-height: calc(40px * 1680 /1440);
+        height: calc(40px * 1680 /1440);
+    }
+}

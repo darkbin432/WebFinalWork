@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.UserDao">
+
+	<!--<insert id="insert" parameterType="com.hele.hzjs.model.User" useGeneratedKeys="true" keyProperty="id">-->
+		<!--insert into user(code,name,password,created_at,updated_at)-->
+		<!--values(#{code},#{name},#{password},now(),now())-->
+	<!--</insert>-->
+
+	<select id="getUser" parameterType="hashmap" resultType="User">
+		select * from organization_member
+		where status = 1 and username = #{username}
+		limit  1;
+	</select>
+
+	<update id="updateInfo" parameterType="com.hele.hzjs.model.User" >
+		update organization_member
+		<set>
+			<if test="mobile != null">
+				mobile = #{mobile},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone},
+			</if>
+			position = #{position}
+		</set>
+		where username = #{username};
+	</update>
+
+	<update id="updatePassword" parameterType="hashmap" >
+		update organization_member
+		set password = #{password},
+		updated_time = now()
+		where username = #{username};
+	</update>
+
+	<select id="getMaxId" resultType="int">
+		select max(id) from organization_member
+	</select>
+
+	<select id="login" parameterType="hashMap" resultType="OrganizationMember">
+		select om.*,osr.scope_id as scope_id from organization_member om
+		left join organization_scope_relationship osr on om.organization_id = osr.organization_id
+		where om.username = #{loginName}
+		limit 1;
+	</select>
+
+	<!--<select id="findOne" parameterType="hashMap" resultType="User">-->
+		<!--select * from organization_member-->
+		<!--<where>-->
+			<!--status =1-->
+
+			<!--<if test="name!=null and name!='' ">-->
+				<!--and name = #{name}-->
+			<!--</if>-->
+
+			<!--<if test="password!=null and password!='' ">-->
+				<!--and password = #{password}-->
+			<!--</if>-->
+		<!--</where>-->
+		<!--limit  1;-->
+	<!--</select>-->
+
+</mapper>

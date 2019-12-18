@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.SpecialActivityDao">
+
+    <insert id="insertInfo" parameterType="com.hele.hzjs.model.SpecialActivity" useGeneratedKeys="true"
+            keyProperty="id">
+		INSERT INTO special_activity(name, project, area, head_member, summarize,attachment, start_time, end_time, created_time, updated_time, version, status)
+		VALUES (#{name}, #{project}, #{area}, #{headMember}, #{summarize},#{attachment}, #{startTime}, #{endTime}, now(), now(), #{version}, #{status})
+	</insert>
+
+    <update id="updateInfo" parameterType="com.hele.hzjs.model.SpecialActivity">
+        UPDATE special_activity
+        SET
+        <if test="name!=null">
+            name = #{name},
+        </if>
+        <if test="project!=null">
+            project = #{project},
+        </if>
+        <if test="area!=null">
+            area = #{area},
+        </if>
+        <if test="headMember!=null">
+            head_member = #{headMember},
+        </if>
+        <if test="summarize!=null">
+            summarize = #{summarize},
+        </if>
+        <if test="attachment!=null">
+            attachment = #{attachment},
+        </if>
+        <if test="startTime!=null">
+            start_time = #{startTime}
+        </if>
+        <if test="endTime!=null">
+            end_time = #{endTime},
+        </if>
+        updated_time = now()
+        where id = #{id};
+    </update>
+
+    <update id="deleteInfo" parameterType="int">
+		UPDATE special_activity
+		SET status = 0,
+		updated_time = now()
+		where id = #{id};
+	</update>
+
+    <select id="getOne" parameterType="int" resultType="com.hele.hzjs.model.SpecialActivity">
+		SELECT *
+		FROM special_activity
+		WHERE id = #{id} AND status = 1
+		LIMIT 1
+	</select>
+
+    <select id="getPageCount" parameterType="hashmap" resultType="int">
+        SELECT COUNT(DISTINCT special_activity.id)
+        FROM special_activity
+        <where>
+            special_activity.status = 1
+            <if test="area!=null">
+                AND area LIKE "%"#{area}"%"
+            </if>
+            <if test="year!=null">
+                AND YEAR(created_time) = #{year}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAllSpecialActivity" parameterType="hashmap" resultType="com.hele.hzjs.model.SpecialActivity">
+        SELECT *, YEAR(created_time) AS year
+        FROM special_activity
+        <where>
+            special_activity.status = 1
+            <if test="area!=null">
+                AND area LIKE "%"#{area}"%"
+            </if>
+            <if test="year!=null">
+                AND YEAR(created_time) = #{year}
+            </if>
+        </where>
+        ORDER BY special_activity.id DESC
+        <if test="offset!=null and size!=null">
+            LIMIT #{offset},#{size};
+        </if>
+    </select>
+
+    <select id="getAllYear" parameterType="hashmap" resultType="com.hele.hzjs.model.SpecialActivity">
+        SELECT YEAR(created_time) AS year
+        FROM special_activity
+        WHERE special_activity.status = 1
+        order by year desc
+    </select>
+</mapper>

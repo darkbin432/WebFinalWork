@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.YearReportDao">
+
+  <insert id="insert" parameterType="com.hele.hzjs.model.report.YearReport">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into year_report (scope_id, report_person_id, is_filed, 
+      mianduiqsndjzhpxcc, mianduiqsndjzhpxrs, 
+      mianduijzdjzhpxcc, mianduijzdjzhpxrs, xianyouszrssj, 
+      xianyouszrsxj, xianyoujdgssj, xianyoujdgsxj, 
+      xianyouqcjktbsdgxsl, jishengxzzkzdglbfhfwhdcc, 
+      jishengxzzkzdglbfhfwhddxrc, xianyouhyzyzytsjtjdbfdds, 
+      xianyouxgmfzzs, jubanszjkhysyydglpxjzcc, 
+      canjiapxhtjrc, shouzhudxhs, shouzhudxhsqzymwxygs, 
+      shouzhudxhsqzymwxyzj, geleiztxchdcc, geleiztxchdqzcyrs,
+      geleiztxchdxczlffsl, xinwenxcxysgbdsbgsl, 
+      xinwenxcxyszmtbgsl, xinmeitsyjsfyjygw, 
+      xinmeitsyjgwsl, xianyouqyhldrkjsxzzgs, 
+      xianyouqyhldrkjsxhygs, shixianjsxjbpxcc,
+      shixianjsxjbpxrs, qingchunjkszpxcc, qingchunjkszpxrs,
+      jishengtsjtbfggpxcc, jishengtsjtbfggpxrs, 
+      zhiyuanzdwjsxydws, zhiyuanzdwjsrs, created_time, 
+      updated_time, version, status
+      )
+    values (#{scopeId,jdbcType=INTEGER}, #{reportPersonId,jdbcType=INTEGER}, 0,
+      #{mianduiqsndjzhpxcc,jdbcType=INTEGER}, #{mianduiqsndjzhpxrs,jdbcType=INTEGER}, 
+      #{mianduijzdjzhpxcc,jdbcType=INTEGER}, #{mianduijzdjzhpxrs,jdbcType=INTEGER}, #{xianyouszrssj,jdbcType=INTEGER}, 
+      #{xianyouszrsxj,jdbcType=INTEGER}, #{xianyoujdgssj,jdbcType=INTEGER}, #{xianyoujdgsxj,jdbcType=INTEGER}, 
+      #{xianyouqcjktbsdgxsl,jdbcType=INTEGER}, #{jishengxzzkzdglbfhfwhdcc,jdbcType=INTEGER}, 
+      #{jishengxzzkzdglbfhfwhddxrc,jdbcType=INTEGER}, #{xianyouhyzyzytsjtjdbfdds,jdbcType=INTEGER}, 
+      #{xianyouxgmfzzs,jdbcType=INTEGER}, #{jubanszjkhysyydglpxjzcc,jdbcType=INTEGER}, 
+      #{canjiapxhtjrc,jdbcType=INTEGER}, #{shouzhudxhs,jdbcType=INTEGER}, #{shouzhudxhsqzymwxygs,jdbcType=INTEGER}, 
+      #{shouzhudxhsqzymwxyzj,jdbcType=INTEGER}, #{geleiztxchdcc,jdbcType=INTEGER}, #{geleiztxchdqzcyrs,jdbcType=INTEGER},
+      #{geleiztxchdxczlffsl,jdbcType=INTEGER}, #{xinwenxcxysgbdsbgsl,jdbcType=INTEGER}, 
+      #{xinwenxcxyszmtbgsl,jdbcType=INTEGER}, #{xinmeitsyjsfyjygw,jdbcType=INTEGER}, 
+      #{xinmeitsyjgwsl,jdbcType=INTEGER}, #{xianyouqyhldrkjsxzzgs,jdbcType=INTEGER}, 
+      #{xianyouqyhldrkjsxhygs,jdbcType=INTEGER}, #{shixianjsxjbpxcc,jdbcType=INTEGER},
+      #{shixianjsxjbpxrs,jdbcType=INTEGER}, #{qingchunjkszpxcc,jdbcType=INTEGER}, #{qingchunjkszpxrs,jdbcType=INTEGER},
+      #{jishengtsjtbfggpxcc,jdbcType=INTEGER}, #{jishengtsjtbfggpxrs,jdbcType=INTEGER}, 
+      #{zhiyuanzdwjsxydws,jdbcType=INTEGER}, #{zhiyuanzdwjsrs,jdbcType=INTEGER}, now(),
+      now(), #{version,jdbcType=VARCHAR}, 1
+      )
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hele.hzjs.model.report.YearReport">
+    update year_report
+    <set>
+      <if test="scopeId != null">
+        scope_id = #{scopeId,jdbcType=INTEGER},
+      </if>
+      <if test="reportPersonId != null">
+        report_person_id = #{reportPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="isFiled != null">
+        is_filed = #{isFiled,jdbcType=BIT},
+      </if>
+      <if test="mianduiqsndjzhpxcc != null">
+        mianduiqsndjzhpxcc = #{mianduiqsndjzhpxcc,jdbcType=INTEGER},
+      </if>
+      <if test="mianduiqsndjzhpxrs != null">
+        mianduiqsndjzhpxrs = #{mianduiqsndjzhpxrs,jdbcType=INTEGER},
+      </if>
+      <if test="mianduijzdjzhpxcc != null">
+        mianduijzdjzhpxcc = #{mianduijzdjzhpxcc,jdbcType=INTEGER},
+      </if>
+      <if test="mianduijzdjzhpxrs != null">
+        mianduijzdjzhpxrs = #{mianduijzdjzhpxrs,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouszrssj != null">
+        xianyouszrssj = #{xianyouszrssj,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouszrsxj != null">
+        xianyouszrsxj = #{xianyouszrsxj,jdbcType=INTEGER},
+      </if>
+      <if test="xianyoujdgssj != null">
+        xianyoujdgssj = #{xianyoujdgssj,jdbcType=INTEGER},
+      </if>
+      <if test="xianyoujdgsxj != null">
+        xianyoujdgsxj = #{xianyoujdgsxj,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouqcjktbsdgxsl != null">
+        xianyouqcjktbsdgxsl = #{xianyouqcjktbsdgxsl,jdbcType=INTEGER},
+      </if>
+      <if test="jishengxzzkzdglbfhfwhdcc != null">
+        jishengxzzkzdglbfhfwhdcc = #{jishengxzzkzdglbfhfwhdcc,jdbcType=INTEGER},
+      </if>
+      <if test="jishengxzzkzdglbfhfwhddxrc != null">
+        jishengxzzkzdglbfhfwhddxrc = #{jishengxzzkzdglbfhfwhddxrc,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouhyzyzytsjtjdbfdds != null">
+        xianyouhyzyzytsjtjdbfdds = #{xianyouhyzyzytsjtjdbfdds,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouxgmfzzs != null">
+        xianyouxgmfzzs = #{xianyouxgmfzzs,jdbcType=INTEGER},
+      </if>
+      <if test="jubanszjkhysyydglpxjzcc != null">
+        jubanszjkhysyydglpxjzcc = #{jubanszjkhysyydglpxjzcc,jdbcType=INTEGER},
+      </if>
+      <if test="canjiapxhtjrc != null">
+        canjiapxhtjrc = #{canjiapxhtjrc,jdbcType=INTEGER},
+      </if>
+      <if test="shouzhudxhs != null">
+        shouzhudxhs = #{shouzhudxhs,jdbcType=INTEGER},
+      </if>
+      <if test="shouzhudxhsqzymwxygs != null">
+        shouzhudxhsqzymwxygs = #{shouzhudxhsqzymwxygs,jdbcType=INTEGER},
+      </if>
+      <if test="shouzhudxhsqzymwxyzj != null">
+        shouzhudxhsqzymwxyzj = #{shouzhudxhsqzymwxyzj,jdbcType=INTEGER},
+      </if>
+      <if test="geleiztxchdcc != null">
+        geleiztxchdcc = #{geleiztxchdcc,jdbcType=INTEGER},
+      </if>
+      <if test="geleiztxchdqzcyrs != null">
+        geleiztxchdqzcyrs = #{geleiztxchdqzcyrs,jdbcType=INTEGER},
+      </if>
+      <if test="geleiztxchdxczlffsl != null">
+        geleiztxchdxczlffsl = #{geleiztxchdxczlffsl,jdbcType=INTEGER},
+      </if>
+      <if test="xinwenxcxysgbdsbgsl != null">
+        xinwenxcxysgbdsbgsl = #{xinwenxcxysgbdsbgsl,jdbcType=INTEGER},
+      </if>
+      <if test="xinwenxcxyszmtbgsl != null">
+        xinwenxcxyszmtbgsl = #{xinwenxcxyszmtbgsl,jdbcType=INTEGER},
+      </if>
+      <if test="xinmeitsyjsfyjygw != null">
+        xinmeitsyjsfyjygw = #{xinmeitsyjsfyjygw,jdbcType=INTEGER},
+      </if>
+      <if test="xinmeitsyjgwsl != null">
+        xinmeitsyjgwsl = #{xinmeitsyjgwsl,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouqyhldrkjsxzzgs != null">
+        xianyouqyhldrkjsxzzgs = #{xianyouqyhldrkjsxzzgs,jdbcType=INTEGER},
+      </if>
+      <if test="xianyouqyhldrkjsxhygs != null">
+        xianyouqyhldrkjsxhygs = #{xianyouqyhldrkjsxhygs,jdbcType=INTEGER},
+      </if>
+      <if test="shixianjsxjbpxcc != null">
+        shixianjsxjbpxcc = #{shixianjsxjbpxcc,jdbcType=INTEGER},
+      </if>
+      <if test="shixianjsxjbpxrs != null">
+        shixianjsxjbpxrs = #{shixianjsxjbpxrs,jdbcType=INTEGER},
+      </if>
+      <if test="qingchunjkszpxcc != null">
+        qingchunjkszpxcc = #{qingchunjkszpxcc,jdbcType=INTEGER},
+      </if>
+      <if test="qingchunjkszpxrs != null">
+        qingchunjkszpxrs = #{qingchunjkszpxrs,jdbcType=INTEGER},
+      </if>
+      <if test="jishengtsjtbfggpxcc != null">
+        jishengtsjtbfggpxcc = #{jishengtsjtbfggpxcc,jdbcType=INTEGER},
+      </if>
+      <if test="jishengtsjtbfggpxrs != null">
+        jishengtsjtbfggpxrs = #{jishengtsjtbfggpxrs,jdbcType=INTEGER},
+      </if>
+      <if test="zhiyuanzdwjsxydws != null">
+        zhiyuanzdwjsxydws = #{zhiyuanzdwjsxydws,jdbcType=INTEGER},
+      </if>
+      <if test="zhiyuanzdwjsrs != null">
+        zhiyuanzdwjsrs = #{zhiyuanzdwjsrs,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = now()
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getYears" resultType="int">
+      select distinct year(created_time)
+      from year_report
+      order by year(created_time) desc;
+  </select>
+
+  <update id="toFile" parameterType="int">
+    update year_report
+    set is_filed = 1
+    where year(created_time) = #{year};
+  </update>
+
+  <select id="judgeFiled" parameterType="int" resultType="int">
+    select count(*)
+    from year_report
+    where is_filed = 1 and year(created_time) = #{year}
+  </select>
+
+    <select id="selectChildrenStatusPageCount" parameterType="com.hele.hzjs.model.param.YearReportParam" resultType="int">
+        select count(distinct organization_name)
+        from(select o.name as organization_name,
+        case when year(yr.created_time) = #{year} and yr.scope_id = osr.scope_id then 1 else null end as child_status,
+        osr.scope_id as scope_id
+        FROM organization_scope_relationship osr
+        left join year_report yr  on osr.scope_id = yr.scope_id
+        left join organization o on o.id = osr.organization_id
+        WHERE o.parent_organization_id = #{parentOrganizationId} and (year(yr.created_time) = #{year} or osr.id is not null) and osr.status = 1) as tmp
+    </select>
+
+  <select id="selectChildrenStatus" parameterType="com.hele.hzjs.model.param.YearReportParam" resultType="com.hele.hzjs.model.report.YearReport">
+      select organization_name ,sum(child_status) as child_status,scope_id
+      from(select o.name as organization_name,
+      case when year(yr.created_time) = #{year} and yr.scope_id = osr.scope_id then 1 else null end as child_status,
+      osr.scope_id as scope_id
+      FROM organization_scope_relationship osr
+      left join year_report yr  on osr.scope_id = yr.scope_id
+      left join organization o on o.id = osr.organization_id
+      WHERE o.parent_organization_id = #{parentOrganizationId} and (year(yr.created_time) = #{year} or osr.id is not null) and osr.status = 1) as tmp
+      group by organization_name
+      order by child_status desc,scope_id
+      <if test="offset!=null and size!=null">
+          LIMIT #{offset},#{size};
+      </if>
+  </select>
+
+  <select id="getOne" parameterType="com.hele.hzjs.model.param.YearReportParam" resultType="com.hele.hzjs.model.report.YearReport">
+      select yr.* ,osr.name as scope_name
+      from year_report yr left join organization_scope_relationship osr on yr.scope_id = osr.scope_id
+      where year(yr.created_time) = #{year} and yr.scope_id = #{scopeId}
+  </select>
+
+  <select id="getLici" parameterType="int" resultType="com.hele.hzjs.model.report.YearReport">
+      select yr.*,om.name as report_person_name,osr.name as scopeName
+      from year_report yr left join organization_member om on yr.report_person_id = om.id
+      left join organization_scope_relationship osr on yr.scope_id = osr.scope_id
+      where yr.scope_id = #{scopeId}
+      order by yr.created_time desc
+  </select>
+
+  <select id="selectByYear" parameterType="int" resultType="com.hele.hzjs.model.report.YearReport">
+      select
+      sum(mianduiqsndjzhpxcc) as mianduiqsndjzhpxcc,
+      sum(mianduiqsndjzhpxrs) as mianduiqsndjzhpxrs,
+      sum(mianduijzdjzhpxcc) as mianduijzdjzhpxcc,
+      sum(mianduijzdjzhpxrs) as mianduijzdjzhpxrs,
+      sum(xianyouszrssj) as xianyouszrssj,
+      sum(xianyouszrsxj) as xianyouszrsxj,
+      sum(xianyoujdgssj) as xianyoujdgssj,
+      sum(xianyoujdgsxj) as xianyoujdgsxj,
+      sum(xianyouqcjktbsdgxsl) as xianyouqcjktbsdgxsl,
+      sum(jishengxzzkzdglbfhfwhdcc) as jishengxzzkzdglbfhfwhdcc,
+      sum(jishengxzzkzdglbfhfwhddxrc) as jishengxzzkzdglbfhfwhddxrc,
+      sum(xianyouhyzyzytsjtjdbfdds) as xianyouhyzyzytsjtjdbfdds,
+      sum(xianyouxgmfzzs) as xianyouxgmfzzs,
+      sum(jubanszjkhysyydglpxjzcc) as jubanszjkhysyydglpxjzcc,
+      sum(canjiapxhtjrc) as canjiapxhtjrc,
+      sum(shouzhudxhs) as shouzhudxhs,
+      sum(shouzhudxhsqzymwxygs) as shouzhudxhsqzymwxygs,
+      sum(shouzhudxhsqzymwxyzj) as shouzhudxhsqzymwxyzj,
+      sum(geleiztxchdcc) as geleiztxchdcc,
+      sum(geleiztxchdqzcyrs) as geleiztxchdqzcyrs,
+      sum(geleiztxchdxczlffsl) as geleiztxchdxczlffsl,
+      sum(xinwenxcxysgbdsbgsl) as xinwenxcxysgbdsbgsl,
+      sum(xinwenxcxyszmtbgsl) as xinwenxcxyszmtbgsl,
+      sum(xinmeitsyjsfyjygw) as xinmeitsyjsfyjygw,
+      sum(xinmeitsyjgwsl) as xinmeitsyjgwsl,
+      sum(xianyouqyhldrkjsxzzgs) as xianyouqyhldrkjsxzzgs,
+      sum(xianyouqyhldrkjsxhygs) as xianyouqyhldrkjsxhygs,
+      sum(shixianjsxjbpxcc) as shixianjsxjbpxcc,
+      sum(shixianjsxjbpxrs) as shixianjsxjbpxrs,
+      sum(qingchunjkszpxcc) as qingchunjkszpxcc,
+      sum(qingchunjkszpxrs) as qingchunjkszpxrs,
+      sum(jishengtsjtbfggpxcc) as jishengtsjtbfggpxcc,
+      sum(jishengtsjtbfggpxrs) as jishengtsjtbfggpxrs,
+      sum(zhiyuanzdwjsxydws) as zhiyuanzdwjsxydws,
+      sum(zhiyuanzdwjsrs) as zhiyuanzdwjsrs,
+      sum(is_filed) as is_filed
+      from year_report
+      where year(created_time) = #{year};
+  </select>
+
+    <select id="selectByQu" parameterType="com.hele.hzjs.model.param.YearReportParam" resultType="com.hele.hzjs.model.report.YearReport">
+      select osr.name as scope_name,
+      sum(mianduiqsndjzhpxcc) as mianduiqsndjzhpxcc,
+      sum(mianduiqsndjzhpxrs) as mianduiqsndjzhpxrs,
+      sum(mianduijzdjzhpxcc) as mianduijzdjzhpxcc,
+      sum(mianduijzdjzhpxrs) as mianduijzdjzhpxrs,
+      sum(xianyouszrssj) as xianyouszrssj,
+      sum(xianyouszrsxj) as xianyouszrsxj,
+      sum(xianyoujdgssj) as xianyoujdgssj,
+      sum(xianyoujdgsxj) as xianyoujdgsxj,
+      sum(xianyouqcjktbsdgxsl) as xianyouqcjktbsdgxsl,
+      sum(jishengxzzkzdglbfhfwhdcc) as jishengxzzkzdglbfhfwhdcc,
+      sum(jishengxzzkzdglbfhfwhddxrc) as jishengxzzkzdglbfhfwhddxrc,
+      sum(xianyouhyzyzytsjtjdbfdds) as xianyouhyzyzytsjtjdbfdds,
+      sum(xianyouxgmfzzs) as xianyouxgmfzzs,
+      sum(jubanszjkhysyydglpxjzcc) as jubanszjkhysyydglpxjzcc,
+      sum(canjiapxhtjrc) as canjiapxhtjrc,
+      sum(shouzhudxhs) as shouzhudxhs,
+      sum(shouzhudxhsqzymwxygs) as shouzhudxhsqzymwxygs,
+      sum(shouzhudxhsqzymwxyzj) as shouzhudxhsqzymwxyzj,
+      sum(geleiztxchdcc) as geleiztxchdcc,
+      sum(geleiztxchdqzcyrs) as geleiztxchdqzcyrs,
+      sum(geleiztxchdxczlffsl) as geleiztxchdxczlffsl,
+      sum(xinwenxcxysgbdsbgsl) as xinwenxcxysgbdsbgsl,
+      sum(xinwenxcxyszmtbgsl) as xinwenxcxyszmtbgsl,
+      sum(xinmeitsyjsfyjygw) as xinmeitsyjsfyjygw,
+      sum(xinmeitsyjgwsl) as xinmeitsyjgwsl,
+      sum(xianyouqyhldrkjsxzzgs) as xianyouqyhldrkjsxzzgs,
+      sum(xianyouqyhldrkjsxhygs) as xianyouqyhldrkjsxhygs,
+      sum(shixianjsxjbpxcc) as shixianjsxjbpxcc,
+      sum(shixianjsxjbpxrs) as shixianjsxjbpxrs,
+      sum(qingchunjkszpxcc) as qingchunjkszpxcc,
+      sum(qingchunjkszpxrs) as qingchunjkszpxrs,
+      sum(jishengtsjtbfggpxcc) as jishengtsjtbfggpxcc,
+      sum(jishengtsjtbfggpxrs) as jishengtsjtbfggpxrs,
+      sum(zhiyuanzdwjsxydws) as zhiyuanzdwjsxydws,
+      sum(zhiyuanzdwjsrs) as zhiyuanzdwjsrs,
+      sum(is_filed) as is_filed
+      from year_report
+      left join organization_scope_relationship osr on osr.scope_id = year_report.scope_id - year_report.scope_id % 10000
+      where year(year_report.created_time) = #{year} and (year_report.scope_id - year_report.scope_id % 10000 = #{scopeId} - #{scopeId} % 10000 || year_report.scope_id = 0);
+  </select>
+</mapper>

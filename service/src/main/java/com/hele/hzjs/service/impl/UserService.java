@@ -1,0 +1,74 @@
+package com.hele.hzjs.service.impl;
+
+import com.hele.hzjs.model.OrganizationMember;
+import com.hele.hzjs.model.User;
+import com.hele.hzjs.model.result.ApiResult;
+import com.hele.hzjs.persistence.UserDao;
+import com.hele.hzjs.service.IUserService;
+import com.hele.utils.MD5Util;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.springframework.stereotype.Service;
+
+
+import javax.annotation.Resource;
+
+/**
+ * UserService
+ *
+ * @author xuzou
+ * @date 8/5/16
+ * @copyright: copyright @ HeleTech 2016
+ */
+@Service
+public class UserService implements IUserService {
+    @Resource
+    UserDao userDao;
+
+    @Override
+    public ApiResult login(User user) {
+        ApiResult apiResult = new ApiResult();
+        try {
+            User temp = userDao.getUser(user.getUsername());
+            if (temp != null) {
+                temp.setPassword("***********");
+                apiResult.success(temp);
+            } else{
+                apiResult.fail("帐号或密码错误");
+            }
+        }catch(Exception e){
+            apiResult.fail("数据库获取失败");
+        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult updatePersonalInfo(User user){
+        ApiResult apiResult = new ApiResult();
+        try {
+            User temp = userDao.getUser(user.getUsername());
+            if (temp != null){
+                userDao.updateInfo(user);
+                //                    更新用户信息
+                OrganizationMember userSession=(OrganizationMember) SecurityUtils.getSubject().getPrincipal();
+                userSession.setMobile(user.getMobile());
+                userSession.setTelephone(user.getTelephone());
+                userSession.setPosition(user.getPosition());
+                if (user.getNewPassword() != null) {
+                    if (temp.getPassword().equals(MD5Util.md5Encrypt(user.getPassword()))){
+                        userDao.updatePassword(user.getUsername(), MD5Util.md5Encrypt(user.getNewPassword()));
+                    }else{
+                        apiResult.fail("原密码错误");
+                        return apiResult;
+                    }
+                }
+                apiResult.success();
+            }
+        }catch(Exception e){
+            apiResult.fail("修改个人信息失败");
+        }
+        return apiResult;
+    }
+}
+

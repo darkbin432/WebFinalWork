@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.WarmHeartReportDao">
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+            resultType="com.hele.hzjs.model.report.WarmHeartReport">
+      select warm_heart_report.*, osr.name as scope_name
+      from warm_heart_report
+      left join organization_scope_relationship osr on osr.scope_id = warm_heart_report.scope_id
+      where warm_heart_report.id = #{id,jdbcType=INTEGER}
+    </select>
+    <update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+      update warm_heart_report
+      set status = 0,
+      updated_time = now()
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="insert" parameterType="com.hele.hzjs.model.report.WarmHeartReport">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into warm_heart_report (scope_id, report_person_id,
+        xuqiudch, xuqiudcr, baoxianlpl,
+        baoxianlpje, xinlijkfwh, xinlijkfwr,
+        xinlijkfwjd, xinlijkfwcp, richangzfh,
+        richangzfr, jierikwh, jierikwr,
+        shengripbh, shengripbr, zhuyuantwh,
+        zhuyuantwr, tufasjh, tufasjr,
+        fuwuhdkzc, fuwuhdkzr, created_time,
+        updated_time, version, status
+        )
+        values (#{scopeId,jdbcType=INTEGER}, #{reportPersonId,jdbcType=INTEGER},
+        #{xuqiudch,jdbcType=INTEGER}, #{xuqiudcr,jdbcType=INTEGER}, #{baoxianlpl,jdbcType=INTEGER},
+        #{baoxianlpje,jdbcType=INTEGER}, #{xinlijkfwh,jdbcType=INTEGER}, #{xinlijkfwr,jdbcType=INTEGER},
+        #{xinlijkfwjd,jdbcType=INTEGER}, #{xinlijkfwcp,jdbcType=INTEGER}, #{richangzfh,jdbcType=INTEGER},
+        #{richangzfr,jdbcType=INTEGER}, #{jierikwh,jdbcType=INTEGER}, #{jierikwr,jdbcType=INTEGER},
+        #{shengripbh,jdbcType=INTEGER}, #{shengripbr,jdbcType=INTEGER}, #{zhuyuantwh,jdbcType=INTEGER},
+        #{zhuyuantwr,jdbcType=INTEGER}, #{tufasjh,jdbcType=INTEGER}, #{tufasjr,jdbcType=INTEGER},
+        #{fuwuhdkzc,jdbcType=INTEGER}, #{fuwuhdkzr,jdbcType=INTEGER}, now(),
+        now(), #{version,jdbcType=VARCHAR}, 1
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.hele.hzjs.model.report.WarmHeartReport">
+        insert into warm_heart_report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="scopeId != null">
+                scope_id,
+            </if>
+            <if test="reportPersonId != null">
+                report_person_id,
+            </if>
+            <if test="xuqiudch != null">
+                xuqiudch,
+            </if>
+            <if test="xuqiudcr != null">
+                xuqiudcr,
+            </if>
+            <if test="baoxianlpl != null">
+                baoxianlpl,
+            </if>
+            <if test="baoxianlpje != null">
+                baoxianlpje,
+            </if>
+            <if test="xinlijkfwh != null">
+                xinlijkfwh,
+            </if>
+            <if test="xinlijkfwr != null">
+                xinlijkfwr,
+            </if>
+            <if test="xinlijkfwjd != null">
+                xinlijkfwjd,
+            </if>
+            <if test="xinlijkfwcp != null">
+                xinlijkfwcp,
+            </if>
+            <if test="richangzfh != null">
+                richangzfh,
+            </if>
+            <if test="richangzfr != null">
+                richangzfr,
+            </if>
+            <if test="jierikwh != null">
+                jierikwh,
+            </if>
+            <if test="jierikwr != null">
+                jierikwr,
+            </if>
+            <if test="shengripbh != null">
+                shengripbh,
+            </if>
+            <if test="shengripbr != null">
+                shengripbr,
+            </if>
+            <if test="zhuyuantwh != null">
+                zhuyuantwh,
+            </if>
+            <if test="zhuyuantwr != null">
+                zhuyuantwr,
+            </if>
+            <if test="tufasjh != null">
+                tufasjh,
+            </if>
+            <if test="tufasjr != null">
+                tufasjr,
+            </if>
+            <if test="fuwuhdkzc != null">
+                fuwuhdkzc,
+            </if>
+            <if test="fuwuhdkzr != null">
+                fuwuhdkzr,
+            </if>
+            <if test="createdTime != null">
+                created_time,
+            </if>
+            <if test="updatedTime != null">
+                updated_time,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="scopeId != null">
+                #{scopeId,jdbcType=INTEGER},
+            </if>
+            <if test="reportPersonId != null">
+                #{reportPersonId,jdbcType=INTEGER},
+            </if>
+            <if test="xuqiudch != null">
+                #{xuqiudch,jdbcType=INTEGER},
+            </if>
+            <if test="xuqiudcr != null">
+                #{xuqiudcr,jdbcType=INTEGER},
+            </if>
+            <if test="baoxianlpl != null">
+                #{baoxianlpl,jdbcType=INTEGER},
+            </if>
+            <if test="baoxianlpje != null">
+                #{baoxianlpje,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwh != null">
+                #{xinlijkfwh,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwr != null">
+                #{xinlijkfwr,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwjd != null">
+                #{xinlijkfwjd,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwcp != null">
+                #{xinlijkfwcp,jdbcType=INTEGER},
+            </if>
+            <if test="richangzfh != null">
+                #{richangzfh,jdbcType=INTEGER},
+            </if>
+            <if test="richangzfr != null">
+                #{richangzfr,jdbcType=INTEGER},
+            </if>
+            <if test="jierikwh != null">
+                #{jierikwh,jdbcType=INTEGER},
+            </if>
+            <if test="jierikwr != null">
+                #{jierikwr,jdbcType=INTEGER},
+            </if>
+            <if test="shengripbh != null">
+                #{shengripbh,jdbcType=INTEGER},
+            </if>
+            <if test="shengripbr != null">
+                #{shengripbr,jdbcType=INTEGER},
+            </if>
+            <if test="zhuyuantwh != null">
+                #{zhuyuantwh,jdbcType=INTEGER},
+            </if>
+            <if test="zhuyuantwr != null">
+                #{zhuyuantwr,jdbcType=INTEGER},
+            </if>
+            <if test="tufasjh != null">
+                #{tufasjh,jdbcType=INTEGER},
+            </if>
+            <if test="tufasjr != null">
+                #{tufasjr,jdbcType=INTEGER},
+            </if>
+            <if test="fuwuhdkzc != null">
+                #{fuwuhdkzc,jdbcType=INTEGER},
+            </if>
+            <if test="fuwuhdkzr != null">
+                #{fuwuhdkzr,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedTime != null">
+                #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                1,
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.hele.hzjs.model.report.WarmHeartReport">
+        update warm_heart_report
+        <set>
+            <if test="scopeId != null">
+                scope_id = #{scopeId,jdbcType=INTEGER},
+            </if>
+            <if test="reportPersonId != null">
+                report_person_id = #{reportPersonId,jdbcType=INTEGER},
+            </if>
+            <if test="xuqiudch != null">
+                xuqiudch = #{xuqiudch,jdbcType=INTEGER},
+            </if>
+            <if test="xuqiudcr != null">
+                xuqiudcr = #{xuqiudcr,jdbcType=INTEGER},
+            </if>
+            <if test="baoxianlpl != null">
+                baoxianlpl = #{baoxianlpl,jdbcType=INTEGER},
+            </if>
+            <if test="baoxianlpje != null">
+                baoxianlpje = #{baoxianlpje,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwh != null">
+                xinlijkfwh = #{xinlijkfwh,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwr != null">
+                xinlijkfwr = #{xinlijkfwr,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwjd != null">
+                xinlijkfwjd = #{xinlijkfwjd,jdbcType=INTEGER},
+            </if>
+            <if test="xinlijkfwcp != null">
+                xinlijkfwcp = #{xinlijkfwcp,jdbcType=INTEGER},
+            </if>
+            <if test="richangzfh != null">
+                richangzfh = #{richangzfh,jdbcType=INTEGER},
+            </if>
+            <if test="richangzfr != null">
+                richangzfr = #{richangzfr,jdbcType=INTEGER},
+            </if>
+            <if test="jierikwh != null">
+                jierikwh = #{jierikwh,jdbcType=INTEGER},
+            </if>
+            <if test="jierikwr != null">
+                jierikwr = #{jierikwr,jdbcType=INTEGER},
+            </if>
+            <if test="shengripbh != null">
+                shengripbh = #{shengripbh,jdbcType=INTEGER},
+            </if>
+            <if test="shengripbr != null">
+                shengripbr = #{shengripbr,jdbcType=INTEGER},
+            </if>
+            <if test="zhuyuantwh != null">
+                zhuyuantwh = #{zhuyuantwh,jdbcType=INTEGER},
+            </if>
+            <if test="zhuyuantwr != null">
+                zhuyuantwr = #{zhuyuantwr,jdbcType=INTEGER},
+            </if>
+            <if test="tufasjh != null">
+                tufasjh = #{tufasjh,jdbcType=INTEGER},
+            </if>
+            <if test="tufasjr != null">
+                tufasjr = #{tufasjr,jdbcType=INTEGER},
+            </if>
+            <if test="fuwuhdkzc != null">
+                fuwuhdkzc = #{fuwuhdkzc,jdbcType=INTEGER},
+            </if>
+            <if test="fuwuhdkzr != null">
+                fuwuhdkzr = #{fuwuhdkzr,jdbcType=INTEGER},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.hele.hzjs.model.report.WarmHeartReport">
+    update warm_heart_report
+    set scope_id = #{scopeId,jdbcType=INTEGER},
+      report_person_id = #{reportPersonId,jdbcType=INTEGER},
+      xuqiudch = #{xuqiudch,jdbcType=INTEGER},
+      xuqiudcr = #{xuqiudcr,jdbcType=INTEGER},
+      baoxianlpl = #{baoxianlpl,jdbcType=INTEGER},
+      baoxianlpje = #{baoxianlpje,jdbcType=INTEGER},
+      xinlijkfwh = #{xinlijkfwh,jdbcType=INTEGER},
+      xinlijkfwr = #{xinlijkfwr,jdbcType=INTEGER},
+      xinlijkfwjd = #{xinlijkfwjd,jdbcType=INTEGER},
+      xinlijkfwcp = #{xinlijkfwcp,jdbcType=INTEGER},
+      richangzfh = #{richangzfh,jdbcType=INTEGER},
+      richangzfr = #{richangzfr,jdbcType=INTEGER},
+      jierikwh = #{jierikwh,jdbcType=INTEGER},
+      jierikwr = #{jierikwr,jdbcType=INTEGER},
+      shengripbh = #{shengripbh,jdbcType=INTEGER},
+      shengripbr = #{shengripbr,jdbcType=INTEGER},
+      zhuyuantwh = #{zhuyuantwh,jdbcType=INTEGER},
+      zhuyuantwr = #{zhuyuantwr,jdbcType=INTEGER},
+      tufasjh = #{tufasjh,jdbcType=INTEGER},
+      tufasjr = #{tufasjr,jdbcType=INTEGER},
+      fuwuhdkzc = #{fuwuhdkzc,jdbcType=INTEGER},
+      fuwuhdkzr = #{fuwuhdkzr,jdbcType=INTEGER},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      updated_time = #{updatedTime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="judge" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select *
+        from warm_heart_report
+        where year(created_time) = #{year} and month(created_time) = #{month} and scope_id = #{scopeId};
+    </select>
+
+    <select id="selectChildrenStatusPageCount" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam"
+            resultType="int">
+        select count(distinct organization_name)
+        from(select o.name as organization_name,
+        case when whr.scope_id = osr.scope_id then 1 else null end as child_status,
+        osr.scope_id as scope_id
+        FROM organization_scope_relationship osr
+        left join warm_heart_report whr on osr.scope_id = whr.scope_id
+        left join organization o on o.id = osr.organization_id
+        WHERE o.parent_organization_id = #{parentOrganizationId} and osr.status = 1) as tmp
+    </select>
+
+    <select id="selectChildrenStatus" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam"
+            resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select organization_name ,sum(child_status) as child_status,scope_id
+        from(select o.name as organization_name,
+        case when whr.scope_id = osr.scope_id then 1 else null end as child_status,
+        osr.scope_id as scope_id
+        FROM organization_scope_relationship osr
+        left join warm_heart_report whr on osr.scope_id = whr.scope_id
+        left join organization o on o.id = osr.organization_id
+        WHERE o.parent_organization_id = #{parentOrganizationId} and osr.status = 1) as tmp
+        group by organization_name
+        order by child_status desc,scope_id
+        <if test="offset!=null and size!=null">
+            LIMIT #{offset},#{size};
+        </if>
+    </select>
+
+    <select id="getLiciPageCount" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="Integer">
+        select count(*)
+        from warm_heart_report whr
+        left join organization_member om on whr.report_person_id = om.id
+        left join organization_scope_relationship osr on whr.scope_id = osr.scope_id
+        <where>
+            whr.status = 1
+            <if test="scopeType == 0">
+                and whr.scope_id - whr.scope_id % 10000 = #{scopeId}
+            </if>
+            <if test="scopeType == 1">
+                and whr.scope_id - whr.scope_id % 100 = #{scopeId}
+            </if>
+            <if test="scopeType == 2">
+                and whr.scope_id = #{scopeId}
+            </if>
+        </where>
+    </select>
+
+    <select id="getLici" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select whr.*,om.name as report_person_name,osr.name as scope_name
+        from warm_heart_report whr
+        left join organization_member om on whr.report_person_id = om.id
+        left join organization_scope_relationship osr on whr.scope_id = osr.scope_id
+        <where>
+            whr.status = 1
+            <if test="scopeType == 0">
+                and whr.scope_id - whr.scope_id % 10000 = #{scopeId}
+            </if>
+            <if test="scopeType == 1">
+                and whr.scope_id - whr.scope_id % 100 = #{scopeId}
+            </if>
+            <if test="scopeType == 2">
+                and whr.scope_id = #{scopeId}
+            </if>
+        </where>
+        order by whr.created_time desc
+        <if test="offset!=null and size!=null">
+            LIMIT #{offset},#{size};
+        </if>
+    </select>
+
+    <select id="getYears" resultType="int">
+      select distinct year(created_time)
+      from warm_heart_report
+      order by year(created_time) desc;
+  </select>
+
+    <select id="selectByShi" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select osr.name as scope_name, osr.scope_id as scope_id,xuqiudch,xuqiudcr,baoxianlpl,baoxianlpje,xinlijkfwh,xinlijkfwr,xinlijkfwjd,xinlijkfwcp,
+        richangzfh,richangzfr,jierikwh,jierikwr,shengripbh,shengripbr,zhuyuantwh,zhuyuantwr,tufasjh,tufasjr,fuwuhdkzc,fuwuhdkzr
+        from organization_scope_relationship osr left join
+        (select sum(xuqiudch) as xuqiudch,
+        sum(xuqiudcr) as xuqiudcr,
+        sum(baoxianlpl) as baoxianlpl,
+        sum(baoxianlpje) as baoxianlpje,
+        sum(xinlijkfwh) as xinlijkfwh,
+        sum(xinlijkfwr) as xinlijkfwr,
+        sum(xinlijkfwjd) as xinlijkfwjd,
+        sum(xinlijkfwcp) as xinlijkfwcp,
+        sum(richangzfh) as richangzfh,
+        sum(richangzfr) as richangzfr,
+        sum(jierikwh) as jierikwh,
+        sum(jierikwr) as jierikwr,
+        sum(shengripbh) as shengripbh,
+        sum(shengripbr) as shengripbr,
+        sum(zhuyuantwh) as zhuyuantwh,
+        sum(zhuyuantwr) as zhuyuantwr,
+        sum(tufasjh) as tufasjh,
+        sum(tufasjr) as tufasjr,
+        sum(fuwuhdkzc) as fuwuhdkzc,
+        sum(fuwuhdkzr) as fuwuhdkzr,
+        osr.name as scope_name, whr.scope_id - whr.scope_id % 10000 as scope_id
+        from warm_heart_report whr
+        left join organization_scope_relationship osr on osr.scope_id = whr.scope_id - whr.scope_id % 10000
+        where year(whr.created_time) = #{year} and month(whr.created_time) = #{month} and whr.scope_id != 0
+        group by whr.scope_id - whr.scope_id % 10000
+        order by whr.scope_id - whr.scope_id % 10000) as kk on kk.scope_id = osr.scope_id
+        where osr.scope_id % 10000 = 0 and osr.scope_id != 0
+    </select>
+
+    <select id="selectByShiTotal" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select sum(xuqiudch) as xuqiudch,
+        sum(xuqiudcr) as xuqiudcr,
+        sum(baoxianlpl) as baoxianlpl,
+        sum(baoxianlpje) as baoxianlpje,
+        sum(xinlijkfwh) as xinlijkfwh,
+        sum(xinlijkfwr) as xinlijkfwr,
+        sum(xinlijkfwjd) as xinlijkfwjd,
+        sum(xinlijkfwcp) as xinlijkfwcp,
+        sum(richangzfh) as richangzfh,
+        sum(richangzfr) as richangzfr,
+        sum(jierikwh) as jierikwh,
+        sum(jierikwr) as jierikwr,
+        sum(shengripbh) as shengripbh,
+        sum(shengripbr) as shengripbr,
+        sum(zhuyuantwh) as zhuyuantwh,
+        sum(zhuyuantwr) as zhuyuantwr,
+        sum(tufasjh) as tufasjh,
+        sum(tufasjr) as tufasjr,
+        sum(fuwuhdkzc) as fuwuhdkzc,
+        sum(fuwuhdkzr) as fuwuhdkzr
+        from warm_heart_report whr
+        where year(whr.created_time) = #{year} and month(whr.created_time) = #{month} and whr.scope_id != 0
+    </select>
+
+    <select id="selectByQu" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select osr.name as scope_name, osr.scope_id as scope_id,xuqiudch,xuqiudcr,baoxianlpl,baoxianlpje,xinlijkfwh,xinlijkfwr,xinlijkfwjd,xinlijkfwcp,
+        richangzfh,richangzfr,jierikwh,jierikwr,shengripbh,shengripbr,zhuyuantwh,zhuyuantwr,tufasjh,tufasjr,fuwuhdkzc,fuwuhdkzr
+        from organization_scope_relationship osr left join
+        (select sum(xuqiudch) as xuqiudch,
+        sum(xuqiudcr) as xuqiudcr,
+        sum(baoxianlpl) as baoxianlpl,
+        sum(baoxianlpje) as baoxianlpje,
+        sum(xinlijkfwh) as xinlijkfwh,
+        sum(xinlijkfwr) as xinlijkfwr,
+        sum(xinlijkfwjd) as xinlijkfwjd,
+        sum(xinlijkfwcp) as xinlijkfwcp,
+        sum(richangzfh) as richangzfh,
+        sum(richangzfr) as richangzfr,
+        sum(jierikwh) as jierikwh,
+        sum(jierikwr) as jierikwr,
+        sum(shengripbh) as shengripbh,
+        sum(shengripbr) as shengripbr,
+        sum(zhuyuantwh) as zhuyuantwh,
+        sum(zhuyuantwr) as zhuyuantwr,
+        sum(tufasjh) as tufasjh,
+        sum(tufasjr) as tufasjr,
+        sum(fuwuhdkzc) as fuwuhdkzc,
+        sum(fuwuhdkzr) as fuwuhdkzr,
+        osr.name as scope_name, whr.scope_id - whr.scope_id % 100 as scope_id
+        from warm_heart_report whr
+        left join organization_scope_relationship osr on osr.scope_id = whr.scope_id - whr.scope_id % 100
+        where year(whr.created_time) = #{year} and month(whr.created_time) = #{month} and whr.scope_id != 0
+        group by whr.scope_id - whr.scope_id % 100
+        order by whr.scope_id - whr.scope_id % 100) as kk on kk.scope_id = osr.scope_id
+        where osr.scope_id % 100 = 0 and osr.scope_id % 10000 != 0 and osr.scope_id - osr.scope_id % 10000 = #{scopeId}
+    </select>
+
+    <select id="selectByQuTotal" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select sum(xuqiudch) as xuqiudch,
+        sum(xuqiudcr) as xuqiudcr,
+        sum(baoxianlpl) as baoxianlpl,
+        sum(baoxianlpje) as baoxianlpje,
+        sum(xinlijkfwh) as xinlijkfwh,
+        sum(xinlijkfwr) as xinlijkfwr,
+        sum(xinlijkfwjd) as xinlijkfwjd,
+        sum(xinlijkfwcp) as xinlijkfwcp,
+        sum(richangzfh) as richangzfh,
+        sum(richangzfr) as richangzfr,
+        sum(jierikwh) as jierikwh,
+        sum(jierikwr) as jierikwr,
+        sum(shengripbh) as shengripbh,
+        sum(shengripbr) as shengripbr,
+        sum(zhuyuantwh) as zhuyuantwh,
+        sum(zhuyuantwr) as zhuyuantwr,
+        sum(tufasjh) as tufasjh,
+        sum(tufasjr) as tufasjr,
+        sum(fuwuhdkzc) as fuwuhdkzc,
+        sum(fuwuhdkzr) as fuwuhdkzr
+        from warm_heart_report whr
+        where year(whr.created_time) = #{year} and month(whr.created_time) = #{month} and whr.scope_id - whr.scope_id % 10000 = #{scopeId}
+    </select>
+
+    <select id="selectByJiedao" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select osr.name as scope_name, osr.scope_id as scope_id,xuqiudch,xuqiudcr,baoxianlpl,baoxianlpje,xinlijkfwh,xinlijkfwr,xinlijkfwjd,xinlijkfwcp,
+        richangzfh,richangzfr,jierikwh,jierikwr,shengripbh,shengripbr,zhuyuantwh,zhuyuantwr,tufasjh,tufasjr,fuwuhdkzc,fuwuhdkzr
+        from organization_scope_relationship osr left join
+        (select sum(xuqiudch) as xuqiudch,
+        sum(xuqiudcr) as xuqiudcr,
+        sum(baoxianlpl) as baoxianlpl,
+        sum(baoxianlpje) as baoxianlpje,
+        sum(xinlijkfwh) as xinlijkfwh,
+        sum(xinlijkfwr) as xinlijkfwr,
+        sum(xinlijkfwjd) as xinlijkfwjd,
+        sum(xinlijkfwcp) as xinlijkfwcp,
+        sum(richangzfh) as richangzfh,
+        sum(richangzfr) as richangzfr,
+        sum(jierikwh) as jierikwh,
+        sum(jierikwr) as jierikwr,
+        sum(shengripbh) as shengripbh,
+        sum(shengripbr) as shengripbr,
+        sum(zhuyuantwh) as zhuyuantwh,
+        sum(zhuyuantwr) as zhuyuantwr,
+        sum(tufasjh) as tufasjh,
+        sum(tufasjr) as tufasjr,
+        sum(fuwuhdkzc) as fuwuhdkzc,
+        sum(fuwuhdkzr) as fuwuhdkzr,
+        osr.name as scope_name, osr.scope_id as scope_id
+        from warm_heart_report whr
+        left join organization_scope_relationship osr on osr.scope_id = whr.scope_id
+        where year(whr.created_time) = #{year} and month(whr.created_time) = #{month} and whr.scope_id % 100 != 0
+        group by whr.scope_id
+        order by whr.scope_id) as kk on kk.scope_id = osr.scope_id
+        where osr.scope_id % 100 != 0 and osr.scope_id - osr.scope_id % 100 = #{scopeId}
+    </select>
+
+    <select id="selectByJiedaoTotal" parameterType="com.hele.hzjs.model.param.WarmHeartReportParam" resultType="com.hele.hzjs.model.report.WarmHeartReport">
+        select sum(xuqiudch) as xuqiudch,
+        sum(xuqiudcr) as xuqiudcr,
+        sum(baoxianlpl) as baoxianlpl,
+        sum(baoxianlpje) as baoxianlpje,
+        sum(xinlijkfwh) as xinlijkfwh,
+        sum(xinlijkfwr) as xinlijkfwr,
+        sum(xinlijkfwjd) as xinlijkfwjd,
+        sum(xinlijkfwcp) as xinlijkfwcp,
+        sum(richangzfh) as richangzfh,
+        sum(richangzfr) as richangzfr,
+        sum(jierikwh) as jierikwh,
+        sum(jierikwr) as jierikwr,
+        sum(shengripbh) as shengripbh,
+        sum(shengripbr) as shengripbr,
+        sum(zhuyuantwh) as zhuyuantwh,
+        sum(zhuyuantwr) as zhuyuantwr,
+        sum(tufasjh) as tufasjh,
+        sum(tufasjr) as tufasjr,
+        sum(fuwuhdkzc) as fuwuhdkzc,
+        sum(fuwuhdkzr) as fuwuhdkzr
+        from warm_heart_report whr
+        where year(whr.created_time) = #{year} and month(whr.created_time) = #{month} and whr.scope_id - whr.scope_id % 100 = #{scopeId}
+    </select>
+
+</mapper>

@@ -1,0 +1,138 @@
+.left li {
+    list-style: none;
+    line-height: 40px;
+}
+.left>ul{
+    width: 100%;
+    margin-top: 26px;
+    text-align: left;
+}
+.left ul{
+    margin-left: 0;
+}
+.left>ul>li a{
+    color: #222;
+    padding-left: 40px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+}
+.left>ul>li a:hover{
+    color: #1890ff !important;
+}
+.left>ul>li>a img{
+    position: absolute;
+    top: calc(50% - 5px);
+    right: 20px;
+    transform: rotate(0deg);
+}
+.left>ul>li>ul{
+    display: none;
+}
+.selected-li {
+    background-color: #e6f7ff;
+    color: #1890ff !important;
+    border-right: 2px solid #1890ff;
+}
+
+.l-title{
+    padding-top: 24px;
+    padding-left: 24px;
+    font-size: 20px !important;
+    color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+}
+.l-title img{
+    margin-right: 8px;
+    cursor: pointer;
+}
+.s-title{
+    margin-top: 12px;
+    padding-left: 24px;
+    color: #999999;
+    font-size: 15px !important;
+}
+body{
+    position: relative;
+}
+
+.pop-tip {
+    margin-top: 24px;
+    color: #1890ff;
+    margin-left: 10px;
+}
+
+.pop-lines {
+    margin-top: 14px;
+    width: 360px;
+    height: auto;
+    overflow: hidden;
+}
+
+.pop-lines div:nth-child(1) {
+    width: 126px;
+    height: 2px;
+    float: left;
+    background-color: #1890ff;
+}
+
+.pop-lines div:nth-child(2) {
+    margin-top: 1px;
+    width: calc(100% - 126px);
+    height: 1px;
+    float: left;
+    background-color: #d9d9d9;
+}
+.editUser{
+    margin-top: 46px;
+    margin-left: 24px;
+}
+.editUser>.editUser{
+    width: 40%;
+    float: left;
+}
+.editUser>input:nth-child(1),.editUser>input:nth-child(2){
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+.editUser>label{
+    width: 100%;
+}
+.editUser>label input{
+    height: 32px;
+    width: 270px;
+}
+.editUser>label>span:nth-child(1){
+    color: #fb2020;
+}
+.editUser>label>span:nth-child(2){
+    color: #999999;
+}
+.editUser>label>span:nth-child(3){
+    margin-left: 10px;
+}
+.editUser>label:nth-child(n+4){
+    margin-top: 24px;
+}
+.bottom-buttons{
+    width: 350px;
+    margin-top: 70px;
+    text-align: right;
+    margin-bottom: 40px;
+}
+.bottom-buttons button{
+    width: 82px;
+    height: 32px;
+    margin-left: 40px;
+}
+
+#ewm{
+    width: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+}

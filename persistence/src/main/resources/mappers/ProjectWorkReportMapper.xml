@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.ProjectWorkReportDao">
+
+    <insert id="insertProjectWorkReport" parameterType="com.hele.hzjs.model.report.ProjectWorkReport">
+        insert into project_work_report(scope_id,is_filed,xuanchuanjyhdcs,xuanchuanjyfwrs,yewupxhdcs,yewupxfwrs,jiankangfwhdcs,jiankangfwfwrs,jishengjtbfhdcs,jishengjtbffwrs,qingchunjkhdcs,qingchunjkfwrs,liudongrkfwhdcs,liudongrkfwfwrs,quanyiwhhdcs,qitahdcs,qitafwrs,created_time,updated_time,version,status)
+        values(#{scopeId},1,#{xuanchuanjyhdcs},#{xuanchuanjyfwrs},#{yewupxhdcs},#{yewupxfwrs},#{jiankangfwhdcs},#{jiankangfwfwrs},#{jishengjtbfhdcs},#{jishengjtbffwrs},#{qingchunjkhdcs},#{qingchunjkfwrs},#{liudongrkfwhdcs},#{liudongrkfwfwrs},#{quanyiwhhdcs},#{qitahdcs},#{qitafwrs},now(),now(),#{version},1)
+    </insert>
+
+    <select id="getYears" resultType="int">
+        select distinct year(created_time)
+        from project_work_report
+        order by year(created_time) desc;
+    </select>
+
+    <select id="judgeFiled" parameterType="int" resultType="int">
+    select count(*)
+    from project_work_report
+    where is_filed = 1 and year(created_time) = #{year}
+  </select>
+
+    <select id="getProjectWorkReportByTable" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+        select project_work_report.*, relation.name as scope_name
+        from project_work_report left join organization_scope_relationship relation on project_work_report.scope_id = relation.scope_id
+        where year(project_work_report.created_time) = #{year} and project_work_report.status = 1 and project_work_report.is_filed = 1
+        group by project_work_report.scope_id
+        order by project_work_report.scope_id;
+    </select>
+
+    <select id="getProjectWorkReportTotalByTable" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+        select sum(xuanchuanjyhdcs) as xuanchuanjyhdcs,
+        sum(yewupxhdcs) as yewupxhdcs,
+        sum(jiankangfwhdcs) as jiankangfwhdcs,
+        sum(jishengjtbfhdcs) as jishengjtbfhdcs,
+        sum(qingchunjkhdcs) as qingchunjkhdcs,
+        sum(liudongrkfwhdcs) as liudongrkfwhdcs,
+        sum(quanyiwhhdcs) as quanyiwhhdcs,
+        sum(qitahdcs) as qitahdcs,
+        sum(xuanchuanjyfwrs) as xuanchuanjyfwrs,
+        sum(yewupxfwrs) as yewupxfwrs,
+        sum(jiankangfwfwrs) as jiankangfwfwrs,
+        sum(jishengjtbffwrs) as jishengjtbffwrs,
+        sum(qingchunjkfwrs) as qingchunjkfwrs,
+        sum(liudongrkfwfwrs) as liudongrkfwfwrs,
+        sum(qitafwrs) as qitafwrs
+        from project_work_report
+        where year(created_time) = #{year} and status = 1 and is_filed = 1
+    </select>
+
+    <select id="getProjectWorkReport" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+        select xuanchuanjyhdcs,
+        yewupxhdcs,
+        jiankangfwhdcs,
+        jishengjtbfhdcs,
+        qingchunjkhdcs,
+        liudongrkfwhdcs,
+        quanyiwhhdcs,
+        qitahdcs,
+        xuanchuanjyfwrs,
+        yewupxfwrs,
+        jiankangfwfwrs,
+        jishengjtbffwrs,
+        qingchunjkfwrs,
+        liudongrkfwfwrs,
+        qitafwrs,
+        hd.relation as scope_id,
+        hd.relation_name as scope_name
+        from (select xuanchuanjyhdcs,
+        yewupxhdcs,
+        jiankangfwhdcs,
+        jishengjtbfhdcs,
+        qingchunjkhdcs,
+        liudongrkfwhdcs,
+        quanyiwhhdcs,
+        qitahdcs,
+        relation,
+        osr.`name` as relation_name
+        from (select count(case when activity.project_id = 1 then activity.id else null end) as xuanchuanjyhdcs,
+        count(case when activity.project_id = 2 then activity.id else null end) as yewupxhdcs,
+        count(case when activity.project_id = 3 then activity.id else null end) as jiankangfwhdcs,
+        count(case when (activity.project_id = 4 or activity.project_id = 5 or activity.project_id = 6) then activity.id else null end) as jishengjtbfhdcs,
+        count(case when (activity.project_id = 7 or activity.project_id = 8 or activity.project_id = 9 or activity.project_id = 10 or activity.project_id = 11) then activity.id else null end) as qingchunjkhdcs,
+        count(case when activity.project_id = 12 then activity.id else null end) as liudongrkfwhdcs,
+        count(case when activity.project_id = 13 then activity.id else null end) as quanyiwhhdcs,
+        count(case when activity.project_id = 14 then activity.id else null end) as qitahdcs,
+        asr.scope_id - asr.scope_id % 10000 as relation
+        from activity
+        left join activity_scope_relationship asr
+        on activity.id = asr.activity_id
+        where year(asr.created_time) = #{year} and asr.status = 1
+        group by relation) as tmp
+        left join organization_scope_relationship osr
+        on tmp.relation = osr.scope_id) as hd
+        left join (select xuanchuanjyfwrs,
+        yewupxfwrs,
+        jiankangfwfwrs,
+        jishengjtbffwrs,
+        qingchunjkfwrs,
+        liudongrkfwfwrs,
+        qitafwrs,
+        relation,
+        osr.`name` as relation_name
+        from (select count(case when activity.project_id = 1 then activity.id else null end) as xuanchuanjyfwrs,
+        count(case when activity.project_id = 2 then activity.id else null end) as yewupxfwrs,
+        count(case when activity.project_id = 3 then activity.id else null end) as jiankangfwfwrs,
+        count(case when (activity.project_id = 4 or activity.project_id = 5 or activity.project_id = 6 or activity.project_id = 7) then activity.id else null end) as jishengjtbffwrs,
+        count(case when (activity.project_id = 8 or activity.project_id = 9 or activity.project_id = 10 or activity.project_id = 11) then activity.id else null end) as qingchunjkfwrs,
+        count(case when activity.project_id = 12 then activity.id else null end) as liudongrkfwfwrs,
+        count(case when activity.project_id = 14 then activity.id else null end) as qitafwrs,
+        huiyuan.scope_id - huiyuan.scope_id % 10000 as relation
+        from activity
+        left join huiyuan_activity ha
+        on activity.id = ha.activity_id
+        left join huiyuan
+        on ha.huiyuan_id = huiyuan.id
+        where year(ha.created_time) = #{year}
+        group by relation) as tmp
+        left join organization_scope_relationship osr
+        on tmp.relation = osr.scope_id) as rs
+        on hd.relation = rs.relation
+        where hd.relation != 0
+    </select>
+
+    <select id="getProjectWorkReportTotal" parameterType="int" resultType="com.hele.hzjs.model.report.ProjectWorkReport">
+        select xuanchuanjyhdcs,
+        yewupxhdcs,
+        jiankangfwhdcs,
+        jishengjtbfhdcs,
+        qingchunjkhdcs,
+        liudongrkfwhdcs,
+        quanyiwhhdcs,
+        qitahdcs,
+        xuanchuanjyfwrs,
+        yewupxfwrs,
+        jiankangfwfwrs,
+        jishengjtbffwrs,
+        qingchunjkfwrs,
+        liudongrkfwfwrs,
+        qitafwrs
+        from (select count(case when activity.project_id = 1 then activity.id else null end) as xuanchuanjyhdcs,
+        count(case when activity.project_id = 2 then activity.id else null end) as yewupxhdcs,
+        count(case when activity.project_id = 3 then activity.id else null end) as jiankangfwhdcs,
+        count(case when (activity.project_id = 4 or activity.project_id = 5 or activity.project_id = 6) then activity.id else null end) as jishengjtbfhdcs,
+        count(case when (activity.project_id = 7 or activity.project_id = 8 or activity.project_id = 9 or activity.project_id = 10 or activity.project_id = 11) then activity.id else null end) as qingchunjkhdcs,
+        count(case when activity.project_id = 12 then activity.id else null end) as liudongrkfwhdcs,
+        count(case when activity.project_id = 13 then activity.id else null end) as quanyiwhhdcs,
+        count(case when activity.project_id = 14 then activity.id else null end) as qitahdcs,
+        asr.scope_id - asr.scope_id % 10000 as relation
+        from activity
+        left join activity_scope_relationship asr
+        on activity.id = asr.activity_id
+        where year(asr.created_time) = #{year} and asr.status = 1) as hd
+        left join (select count(case when activity.project_id = 1 then activity.id else null end) as xuanchuanjyfwrs,
+        count(case when activity.project_id = 2 then activity.id else null end) as yewupxfwrs,
+        count(case when activity.project_id = 3 then activity.id else null end) as jiankangfwfwrs,
+        count(case when (activity.project_id = 4 or activity.project_id = 5 or activity.project_id = 6 or activity.project_id = 7) then activity.id else null end) as jishengjtbffwrs,
+        count(case when (activity.project_id = 8 or activity.project_id = 9 or activity.project_id = 10 or activity.project_id = 11) then activity.id else null end) as qingchunjkfwrs,
+        count(case when activity.project_id = 12 then activity.id else null end) as liudongrkfwfwrs,
+        count(case when activity.project_id = 14 then activity.id else null end) as qitafwrs,
+        huiyuan.scope_id - huiyuan.scope_id % 10000 as relation
+        from activity
+        left join huiyuan_activity ha
+        on activity.id = ha.activity_id
+        left join huiyuan
+        on ha.huiyuan_id = huiyuan.id
+        where year(ha.created_time) = #{year}) as rs
+        on 1 = 1
+        where hd.relation != 0
+    </select>
+
+</mapper>

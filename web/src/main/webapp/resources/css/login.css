@@ -1,0 +1,124 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #0DAFD2 !important;
+}
+.hidden{
+    display: none;
+}
+.page-content{
+    background-color: #0DAFD2;
+}
+.login-container{
+    padding-top: 180px;
+    width: 1280px;
+    margin: auto;
+    text-align: left;
+    background-color: #0DAFD2;
+    height: auto;
+    overflow: hidden;
+}
+.login-header{
+    width: 100%;
+    margin:auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.login-header>span{
+    margin-left: 20px;
+    color: white;
+    font-size: 28px !important;
+}
+.login-content{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+.login-content>form{
+    position: absolute;
+    right: 68px;
+    top: 30px;
+    width: 380px;
+    text-align: left;
+}
+.login-content>form>span{
+    color: #fb2020;
+    margin-top: 6px;
+    display: block;
+}
+.title span{
+    text-align: left;
+    color: #0DAFD2;
+    font-size: 20px !important;
+}
+.lines{
+    width: 100%;
+    margin-top: 18px;
+    overflow: hidden;
+}
+.line1{
+    float: left;
+    width: 30%;
+    background-color: #0DAFD2;
+    height: 4px;
+}
+.line2{
+    float: left;
+    width: 70%;
+    height: 1px;
+    background-color: #0DAFD2;
+    margin-top: 3px;
+}
+.error-msg{
+    width: 380px;
+    display: block;
+    text-align: center;
+    margin-top: 16px !important;
+    color: #fb2020;
+    font-size: 14px;
+}
+
+form>input{
+    width: 100%;
+    height: 56px;
+}
+form>input:nth-child(3),form>input:nth-child(4){
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+form>input:nth-child(5){
+    margin-top: 50px;
+    background: url("../icon/10-yonghu.png") no-repeat 10px center;
+    padding-left: 60px;
+    font-size: 20px !important;
+}
+form>input:nth-child(7){
+    margin-top: 14px;
+    background: url("../icon/11-mima.png") no-repeat 10px center;
+    padding-left: 60px;
+    font-size: 20px !important;
+}
+input[type=button]{
+    border-radius: 4px;
+    background: #0dafd2;
+    color: #ffffff;
+    margin-top: 48px;
+    font-size: 24px !important;
+    border: none;
+}
+input[type=button]:hover{
+    background: #099fbf;
+}
+input[type=button]:active{
+    background: #3ec2df;
+}
+
+
+

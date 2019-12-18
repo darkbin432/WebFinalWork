@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.HuiyuanActivityDao">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+         insert into huiyuan_activity(
+         huiyuan_id, activity_id,
+         volunteer_apply_status,
+         created_time, updated_time) values (
+         #{huiyuanId}, #{activityId},
+         #{volunteerApplyStatus},
+         now(), now()
+         ) ON DUPLICATE key update status = 1, updated_time=now(), volunteer_apply_status=#{volunteerApplyStatus}
+    </insert>
+
+    <update id="cancel" useGeneratedKeys="true" keyProperty="id">
+         update huiyuan_activity
+         set status=0, updated_time=now()
+         where huiyuan_id=#{huiyuanId} and activity_id=#{activityId}
+    </update>
+
+    <update id="attend" useGeneratedKeys="true" keyProperty="id">
+         update huiyuan_activity
+         set attend_status=1, updated_time=now()
+         where huiyuan_id=#{huiyuanId} and activity_id=#{activityId} and status=1
+    </update>
+
+    <select id="selectOne" resultType="HuiyuanActivity">
+         select ha.*,activity.start_time from huiyuan_activity ha
+         left join activity on activity.id=ha.activity_id
+         where huiyuan_id=#{huiyuanId} and activity_id=#{activityId} and ha.status=1
+    </select>
+
+    <select id="getCurrentHuiyuanCount" parameterType="Integer" resultType="Integer">
+        select count(*)
+        from huiyuan_activity
+        where activity_id = #{id} and volunteer_apply_status = 0 and status=1;
+    </select>
+
+    <select id="getCurrentVolunteerCount" parameterType="Integer" resultType="Integer">
+        select count(*)
+        from huiyuan_activity
+        where activity_id = #{id} and volunteer_apply_status = 1 and status=1;
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+input[type="radio"], input[type="checkbox"] {
+    margin: -2px 0 0;
+}
+
+/* 	bootstrap-fileinput 样式 */
+.file-footer-buttons{
+	display:none;
+}
+
+/* 	新闻modal遮罩层高度太小，高度由js控制，设置最小高度，js设置高度小于这个就不起效 */
+.modal-backdrop{
+	min-height:1000px;
+}
+.file-preview-image{
+	max-width:250px;
+} 
+
+/* 隐藏右上角x */
+.close.fileinput-remove{
+	display:none;
+}
+

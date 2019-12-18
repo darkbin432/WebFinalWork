@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.MailDao">
+
+	<select id="getMaxId" parameterType="string" resultType="int">
+		select max(id) from #{table};
+	</select>
+
+	<insert id="insert" parameterType="com.hele.hzjs.model.Mail">
+		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into mail
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="inMail != null">
+				in_mail,
+			</if>
+			<if test="toMail != null">
+			  	to_mail,
+			</if>
+			<if test="subject != null">
+				subject,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+			<if test="attachment != null">
+				attachment,
+			</if>
+            <if test="attachmentName != null">
+                attachment_name,
+            </if>
+            <if test="attachmentSize != null">
+                attachment_size,
+            </if>
+			<if test="version != null">
+				version,
+			</if>
+			date,
+			send_status,
+			in_star,
+			is_garbage,
+			created_time,
+			updated_time,
+			status
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="inMail != null">
+				#{inMail},
+			</if>
+			<if test="toMail != null">
+				#{toMail},
+			</if>
+			<if test="subject != null">
+				#{subject},
+			</if>
+			<if test="content != null">
+				#{content},
+			</if>
+			<if test="attachment != null">
+				#{attachment},
+			</if>
+            <if test="attachmentName != null">
+                #{attachmentName},
+            </if>
+            <if test="attachmentSize != null">
+                #{attachmentSize},
+            </if>
+			<if test="version != null">
+				#{version},
+			</if>
+			now(),
+			#{sendStatus},
+			0,
+			0,
+			now(),
+			now(),
+			1
+		</trim>
+	</insert>
+
+	<insert id="insertRelationship" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+		insert into mail_people_relationship(mail_id,organization_member_id,is_read,to_star,is_garbage,created_time,updated_time,status)
+		values (#{mailId},#{organizationMemberId},0,0,0,now(),now(),1);
+	</insert>
+
+	<select id="getRecievePageCount" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Integer">
+		select count(distinct mail.id)
+		from (mail left join mail_people_relationship mpr on mail.id = mpr.mail_id) left join organization_member om on om.id = mail.in_mail
+		<where>
+			<if test="toStar == null and isGarbage != 1">
+				mpr.organization_member_id = #{organizationMemberId} and mpr.status = 1 and mpr.is_garbage = #{isGarbage}
+			</if>
+			<if test="isGarbage != 0">
+				((mpr.is_garbage = #{isGarbage} and mpr.organization_member_id = #{organizationMemberId} and mpr.status = 1) or (mail.is_garbage = #{isGarbage} and mail.in_mail = #{organizationMemberId} and mail.status = 1))
+			</if>
+			<if test="isGarbage != 1">
+				<trim prefix="and (" suffix=")" prefixOverrides="and">
+					<if test="toStar != null">
+						and to_star = #{toStar} and mpr.organization_member_id = #{organizationMemberId} and mpr.is_garbage = 0 and mpr.status = 1
+					</if>
+					<if test="inStar != null">
+						or (in_star = #{inStar} and ((mail.send_status = 1 and mail.in_mail = #{organizationMemberId}) or (mail.send_status = 0)) and mail.is_garbage = 0 and mail.status = 1)
+					</if>
+				</trim>
+			</if>
+		</where>
+		order by mail.date desc
+	</select>
+
+    <select id="listRecieveMail" parameterType="com.hele.hzjs.model.param.MailParam" resultType="com.hele.hzjs.model.Mail">
+		select distinct mail.id,mail.*,mpr.*,om.name as in_name
+		from (mail left join mail_people_relationship mpr on mail.id = mpr.mail_id) left join organization_member om on om.id = mail.in_mail
+		<where>
+			<if test="toStar == null and isGarbage != 1">
+				mpr.organization_member_id = #{organizationMemberId} and mpr.status = 1 and mpr.is_garbage = #{isGarbage}
+			</if>
+			<if test="isGarbage != 0">
+				 ((mpr.is_garbage = #{isGarbage} and mpr.organization_member_id = #{organizationMemberId} and mpr.status = 1) or (mail.is_garbage = #{isGarbage} and mail.in_mail = #{organizationMemberId} and mail.status = 1))
+			</if>
+			<if test="isGarbage != 1">
+				<trim prefix="and (" suffix=")" prefixOverrides="and">
+					<if test="toStar != null">
+						and to_star = #{toStar} and mpr.organization_member_id = #{organizationMemberId} and mpr.is_garbage = 0 and mpr.status = 1
+					</if>
+					<if test="inStar != null">
+						or (in_star = #{inStar} and ((mail.send_status = 1 and mail.in_mail = #{organizationMemberId}) or (mail.send_status = 0)) and mail.is_garbage = 0 and mail.status = 1)
+					</if>
+				</trim>
+			</if>
+		</where>
+		group by mail.id
+		order by mail.date desc
+		<if test="offset!=null and size!=null">
+			limit #{offset},#{size};
+		</if>
+	</select>
+
+	<select id="getSendPageCount" parameterType="com.hele.hzjs.model.param.MailParam" resultType="int">
+		select count(*)
+		from mail
+		<where>
+			in_mail = #{inMail} and status = 1 and is_garbage = 0
+			<if test="inStar != null">
+				and in_star = #{inStar}
+			</if>
+			<if test="sendStatus != null">
+				and send_status = #{sendStatus}
+			</if>
+		</where>
+		order by date desc
+	</select>
+
+	<select id="getSendMail" parameterType="com.hele.hzjs.model.param.MailParam" resultType="com.hele.hzjs.model.Mail">
+		select *
+		from mail
+		<where>
+			in_mail = #{inMail} and status = 1 and is_garbage = 0
+			<if test="inStar != null">
+				and in_star = #{inStar}
+			</if>
+			<if test="sendStatus != null">
+				and send_status = #{sendStatus}
+			</if>
+		</where>
+		order by date desc
+			<if test="offset!=null and size!=null">
+				limit #{offset},#{size};
+			</if>
+	</select>
+
+	<select id="getOne" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Mail">
+		select mail.*,mpr.to_star from mail left join mail_people_relationship mpr on mail.id = mpr.mail_id
+		where mail.id = #{id} and mpr.organization_member_id = #{organizationMemberId} and mail.status = 1;
+	</select>
+
+	<select id="getOneBySender" parameterType="int" resultType="Mail">
+		select * from mail
+		where id = #{mailId} and status = 1
+		order by updated_time;
+	</select>
+
+	<select id="getOneByAddressee" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Mail">
+		select *,organization_member.name as in_name,organization_member.mobile as in_mobile,organization.name as in_organization_name from (mail left join mail_people_relationship on mail.id = mail_people_relationship.mail_id) left join organization_member on organization_member.id = mail.in_mail left join organization on organization.id = organization_member.organization_id
+		where mail.id = #{id} and mail_people_relationship.organization_member_id = #{organizationMemberId}
+		order by mail.date;
+	</select>
+
+	<select id="getOneMail" parameterType="com.hele.hzjs.model.param.MailParam" resultType="Mail">
+		select mail.*,mpr.*,organization_member.name as in_name ,organization_member.username as in_userName,organization_member.mobile as in_mobile,organization.name as in_organization_name
+		from mail left join organization_member on mail.in_mail = organization_member.id left join organization on organization.id = organization_member.organization_id left join mail_people_relationship mpr on mail.id = mpr.mail_id
+		where mail.id = #{id} and (mpr.organization_member_id = #{organizationMemberId} or mail.in_mail = #{organizationMemberId})
+		limit 1;
+	</select>
+
+	<select id="getUnsolvedMail" parameterType="int" resultType="int">
+		select count(*) from mail_people_relationship
+		where organization_member_id = #{id} and is_read = 0 and is_garbage = 0 and status = 1;
+	</select>
+
+	<update id="updateInfo" parameterType="com.hele.hzjs.model.Mail">
+		update mail
+		<set>
+			<if test="sendStatus != null">
+				send_status = #{sendStatus},
+			</if>
+			<if test="inStar != null">
+				in_star = #{inStar},
+			</if>
+            <if test="isGarbage != null">
+                is_garbage = #{isGarbage},
+            </if>
+			<if test="date != null">
+				date = now(),
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			updated_time = now()
+		</set>
+		where id = #{id};
+	</update>
+
+	<update id="updateRelationship" parameterType="hashmap">
+		update mail_people_relationship
+		<set>
+			<if test="isRead != null">
+				is_read = #{isRead},
+			</if>
+			<if test="toStar != null">
+				to_star = #{toStar},
+			</if>
+			<if test="isGarbage != null">
+				is_garbage = #{isGarbage},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			updated_time = now()
+		</set>
+		where mail_id = #{id} and organization_member_id = #{organizationMemberId};
+	</update>
+
+	<update id="deleteIn" parameterType="int">
+		update mail
+		set status = 0,
+		updated_time = now()
+		where id = #{id};
+	</update>
+
+	<update id="deleteTo" parameterType="int">
+		update mail_people_relationship
+		set status = 0,
+		updated_time = now()
+		where mail_id = #{id};
+	</update>
+
+</mapper>

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hele.hzjs.persistence.OrganizationConstructionReportDao">
+
+  <insert id="insert" parameterType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into organization_construction_report (scope_id, report_person_id, is_filed, xingzhengqsl,
+    jigousl, dangzusl, dangzhibsl,
+    ruxu, cangong, sanding,
+    neishejgsl, jigoujssl, xingzhengbz,
+    shiyebz, qitabz, zaibianryrs,
+    zaibianrynxsl, zaibianrydysl, zhengting,
+    futing, zhengchu, fuchu,
+    zhengke, fuke, keyuanjyx,
+    jianzhipydqtrys, lishirs, lishinx,
+    tuantihy, gerenhyrs, gerenhynx,
+    zhiyuanzrs, zhiyuanzdws, huiyuanxz,
+    huiyuanzj, wenhuast, huodongzdstqt,
+    dulicwysjg, benniandczbke, jijinh,
+    jiguanqsyjsx, liudongrkjsx, created_time,
+    updated_time, version, status
+    )
+    values (#{scopeId,jdbcType=INTEGER}, #{reportPersonId,jdbcType=INTEGER}, 0, #{xingzhengqsl,jdbcType=INTEGER},
+    #{jigousl,jdbcType=INTEGER}, #{dangzusl,jdbcType=INTEGER}, #{dangzhibsl,jdbcType=INTEGER},
+    #{ruxu,jdbcType=INTEGER}, #{cangong,jdbcType=INTEGER}, #{sanding,jdbcType=INTEGER},
+    #{neishejgsl,jdbcType=INTEGER}, #{jigoujssl,jdbcType=INTEGER}, #{xingzhengbz,jdbcType=INTEGER},
+    #{shiyebz,jdbcType=INTEGER}, #{qitabz,jdbcType=INTEGER}, #{zaibianryrs,jdbcType=INTEGER},
+    #{zaibianrynxsl,jdbcType=INTEGER}, #{zaibianrydysl,jdbcType=INTEGER}, #{zhengting,jdbcType=INTEGER},
+    #{futing,jdbcType=INTEGER}, #{zhengchu,jdbcType=INTEGER}, #{fuchu,jdbcType=INTEGER},
+    #{zhengke,jdbcType=INTEGER}, #{fuke,jdbcType=INTEGER}, #{keyuanjyx,jdbcType=INTEGER},
+    #{jianzhipydqtrys,jdbcType=INTEGER}, #{lishirs,jdbcType=INTEGER}, #{lishinx,jdbcType=INTEGER},
+    #{tuantihy,jdbcType=INTEGER}, #{gerenhyrs,jdbcType=INTEGER}, #{gerenhynx,jdbcType=INTEGER},
+    #{zhiyuanzrs,jdbcType=INTEGER}, #{zhiyuanzdws,jdbcType=INTEGER}, #{huiyuanxz,jdbcType=INTEGER},
+    #{huiyuanzj,jdbcType=INTEGER}, #{wenhuast,jdbcType=INTEGER}, #{huodongzdstqt,jdbcType=INTEGER},
+    #{dulicwysjg,jdbcType=INTEGER}, #{benniandczbke,jdbcType=INTEGER}, #{jijinh,jdbcType=INTEGER},
+    #{jiguanqsyjsx,jdbcType=INTEGER}, #{liudongrkjsx,jdbcType=INTEGER}, now(),
+    now(), #{version,jdbcType=VARCHAR}, 1
+    )
+  </insert>
+
+  <update id="toFile" parameterType="int">
+    update organization_construction_report
+    set is_filed = 1
+    where year(created_time) = #{year};
+  </update>
+
+  <select id="judgeFiled" parameterType="int" resultType="int">
+    select count(*)
+    from organization_construction_report
+    where is_filed = 1 and year(created_time) = #{year}
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+    update organization_construction_report
+    <set>
+      <if test="scopeId != null">
+        scope_id = #{scopeId,jdbcType=INTEGER},
+      </if>
+      <if test="reportPersonId != null">
+        report_person_id = #{reportPersonId,jdbcType=INTEGER},
+      </if>
+      <if test="isFiled != null">
+        is_filed = #{isFiled},
+      </if>
+      <if test="xingzhengqsl != null">
+        xingzhengqsl = #{xingzhengqsl,jdbcType=INTEGER},
+      </if>
+      <if test="jigousl != null">
+        jigousl = #{jigousl,jdbcType=INTEGER},
+      </if>
+      <if test="dangzusl != null">
+        dangzusl = #{dangzusl,jdbcType=INTEGER},
+      </if>
+      <if test="dangzhibsl != null">
+        dangzhibsl = #{dangzhibsl,jdbcType=INTEGER},
+      </if>
+      <if test="ruxu != null">
+        ruxu = #{ruxu,jdbcType=INTEGER},
+      </if>
+      <if test="cangong != null">
+        cangong = #{cangong,jdbcType=INTEGER},
+      </if>
+      <if test="sanding != null">
+        sanding = #{sanding,jdbcType=INTEGER},
+      </if>
+      <if test="neishejgsl != null">
+        neishejgsl = #{neishejgsl,jdbcType=INTEGER},
+      </if>
+      <if test="jigoujssl != null">
+        jigoujssl = #{jigoujssl,jdbcType=INTEGER},
+      </if>
+      <if test="xingzhengbz != null">
+        xingzhengbz = #{xingzhengbz,jdbcType=INTEGER},
+      </if>
+      <if test="shiyebz != null">
+        shiyebz = #{shiyebz,jdbcType=INTEGER},
+      </if>
+      <if test="qitabz != null">
+        qitabz = #{qitabz,jdbcType=INTEGER},
+      </if>
+      <if test="zaibianryrs != null">
+        zaibianryrs = #{zaibianryrs,jdbcType=INTEGER},
+      </if>
+      <if test="zaibianrynxsl != null">
+        zaibianrynxsl = #{zaibianrynxsl,jdbcType=INTEGER},
+      </if>
+      <if test="zaibianrydysl != null">
+        zaibianrydysl = #{zaibianrydysl,jdbcType=INTEGER},
+      </if>
+      <if test="zhengting != null">
+        zhengting = #{zhengting,jdbcType=INTEGER},
+      </if>
+      <if test="futing != null">
+        futing = #{futing,jdbcType=INTEGER},
+      </if>
+      <if test="zhengchu != null">
+        zhengchu = #{zhengchu,jdbcType=INTEGER},
+      </if>
+      <if test="fuchu != null">
+        fuchu = #{fuchu,jdbcType=INTEGER},
+      </if>
+      <if test="zhengke != null">
+        zhengke = #{zhengke,jdbcType=INTEGER},
+      </if>
+      <if test="fuke != null">
+        fuke = #{fuke,jdbcType=INTEGER},
+      </if>
+      <if test="keyuanjyx != null">
+        keyuanjyx = #{keyuanjyx,jdbcType=INTEGER},
+      </if>
+      <if test="jianzhipydqtrys != null">
+        jianzhipydqtrys = #{jianzhipydqtrys,jdbcType=INTEGER},
+      </if>
+      <if test="lishirs != null">
+        lishirs = #{lishirs,jdbcType=INTEGER},
+      </if>
+      <if test="lishinx != null">
+        lishinx = #{lishinx,jdbcType=INTEGER},
+      </if>
+      <if test="tuantihy != null">
+        tuantihy = #{tuantihy,jdbcType=INTEGER},
+      </if>
+      <if test="gerenhyrs != null">
+        gerenhyrs = #{gerenhyrs,jdbcType=INTEGER},
+      </if>
+      <if test="gerenhynx != null">
+        gerenhynx = #{gerenhynx,jdbcType=INTEGER},
+      </if>
+      <if test="zhiyuanzrs != null">
+        zhiyuanzrs = #{zhiyuanzrs,jdbcType=INTEGER},
+      </if>
+      <if test="zhiyuanzdws != null">
+        zhiyuanzdws = #{zhiyuanzdws,jdbcType=INTEGER},
+      </if>
+      <if test="huiyuanxz != null">
+        huiyuanxz = #{huiyuanxz,jdbcType=INTEGER},
+      </if>
+      <if test="huiyuanzj != null">
+        huiyuanzj = #{huiyuanzj,jdbcType=INTEGER},
+      </if>
+      <if test="wenhuast != null">
+        wenhuast = #{wenhuast,jdbcType=INTEGER},
+      </if>
+      <if test="huodongzdstqt != null">
+        huodongzdstqt = #{huodongzdstqt,jdbcType=INTEGER},
+      </if>
+      <if test="dulicwysjg != null">
+        dulicwysjg = #{dulicwysjg,jdbcType=INTEGER},
+      </if>
+      <if test="benniandczbke != null">
+        benniandczbke = #{benniandczbke,jdbcType=FLOAT},
+      </if>
+      <if test="jijinh != null">
+        jijinh = #{jijinh,jdbcType=INTEGER},
+      </if>
+      <if test="jiguanqsyjsx != null">
+        jiguanqsyjsx = #{jiguanqsyjsx,jdbcType=INTEGER},
+      </if>
+      <if test="liudongrkjsx != null">
+        liudongrkjsx = #{liudongrkjsx,jdbcType=INTEGER},
+      </if>
+      <if test="createdTime != null">
+        created_time = now(),
+      </if>
+      updated_time = now(),
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="getYears" resultType="int">
+      select distinct year(created_time)
+      from organization_construction_report
+      order by year(created_time) desc;
+    </select>
+
+  <select id="getOne" parameterType="com.hele.hzjs.model.param.OrganizationConstructionReportParam" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+      select ocr.* ,osr.name as scope_name
+      from organization_construction_report ocr left join organization_scope_relationship osr on ocr.scope_id = osr.scope_id
+      where year(ocr.created_time) = #{year} and ocr.scope_id = #{scopeId}
+  </select>
+
+  <select id="getLici" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+      select ocr.*,om.name as report_person_name,osr.name as scope_name
+      from organization_construction_report ocr left join organization_member om on ocr.report_person_id = om.id
+      left join organization_scope_relationship osr on ocr.scope_id = osr.scope_id
+      where ocr.scope_id = #{scopeId}
+      order by ocr.created_time desc
+  </select>
+
+    <select id="selectChildrenStatusPageCount" parameterType="com.hele.hzjs.model.param.OrganizationConstructionReportParam" resultType="int">
+        select count(distinct organization_name)
+        from(select o.name as organization_name,
+        case when year(ocr.created_time) = #{year} and ocr.scope_id = osr.scope_id then 1 else null end as child_status,
+        osr.scope_id as scope_id
+        FROM organization_scope_relationship osr
+        left join organization_construction_report ocr on osr.scope_id = ocr.scope_id
+        left join organization o on o.id = osr.organization_id
+        WHERE o.parent_organization_id = #{parentOrganizationId} and (year(ocr.created_time) = #{year} or osr.id is not null) and osr.status = 1) as tmp
+    </select>
+
+  <select id="selectChildrenStatus" parameterType="com.hele.hzjs.model.param.OrganizationConstructionReportParam" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+      select organization_name ,sum(child_status) as child_status,scope_id
+      from(select o.name as organization_name,
+      case when year(ocr.created_time) = #{year} and ocr.scope_id = osr.scope_id then 1 else null end as child_status,
+      osr.scope_id as scope_id
+      FROM organization_scope_relationship osr
+      left join organization_construction_report ocr on osr.scope_id = ocr.scope_id
+      left join organization o on o.id = osr.organization_id
+      WHERE o.parent_organization_id = #{parentOrganizationId} and (year(ocr.created_time) = #{year} or osr.id is not null) and osr.status = 1) as tmp
+      group by organization_name
+      order by child_status desc,scope_id
+      <if test="offset!=null and size!=null">
+          LIMIT #{offset},#{size};
+      </if>
+  </select>
+
+  <select id="getShequji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+    select sum(xingzhengqsl) as xingzhengqsl,
+    sum(jigousl) as jigousl,
+    sum(jianzhipydqtrys) as jianzhipydqtrys,
+    sum(lishirs) as lishirs,
+    sum(lishinx) as lishinx,
+    sum(zhiyuanzdws) as zhiyuanzdws,
+    sum(huiyuanzj) as huiyuanzj,
+    sum(wenhuast) as wenhuast,
+    sum(benniandczbke) as benniandczbke,
+    sum(jiguanqsyjsx) as jiguanqsyjsx,
+    sum(liudongrkjsx) as liudongrkjsx,
+    sum(is_filed) as is_filed
+    from organization_construction_report
+    where year(created_time) = #{year} and scope_id % 100 != 0
+  </select>
+
+  <select id="getJiedaoji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+    select sum(xingzhengqsl) as xingzhengqsl,
+    sum(jigousl) as jigousl,
+    sum(jianzhipydqtrys) as jianzhipydqtrys,
+    sum(lishirs) as lishirs,
+    sum(lishinx) as lishinx,
+    sum(tuantihy) as tuantihy,
+    sum(zhiyuanzrs) as zhiyuanzrs,
+    sum(zhiyuanzdws) as zhiyuanzdws,
+    sum(huiyuanzj) as huiyuanzj,
+    sum(wenhuast) as wenhuast,
+    sum(dulicwysjg) as dulicwysjg,
+    sum(benniandczbke) as benniandczbke,
+    sum(jijinh) as jijinh,
+    sum(jiguanqsyjsx) as jiguanqsyjsx,
+    sum(liudongrkjsx) as liudongrkjsx,
+    sum(is_filed) as is_filed
+    from organization_construction_report
+    where year(created_time) = #{year} and scope_id % 10000 != 0 and scope_id % 100 = 0
+  </select>
+
+  <select id="getQuji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+    select sum(xingzhengqsl) as xingzhengqsl,
+    sum(jigousl) as jigousl,
+    sum(ruxu) as ruxu,
+    sum(cangong) as cangong,
+    sum(sanding) as sanding,
+    sum(neishejgsl) as neishejgsl,
+    sum(jigoujssl) as jigoujssl,
+    sum(shiyebz) as shiyebz,
+    sum(zaibianryrs) as zaibianryrs,
+    sum(zaibianrynxsl) as zaibianrynxsl,
+    sum(zaibianrydysl) as zaibianrydysl,
+    sum(fuchu) as fuchu,
+    sum(zhengke) as zhengke,
+    sum(fuke) as fuke,
+    sum(keyuanjyx) as keyuanjyx,
+    sum(jianzhipydqtrys) as jianzhipydqtrys,
+    sum(lishirs) as lishirs,
+    sum(lishinx) as lishinx,
+    sum(zhiyuanzrs) as zhiyuanzrs,
+    sum(zhiyuanzdws) as zhiyuanzdws,
+    sum(huiyuanzj) as huiyuanzj,
+    sum(dulicwysjg) as dulicwysjg,
+    sum(benniandczbke) as benniandczbke,
+    sum(jijinh) as jijinh,
+    sum(jiguanqsyjsx) as jiguanqsyjsx,
+    sum(liudongrkjsx) as liudongrkjsx,
+     sum(is_filed) as is_filed
+    from organization_construction_report
+    where year(created_time) = #{year} and scope_id != 0 and scope_id % 10000 = 0
+  </select>
+
+  <select id="getShiji" parameterType="int" resultType="com.hele.hzjs.model.report.OrganizationConstructionReport">
+    select sum(xingzhengqsl) as xingzhengqsl,
+    sum(jigousl) as jigousl,
+    sum(dangzhibsl) as dangzhibsl,
+    sum(ruxu) as ruxu,
+    sum(cangong) as cangong,
+    sum(sanding) as sanding,
+    sum(neishejgsl) as neishejgsl,
+    sum(jigoujssl) as jigoujssl,
+    sum(shiyebz) as shiyebz,
+    sum(zaibianryrs) as zaibianryrs,
+    sum(zaibianrynxsl) as zaibianrynxsl,
+    sum(zaibianrydysl) as zaibianrydysl,
+    sum(futing) as futing,
+    sum(zhengchu) as zhengchu,
+    sum(fuchu) as fuchu,
+    sum(zhengke) as zhengke,
+    sum(fuke) as fuke,
+    sum(jianzhipydqtrys) as jianzhipydqtrys,
+    sum(lishirs) as lishirs,
+    sum(lishinx) as lishinx,
+    sum(zhiyuanzrs) as zhiyuanzrs,
+    sum(zhiyuanzdws) as zhiyuanzdws,
+    sum(dulicwysjg) as dulicwysjg,
+    sum(benniandczbke) as benniandczbke,
+    sum(is_filed) as is_filed
+    from organization_construction_report
+    where year(created_time) = #{year} and scope_id = 0
+  </select>
+
+</mapper>
