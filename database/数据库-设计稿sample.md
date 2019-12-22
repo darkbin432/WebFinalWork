@@ -1,4 +1,4 @@
-# 计生协信息化webFinal数据库库拓扑
+# 计生协信息化WebFinalWork数据库库拓扑
 
 ## 说明
 
@@ -17,7 +17,7 @@
 * git目录
 
 ```
---- webFinal项目
+--- WebFinalWork项目
 	----front	前端
 		----vue		
 	----backend 后台
@@ -45,11 +45,11 @@ branch
 ```
 --- tomcat 
 	--- webapp
-		--- webFinalResource
+		--- WebFinalWorkResource
 			--- images
 			--- videos
 			--- files
-		--- webFinal.war
+		--- WebFinalWork.war
 ```
 
 

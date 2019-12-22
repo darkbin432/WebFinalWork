@@ -1,6 +1,5 @@
 package com.hznu.lwb.shiro;
 
-import com.hznu.lwb.model.OrganizationMember;
 import com.hznu.lwb.model.User;
 import com.hznu.lwb.persistence.UserDao;
 import org.apache.commons.lang3.StringUtils;

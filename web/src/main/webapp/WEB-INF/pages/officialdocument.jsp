@@ -339,7 +339,7 @@
                                         <img src="<%=request.getContextPath()%>/resources/icon/fujian.png">
                                         <span id="d35ce3adbdb04736a62049d80282fafb.apk">d35ce3adbdb04736a62049d80282fafb.apk</span>
                                         <%--href用taskPath+名字代替--%>
-                                        <%--<span class="downloadGongwen"><a href="http://localhost:8090/webFinalResource/tasks/d35ce3adbdb04736a62049d80282fafb.apk" download="3d17492df8454e92a0b056cd52962ed2.apk">下载</a></span>--%>
+                                        <%--<span class="downloadGongwen"><a href="http://localhost:8090/WebFinalWorkResource/tasks/d35ce3adbdb04736a62049d80282fafb.apk" download="3d17492df8454e92a0b056cd52962ed2.apk">下载</a></span>--%>
                                     </div>
                                 </div>
                             </td>

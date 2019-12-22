@@ -8,12 +8,12 @@ var basePath = localObj.protocol + "//" + localObj.host + "/";
 var server_context = basePath;
 var rootPath = basePath + contextPath;
 
-var imgPath=basePath+"webFinalResource/images/";
-var videoPath=basePath+"webFinalResource/videos/";
-var mailAttachmentPath=basePath+"webFinalResource/mail-attachments/";
-var pdfPath=basePath+"webFinalResource/pdfs/";
-var excelPath=basePath+"webFinalResource/excels/";
-var taskPath=basePath+"webFinalResource/tasks/";
+var imgPath=basePath+"WebFinalWorkResource/images/";
+var videoPath=basePath+"WebFinalWorkResource/videos/";
+var mailAttachmentPath=basePath+"WebFinalWorkResource/mail-attachments/";
+var pdfPath=basePath+"WebFinalWorkResource/pdfs/";
+var excelPath=basePath+"WebFinalWorkResource/excels/";
+var taskPath=basePath+"WebFinalWorkResource/tasks/";
 
 
 var imgBitmap=rootPath+"/resources/icon/1-tupianzhanweitu.png";

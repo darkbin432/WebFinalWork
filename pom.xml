@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hznu.lwb</groupId>
-    <artifactId>webFinal</artifactId>
+    <artifactId>WebFinalWork</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
@@ -279,7 +279,7 @@
     </dependencies>
 
     <build>
-        <finalName>webFinal</finalName>
+        <finalName>WebFinalWork</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,10 +1,6 @@
 package com.hznu.lwb.persistence;
 
-import com.hznu.lwb.model.OrganizationMember;
 import com.hznu.lwb.model.User;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.HashMap;
 
 /**
  * UserDao

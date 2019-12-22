@@ -1,22 +1,16 @@
 package com.hznu.lwb.api;
 
 import com.hznu.lwb.ApplicationController;
-import com.hznu.lwb.model.Announcement;
 import com.hznu.lwb.model.User;
 import com.hznu.lwb.model.result.ApiResult;
-import com.hznu.lwb.persistence.UserDao;
-import com.hznu.lwb.service.IAnnouncementService;
 import com.hznu.lwb.service.IUserService;
-import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;

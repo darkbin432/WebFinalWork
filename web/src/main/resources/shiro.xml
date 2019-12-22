@@ -28,14 +28,14 @@
 				/wap/article/**=anon
 				/druid/**=anon
 				/UploadRoot/**=anon
-
+				/manage/**=authc
 				/remote/**=anon
 				/resources/**=anon
 				/favicon.ico=anon
 				/unauth=anon
 				/test/**=anon
 				/getCurrentUser=anon
-				/**=authc
+				<!--/**=authc-->
 			</value>
 			<!-- 之前的写法： /login.do=authc /logout=anon /static/**=anon /favicon.ico=anon 
 				/Kaptcha.jpg=anon /unauth.do=anon /**=imUser -->
