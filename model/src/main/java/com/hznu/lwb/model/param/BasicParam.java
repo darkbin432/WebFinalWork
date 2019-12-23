@@ -5,7 +5,7 @@ public class BasicParam {
     private String startTime;
     private String endTime;
     private Integer pageNow = 1;//页码
-    private Integer size = 20;//每页数量
+    private Integer size = 10;//每页数量
     private Integer offset;//偏移量
 
     public Integer getId() {

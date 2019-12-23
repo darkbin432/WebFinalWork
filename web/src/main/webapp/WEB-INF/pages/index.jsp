@@ -201,6 +201,36 @@
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
                         </td>
                     </tr>
+                    <tr>
+                        <td>2019.12.11</td>
+                        <td>【星耀师大】聚焦“美”，一直在路上</td>
+                        <td>党委宣传部（新闻中心）</td>
+                        <td>邱璐、许嘉璐、方艺</td>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
+                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2019.12.11</td>
+                        <td>【星耀师大】聚焦“美”，一直在路上</td>
+                        <td>党委宣传部（新闻中心）</td>
+                        <td>邱璐、许嘉璐、方艺</td>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
+                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2019.12.11</td>
+                        <td>【星耀师大】聚焦“美”，一直在路上</td>
+                        <td>党委宣传部（新闻中心）</td>
+                        <td>邱璐、许嘉璐、方艺</td>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
+                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

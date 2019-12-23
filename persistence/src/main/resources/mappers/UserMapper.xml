@@ -13,29 +13,29 @@
 		limit  1;
 	</select>
 
-	<update id="updateInfo" parameterType="com.hznu.lwb.model.User" >
-		update user
-		<set>
-			<if test="mobile != null">
-				mobile = #{mobile},
-			</if>
-			<if test="telephone != null">
-				telephone = #{telephone},
-			</if>
-			position = #{position}
-		</set>
-		where username = #{username};
-	</update>
+	<!--<update id="updateInfo" parameterType="com.hznu.lwb.model.User" >-->
+		<!--update user-->
+		<!--<set>-->
+			<!--<if test="mobile != null">-->
+				<!--mobile = #{mobile},-->
+			<!--</if>-->
+			<!--<if test="telephone != null">-->
+				<!--telephone = #{telephone},-->
+			<!--</if>-->
+			<!--position = #{position}-->
+		<!--</set>-->
+		<!--where username = #{username};-->
+	<!--</update>-->
 
-	<update id="updatePassword" parameterType="hashmap" >
-		update organization_member
+	<update id="updatePassword" parameterType="com.hznu.lwb.model.User" >
+		update user
 		set password = #{password},
 		updated_time = now()
 		where username = #{username};
 	</update>
 
 	<select id="getMaxId" resultType="int">
-		select max(id) from organization_member
+		select max(id) from user
 	</select>
 
 	<select id="login" parameterType="String" resultType="com.hznu.lwb.model.User">

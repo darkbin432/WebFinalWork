@@ -40,7 +40,6 @@
 
 </head>
 
-<body>
 <body data-spy="scroll" data-target=".mainmenu-area" data-offset="90">
 
 <!--[if lt IE 8]>
@@ -68,12 +67,12 @@
                     </div>
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav pull-right">
-                            <li class="active"><a href="#home">首页</a></li>
-                            <li><a href="#features">学校概况</a></li>
-                            <li><a href="#courses">机构设置</a></li>
-                            <li><a href="#testmonial">师资队伍</a></li>
-                            <li><a href="#blog">学科建设</a></li>
-                            <li><a onclick="window.open('manage/index')">管理</a></li>
+                            <li class="active"><a href="<%=request.getContextPath()%>/">首页</a></li>
+                            <li><a href="gaik.html">学校概况</a></li>
+                            <li><a href="jigou.html">机构设置</a></li>
+                            <li><a href="shizi.html">师资队伍</a></li>
+                            <li><a href="xueke.html">学科建设</a></li>
+                            <li><a href="<%=request.getContextPath()%>/manage/index"><span class="fa fa-user" aria-hidden="true"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -92,7 +91,6 @@
                         <div class="col-md-8 col-lg-7 col-sm-12 col-xs-12">
                             <div class="welcome-text">
                                 <h1>勤慎诚恕，博雅精进</h1>
-
                             </div>
                         </div>
                     </div>
@@ -138,30 +136,36 @@
         <div class="row promo-content">
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="text-icon-box mb20 xs-mb0 wow fadeInUp padding30" data-wow-delay="0.1s">
-                    <div class="box-icon">
-                        <img src="<%=request.getContextPath()%>/resources/images/sdxy.png">
-                    </div>
-                    <h3 class="box-title">师大校友</h3>
+                    <a href="http://xiaoyou.hznu.edu.cn/" title="师大校友">
+                        <div class="box-icon">
+                            <img src="<%=request.getContextPath()%>/resources/images/sdxy.png">
+                        </div>
+                        <h3 class="box-title">师大校友</h3>
+                    </a>
                     <p>校友会、教育基金会</p>
                 </div>
             </div>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="text-icon-box relative mb20 xs-mb0  wow fadeInUp padding30" data-wow-delay="0.2s">
-                    <div class="box-icon">
-                        <img src="<%=request.getContextPath()%>/resources/images/wsxsg.png">
-                    </div>
-                    <h3 class="box-title">网上校史馆</h3>
+                    <a href="https://www.hznu.edu.cn/xnxsg/" title="网上校史馆">
+                        <div class="box-icon">
+                            <img src="<%=request.getContextPath()%>/resources/images/wsxsg.png">
+                        </div>
+                        <h3 class="box-title">网上校史馆</h3>
+                    </a>
                     <p>360度全景摄影技术，采集校史馆内真实场景，在线游览校史馆</p>
                 </div>
             </div>
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="text-icon-box relative mb20 xs-mb0 wow fadeInUp padding30" data-wow-delay="0.3s">
-                    <div class="box-icon、">
+                    <a href="https://www.hznu.edu.cn/xnxsg/" title="师大校报">
                         <div class="box-icon">
-                            <img src="<%=request.getContextPath()%>/resources/images/xb.png">
+                            <div class="box-icon">
+                                <img src="<%=request.getContextPath()%>/resources/images/xb.png">
+                            </div>
                         </div>
-                    </div>
-                    <h3 class="box-title">师大校报</h3>
+                        <h3 class="box-title">师大校报</h3>
+                    </a>
                     <p>在线浏览杭州师范大学数字报，并可查阅所有历史报纸</p>
                 </div>
             </div>
@@ -217,11 +221,12 @@
                     <div class="course-details padding30">
                         <h3 class="font18">张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号</h3>
                         <p>浙江省科学技术协会公布2019年浙江省有突出贡献青年科技人才名单，我校生命与环境科学学院张杭君教授入选。</p>
-                        <p class="mt30"><a href="#" class="enroll-button">阅读更多</a> <span class="course-price">12.17</span></p>
+                        <p class="mt30"><a href="content.html" class="enroll-button">阅读更多</a> <span class="course-price">12.17</span></p>
                     </div>
                 </div>
             </div>
         </div>
+        <a href="yaowen.html"><span class="course-price hanggao">more &gt; &gt;</span></a>
     </div>
 </section>
 <!--COURSE AREA END-->
@@ -233,7 +238,7 @@
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                 <div class="admition-content xs-center xs-mb30">
                     <h3 class="xs-font20">通知公告</h3>
-                    <p>关于第九届中国声乐论坛的预通知</p>
+                    <p><a href="tongzhi.html">关于第九届中国声乐论坛的预通知</a></p>
                     <p>关于鼓励党外师生加入“学习强国”学习平台的实施通知</p>
                     <p>关于我校工程硕士专业学位授权点名称调整的公告</p>
                     <p>关于举办“翰墨丹青——庆祝新中国成立70周年”师生书画摄影作品征集活动的通知</p>
@@ -254,7 +259,7 @@
 <!--ADDMISSION AREA END-->
 
 <!--BLOG AREA-->
-<section class="blog-feed-area padding-top" id="blog">
+<section class="padding-top" id="blog">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2 col-sm-12 col-xs-12">
@@ -541,9 +546,8 @@
 <script src="<%=request.getContextPath()%>/resources/css/default/js/main.js"></script>
 
 <!--===== MAPS JS=====-->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS_KEDfHXYBslFTI_qPJIybDP3eceE-A&sensor=false"></script>
+<%--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS_KEDfHXYBslFTI_qPJIybDP3eceE-A&sensor=false"></script>--%>
 <script src="<%=request.getContextPath()%>/resources/css/default/js/maps.active.js"></script>
 </body>
 
 </html>
-

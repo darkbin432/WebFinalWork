@@ -23,12 +23,12 @@
     <script src="<%=request.getContextPath()%>/resources/ace/js/jquery-ui.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/validate.js"></script>
     <script>
-		document.onreadystatechange=function(){
-			if(document.readyState=="complete"){
-				$(".myContent").removeClass("hidden");
-				$(".loading").css("display","none");
-			}
-		}
+        document.onreadystatechange=function(){
+            if(document.readyState=="complete"){
+                $(".myContent").removeClass("hidden");
+                $(".loading").css("display","none");
+            }
+        }
     </script>
 </head>
 <body>

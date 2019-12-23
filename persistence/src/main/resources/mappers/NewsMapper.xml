@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hznu.lwb.persistence.NewsDao">
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.hznu.lwb.model.User">
+    select *
+    from news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.hznu.lwb.model.News">
+    insert into news (id, title, source, 
+      author, type, publish_status, 
+      publish_time, read_count, created_time, 
+      updated_time, status, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{publishStatus,jdbcType=BIT}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{readCount,jdbcType=INTEGER}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.hznu.lwb.model.News">
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="publishStatus != null">
+        publish_status,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="readCount != null">
+        read_count,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="updatedTime != null">
+        updated_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="publishStatus != null">
+        #{publishStatus,jdbcType=BIT},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readCount != null">
+        0,
+      </if>
+      <if test="createdTime != null">
+        now(),
+      </if>
+      <if test="updatedTime != null">
+        now(),
+      </if>
+      <if test="status != null">
+        1,
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.hznu.lwb.model.News">
+    update news
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="publishStatus != null">
+        publish_status = #{publishStatus,jdbcType=BIT},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readCount != null">
+        read_count = #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        updated_time = now(),
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getCount" resultType="Integer">
+    select count(*)
+    from news
+    where status = 1;
+  </select>
+
+  <select id="selectByPage" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.User">
+    select *
+    from news
+    where status = 1
+    order by id desc
+    limit #{offset}, #{size}
+  </select>
+
+  <select id="selectByCondition" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.User">
+    select *
+    from news
+    where title like concat('%',#{title},'%') or author like concat('%',#{author},'%') or type = #{type}
+    order by id desc
+    limit #{offset}, #{size}
+  </select>
+
+</mapper>

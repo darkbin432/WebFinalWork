@@ -15,4 +15,6 @@ public interface IUserService {
     ApiResult login(User user);
 
     ApiResult updatePersonalInfo(User user);
+
+    ApiResult getUser(String username);
 }

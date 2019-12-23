@@ -1,21 +1,37 @@
 package com.hznu.lwb.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
- * User
- *
- * @author xuzou
- * @date 8/5/16
- * @copyright: copyright @ hznuTech 2016
+ * @author 
  */
 public class User extends Entity{
 
+    /**
+     * 用户名
+     */
     private String username;
+
+    /**
+     * 密码
+     */
     private String password;
-    private String name;
-    private String mobile;
+
+    /**
+     * 用户权限类别
+     */
     private Integer type;
-    private Integer sex;
-    private String headPic;
+
+    /**
+     * 手机号码
+     */
+    private String phone;
+
+    /**
+     * 姓名
+     */
+    private String name;
 
     public String getUsername() {
         return username;
@@ -33,22 +49,6 @@ public class User extends Entity{
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
     public Integer getType() {
         return type;
     }
@@ -57,19 +57,19 @@ public class User extends Entity{
         this.type = type;
     }
 
-    public Integer getSex() {
-        return sex;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setSex(Integer sex) {
-        this.sex = sex;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getHeadPic() {
-        return headPic;
+    public String getName() {
+        return name;
     }
 
-    public void setHeadPic(String headPic) {
-        this.headPic = headPic;
+    public void setName(String name) {
+        this.name = name;
     }
 }

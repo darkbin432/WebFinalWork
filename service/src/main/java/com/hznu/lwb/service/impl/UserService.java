@@ -4,10 +4,6 @@ import com.hznu.lwb.model.User;
 import com.hznu.lwb.model.result.ApiResult;
 import com.hznu.lwb.persistence.UserDao;
 import com.hznu.lwb.service.IUserService;
-import com.hznu.utils.MD5Util;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.crypto.hash.Md5Hash;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.stereotype.Service;
 
 
@@ -65,6 +61,17 @@ public class UserService implements IUserService {
 //        }catch(Exception e){
 //            apiResult.fail("修改个人信息失败");
 //        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult getUser(String username) {
+        ApiResult apiResult = new ApiResult();
+        try {
+            apiResult.success(userDao.getUser(username));
+        }catch (Exception e){
+            apiResult.fail();
+        }
         return apiResult;
     }
 }
