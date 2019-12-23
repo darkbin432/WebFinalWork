@@ -19,7 +19,9 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/theme.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/lib/font-awesome/css/font-awesome.css">
+    <link href="<%=request.getContextPath()%>/resources/wangeditor/css/wangEditor.css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/resources/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/wangeditor/js/wangEditor.js"></script>
     <style type="text/css">
         #line-chart {
             height:300px;
@@ -63,7 +65,7 @@
                     <li class="divider"></li>
                     <li><a tabindex="-1" class="visible-phone" href="#">首页</a></li>
                     <li class="divider visible-phone"></li>
-                    <li><a tabindex="-1" href="manage.html">退出</a></li>
+                    <li><a tabindex="-1" href="<%=request.getContextPath()%>/manage/logout">退出</a></li>
                 </ul>
             </li>
 
@@ -114,6 +116,7 @@
             <div class="btn-toolbar">
                 <button class="btn btn-primary"><i class="icon-save"></i>保存</button>
                 <a href="#myModal" data-toggle="modal" class="btn">删除</a>
+                <a href="#myModal2" data-toggle="modal" class="btn btn2">发布</a>
             </div>
             <div class="well">
                 <div id="myTabContent" class="tab-content">
@@ -128,14 +131,12 @@
                             <label>作者</label>
                             <input type="text" class="input-xlarge">
                             <label>内容</label>
-                            <textarea rows="15" class="input-xlarge"></textarea>
+                            <textarea rows="15" class="input-xlarge" id="inputTest"></textarea>
                         </form>
                     </div>
                 </div>
 
             </div>
-
-
             <footer>
                 <hr>
                 <p class="pull-right">版权所有<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">杭州师范大学</a></p>
@@ -146,6 +147,7 @@
 
 
 <script src="<%=request.getContextPath()%>/resources/lib/bootstrap/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
 <script type="text/javascript">
     $("[rel=tooltip]").tooltip();
     $(function() {
@@ -154,6 +156,48 @@
 </script>
 
 </body>
+
+<script>
+    var E = window.wangEditor;
+    // var editor = new E('editor')
+    E.config.uploadImgUrl = '<%=request.getContextPath()%>/api/file/fileUpload?fileType=image';
+    E.config.uploadImgFileName = 'file_data';
+    E.config.uploadImgFns = {
+        onload: function (resultText, xhr) {
+            E.log('上传结束，返回结果为 ' + resultText);
+            resultText = JSON.parse(resultText)
+            var editor = this;
+            var originalName = editor.uploadImgOriginalName || '';  // 上传图片时，已经将图片的名字存在 editor.uploadImgOriginalName
+            var img;
+            E.log(originalName)
+            if (resultText.msg == "上传失败") {
+                // 提示错误
+                E.warn('上传失败：' + resultText.msg);
+                alert(resultText.msg);
+            } else {
+                E.log('上传成功，即将插入编辑区域，结果为：' + resultText.data.fileName);
+                // 将结果插入编辑器
+
+                img = document.createElement('img');
+                img.onload = function () {
+                    var html = '<img src="' + imgPath + resultText.data.fileName + '" alt="' + originalName + '" style="max-width:100%;"/>';
+                    editor.command(null, 'insertHtml', html);
+                    E.log('已插入图片，地址 ' + resultText.data.fileName);
+                    img = null;
+                };
+                img.onerror = function () {
+                    E.error('使用返回的结果获取图片，发生错误。请确认以下结果是否正确：' + resultText);
+                    img = null;
+                };
+                img.src = imgPath + resultText.data.fileName;
+            }
+
+        }
+    }
+
+    var inputArea = new E('inputTest');
+    inputArea.create()
+</script>
 </html>
 
 

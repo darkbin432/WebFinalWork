@@ -221,12 +221,12 @@
                     <div class="course-details padding30">
                         <h3 class="font18">张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号</h3>
                         <p>浙江省科学技术协会公布2019年浙江省有突出贡献青年科技人才名单，我校生命与环境科学学院张杭君教授入选。</p>
-                        <p class="mt30"><a href="content.html" class="enroll-button">阅读更多</a> <span class="course-price">12.17</span></p>
+                        <p class="mt30"><a onclick="window.open('content')" class="enroll-button">阅读更多</a> <span class="course-price">12.17</span></p>
                     </div>
                 </div>
             </div>
         </div>
-        <a href="yaowen.html"><span class="course-price hanggao">more &gt; &gt;</span></a>
+        <a href="<%=request.getContextPath()%>/important"><span class="course-price hanggao">more &gt; &gt;</span></a>
     </div>
 </section>
 <!--COURSE AREA END-->

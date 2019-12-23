@@ -64,7 +64,7 @@
                     <li class="divider"></li>
                     <li><a tabindex="-1" class="visible-phone" href="#">首页</a></li>
                     <li class="divider visible-phone"></li>
-                    <li><a tabindex="-1" href="manage.html">退出</a></li>
+                    <li><a tabindex="-1" href="<%=request.getContextPath()%>/manage/logout"">退出</a></li>
                 </ul>
             </li>
 

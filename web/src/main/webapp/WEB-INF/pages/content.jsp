@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/flexslider.css " />
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/owl.carousel.css">
     <!--[if lt IE 8]><!-->
-    <link rel="stylesheet" href="ie7/ie7.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/ie7/ie7.css">
     <!--<![endif]-->
     <link href="<%=request.getContextPath()%>/resources/css/manage/style-m.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
