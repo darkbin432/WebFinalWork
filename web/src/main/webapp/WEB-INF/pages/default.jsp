@@ -68,11 +68,11 @@
                     <div id="main-nav" class="stellarnav">
                         <ul id="nav" class="nav navbar-nav pull-right">
                             <li class="active"><a href="<%=request.getContextPath()%>/">首页</a></li>
-                            <li><a href="gaik.html">学校概况</a></li>
-                            <li><a href="jigou.html">机构设置</a></li>
-                            <li><a href="shizi.html">师资队伍</a></li>
-                            <li><a href="xueke.html">学科建设</a></li>
-                            <li><a href="<%=request.getContextPath()%>/manage/index"><span class="fa fa-user" aria-hidden="true"></span></a></li>
+                            <li><a href="<%=request.getContextPath()%>/general">学校概况</a></li>
+                            <li><a href="<%=request.getContextPath()%>/mechanism">机构设置</a></li>
+                            <li><a href="<%=request.getContextPath()%>/teachers">师资队伍</a></li>
+                            <li><a href="<%=request.getContextPath()%>/discipline">学科建设</a></li>
+                            <li><a onclick="window.open('manage/index')"><span class="fa fa-user" aria-hidden="true"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -184,8 +184,8 @@
                 </div>
             </div>
         </div>
-        <div class="row course-list">
-            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+        <div class="row course-list" id="sdywList">
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
                     <img src="<%=request.getContextPath()%>/resources/images/1.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
@@ -195,7 +195,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
                     <img src="<%=request.getContextPath()%>/resources/images/2.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
@@ -205,7 +205,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
                     <img src="<%=request.getContextPath()%>/resources/images/3.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
@@ -215,7 +215,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12">
+            <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
                     <img src="<%=request.getContextPath()%>/resources/images/4.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
@@ -236,7 +236,7 @@
     <div class="container">
         <div class="row flex-v-center">
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <div class="admition-content xs-center xs-mb30">
+                <div class="admition-content xs-center xs-mb30" id="notice">
                     <h3 class="xs-font20">通知公告</h3>
                     <p><a href="tongzhi.html">关于第九届中国声乐论坛的预通知</a></p>
                     <p>关于鼓励党外师生加入“学习强国”学习平台的实施通知</p>
@@ -245,7 +245,6 @@
                     <p>关于第七届杭州师范大学“马云青春领袖奖” 十佳大学生获得者名单的公示</p>
                     <p>杭州师范大学文化创意学院面向全校启动钱塘江流域传统节日文化视觉传播项目</p>
                     <p>关于开展第七届杭州师范大学“马云青春领袖奖”十佳大学生评选活动终评环节的通知</p>
-
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -541,13 +540,12 @@
 <script src="<%=request.getContextPath()%>/resources/css/default/js/contact-form.js"></script>
 <script src="<%=request.getContextPath()%>/resources/css/default/js/jquery.ajaxchimp.js"></script>
 <script src="<%=request.getContextPath()%>/resources/css/default/js/jquery.sticky.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/default.js"></script>
 
 <!--===== ACTIVE JS=====-->
 <script src="<%=request.getContextPath()%>/resources/css/default/js/main.js"></script>
 
-<!--===== MAPS JS=====-->
-<%--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTS_KEDfHXYBslFTI_qPJIybDP3eceE-A&sensor=false"></script>--%>
-<script src="<%=request.getContextPath()%>/resources/css/default/js/maps.active.js"></script>
 </body>
 
 </html>

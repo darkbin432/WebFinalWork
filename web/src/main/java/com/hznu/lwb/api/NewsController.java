@@ -45,6 +45,12 @@ public class NewsController {
         return newsService.selectById(id);
     }
 
+    @RequestMapping(value = "/listNews", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResult listNews(NewsParam newsParam){
+        return newsService.listNews(newsParam);
+    }
+
     @RequestMapping(value = "/selectList", method = RequestMethod.POST)
     @ResponseBody
     public ApiResult selectList(NewsParam newsParam){

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hznu.lwb.persistence.NewsDao">
   
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.hznu.lwb.model.User">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.hznu.lwb.model.News">
     select *
     from news
     where id = #{id,jdbcType=INTEGER}
@@ -143,7 +143,13 @@
     where status = 1;
   </select>
 
-  <select id="selectByPage" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.User">
+  <update id="addReadCount" parameterType="Integer">
+    update news
+    set read_count = read_count + 1
+    where id = #{id}
+  </update>
+
+  <select id="selectByPage" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.News">
     select *
     from news
     where status = 1
@@ -151,10 +157,21 @@
     limit #{offset}, #{size}
   </select>
 
-  <select id="selectByCondition" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.User">
+  <select id="selectByCondition" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.News">
     select *
     from news
-    where title like concat('%',#{title},'%') or author like concat('%',#{author},'%') or type = #{type}
+    <where>
+    status = 1
+      <if test="title != null">
+        title like concat('%',#{title},'%')
+      </if>
+      <if test="author != null">
+        and author like concat('%',#{author},'%')
+      </if>
+      <if test="type != null">
+        and type = #{type}
+      </if>
+    </where>
     order by id desc
     limit #{offset}, #{size}
   </select>

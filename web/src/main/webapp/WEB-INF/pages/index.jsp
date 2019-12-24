@@ -64,7 +64,7 @@
                     <li class="divider"></li>
                     <li><a tabindex="-1" class="visible-phone" href="#">首页</a></li>
                     <li class="divider visible-phone"></li>
-                    <li><a tabindex="-1" href="<%=request.getContextPath()%>/manage/logout"">退出</a></li>
+                    <li><a tabindex="-1" href="<%=request.getContextPath()%>/manage/logout">退出</a></li>
                 </ul>
             </li>
 
@@ -125,7 +125,7 @@
                     <tr>
                         <th>日期</th>
                         <th>新闻标题</th>
-                        <th>来源</th>
+                        <th>新闻类别</th>
                         <th>作者</th>
                         <th style="width: 26px;"></th>
                     </tr>
@@ -134,7 +134,7 @@
                     <tr>
                         <td>2019.12.19</td>
                         <td>《Science Translational Medicine》发表医学院谢恬教授国际合作研究成果</td>
-                        <td>党委宣传部（新闻中心）、科学研究院</td>
+                        <td>师大要闻</td>
                         <td>陈鑫</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -144,7 +144,7 @@
                     <tr>
                         <td>2019.12.18</td>
                         <td>学校召开2019年招生就业工作会议</td>
-                        <td>学工部</td>
+                        <td>师大要闻</td>
                         <td>单蔚</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -154,7 +154,7 @@
                     <tr>
                         <td>2019.12.17</td>
                         <td>张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号</td>
-                        <td>科学研究院</td>
+                        <td>师大要闻</td>
                         <td>曾红月</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -164,7 +164,7 @@
                     <tr>
                         <td>2019.12.16</td>
                         <td>学校召开2019年情况通报会</td>
-                        <td>党委宣传部（新闻中心）</td>
+                        <td>通知公告</td>
                         <td>邱璐</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -174,7 +174,7 @@
                     <tr>
                         <td>2019.12.17</td>
                         <td>陈春雷率团访问南非、坦桑尼亚高校</td>
-                        <td>国际合作与交流处</td>
+                        <td>通知公告</td>
                         <td>谢曼萍</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -185,7 +185,7 @@
                         <td>2019.12.12</td>
                         <td>人文学院学生“老字号立法”调研项目获省委常委、市委书记周江勇批示</td>
                         <td>人文学院</td>
-                        <td>刘奕楠</td>
+                        <td>媒体师大</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
                             <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
@@ -194,7 +194,7 @@
                     <tr>
                         <td>2019.12.11</td>
                         <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>党委宣传部（新闻中心）</td>
+                        <td>通知公告</td>
                         <td>邱璐、许嘉璐、方艺</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -204,7 +204,7 @@
                     <tr>
                         <td>2019.12.11</td>
                         <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>党委宣传部（新闻中心）</td>
+                        <td>党建文化</td>
                         <td>邱璐、许嘉璐、方艺</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -214,7 +214,7 @@
                     <tr>
                         <td>2019.12.11</td>
                         <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>党委宣传部（新闻中心）</td>
+                        <td>党建文化</td>
                         <td>邱璐、许嘉璐、方艺</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
@@ -224,7 +224,7 @@
                     <tr>
                         <td>2019.12.11</td>
                         <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>党委宣传部（新闻中心）</td>
+                        <td>学术预告</td>
                         <td>邱璐、许嘉璐、方艺</td>
                         <td>
                             <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>

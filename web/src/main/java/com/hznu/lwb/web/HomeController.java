@@ -27,9 +27,34 @@ public class HomeController extends ApplicationController {
         return buildMAV("default.jsp");
     }
 
+    @RequestMapping({"/general"})
+    public ModelAndView general() {
+        return buildMAV("general.jsp");
+    }
+
+    @RequestMapping({"/mechanism"})
+    public ModelAndView mechanism() {
+        return buildMAV("mechanism.jsp");
+    }
+
+    @RequestMapping({"/teachers"})
+    public ModelAndView teachers() {
+        return buildMAV("teachers.jsp");
+    }
+
+    @RequestMapping({"/discipline"})
+    public ModelAndView discipline() {
+        return buildMAV("discipline.jsp");
+    }
+
     @RequestMapping({"/important"})
     public ModelAndView important() {
         return buildMAV("important.jsp");
+    }
+
+    @RequestMapping({"/notice"})
+    public ModelAndView notice() {
+        return buildMAV("notice.jsp");
     }
 
     @RequestMapping({"/content"})

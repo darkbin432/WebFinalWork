@@ -21,6 +21,11 @@ public class News extends Entity {
     private String source;
 
     /**
+     * 封面图
+     */
+    private String pic;
+
+    /**
      * 作者
      */
     private String author;
@@ -65,6 +70,14 @@ public class News extends Entity {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 
     public String getAuthor() {

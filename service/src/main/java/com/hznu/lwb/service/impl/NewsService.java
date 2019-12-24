@@ -60,7 +60,19 @@ public class NewsService implements INewsService {
     public ApiResult selectById(Integer id) {
         ApiResult apiResult = new ApiResult();
         try {
+            newsDao.addReadCount(id);
             apiResult.success(newsDao.selectByPrimaryKey(id));
+        }catch (Exception e){
+            apiResult.fail();
+        }
+        return apiResult;
+    }
+
+    @Override
+    public ApiResult listNews(NewsParam newsParam) {
+        ApiResult apiResult = new ApiResult();
+        try {
+            apiResult.success(newsDao.selectByCondition(newsParam));
         }catch (Exception e){
             apiResult.fail();
         }

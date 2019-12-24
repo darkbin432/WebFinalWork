@@ -24,6 +24,8 @@ public interface NewsDao {
 
     Integer getCount();
 
+    Integer addReadCount(Integer id);
+
     List<News> selectByPage(NewsParam newsParam);
 
 }

@@ -17,6 +17,8 @@ public interface INewsService {
 
     ApiResult selectById(Integer id);
 
+    ApiResult listNews(NewsParam newsParam);
+
     ApiResult selectByPage(NewsParam newsParam);
 
     ApiResult selectByCondition(NewsParam newsParam);
