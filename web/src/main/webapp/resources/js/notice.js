@@ -19,9 +19,9 @@ jQuery(
                     if (response.status === 200) {
                         var html = "<h2 class=\"blog-title\">" + response.data.title + "</h2>\n" +
                             "                    <div class=\"blog-meta\">\n" +
-                            "                        <a href=\"\" class=\"ml-0\"><i class=\"blue-text fa fa-calendar\"></i>" + response.data.publishTime.substring(0,10) + "</a>\n" +
-                            "                        <a href=\"\"><i class=\"blue-text fa fa-user\"></i>" + response.data.source + "</a>\n" +
-                            "                        <a href=\"\"><i class=\"blue-text fa fa-eye\"></i>" + response.data.readCount + "</a>\n" +
+                            "                        <a disabled class=\"ml-0\"><i class=\"blue-text fa fa-calendar\"></i>" + response.data.publishTime.substring(0,10) + "</a>\n" +
+                            "                        <a disabled><i class=\"blue-text fa fa-user\"></i>" + response.data.source + "</a>\n" +
+                            "                        <a disabled><i class=\"blue-text fa fa-eye\"></i>" + response.data.readCount + "</a>\n" +
                             "                    </div>\n" +
                             "                    <div>" + response.data.content + "</div>";
                         $("#content").html(html);

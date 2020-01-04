@@ -8,10 +8,16 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from news
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">-->
+    <!--delete from news-->
+    <!--where id = #{id,jdbcType=INTEGER}-->
+  <!--</delete>-->
+
+  <update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    update news
+    set status = 0
+    where id = #{id};
+  </update>
 
   <insert id="insert" parameterType="com.hznu.lwb.model.News">
     insert into news (id, title, source, 
@@ -41,27 +47,17 @@
       <if test="type != null">
         type,
       </if>
-      <if test="publishStatus != null">
-        publish_status,
-      </if>
       <if test="publishTime != null">
         publish_time,
-      </if>
-      <if test="readCount != null">
-        read_count,
-      </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
-      <if test="updatedTime != null">
-        updated_time,
-      </if>
-      <if test="status != null">
-        status,
       </if>
       <if test="content != null">
         content,
       </if>
+      publish_status,
+      read_count,
+      created_time,
+      updated_time,
+      status
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="title != null">
@@ -76,27 +72,17 @@
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="publishStatus != null">
-        #{publishStatus,jdbcType=BIT},
-      </if>
       <if test="publishTime != null">
         #{publishTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="readCount != null">
-        0,
-      </if>
-      <if test="createdTime != null">
-        now(),
-      </if>
-      <if test="updatedTime != null">
-        now(),
-      </if>
-      <if test="status != null">
-        1,
       </if>
       <if test="content != null">
         #{content,jdbcType=LONGVARCHAR},
       </if>
+      0,
+      0,
+      now(),
+      now(),
+      1
     </trim>
   </insert>
 
@@ -137,6 +123,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <update id="publishById" parameterType="Integer">
+    update news
+    set publish_status = 1, publish_time = now()
+    where id = #{id};
+  </update>
+
   <select id="getCount" resultType="Integer">
     select count(*)
     from news
@@ -153,17 +145,17 @@
     select *
     from news
     where status = 1
-    order by id desc
+    order by created_time desc
     limit #{offset}, #{size}
   </select>
 
   <select id="selectByCondition" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.News">
-    select *
+    select id, title, author, publish_status, publish_time, type, pic, source
     from news
     <where>
     status = 1
       <if test="title != null">
-        title like concat('%',#{title},'%')
+        and title like concat('%',#{title},'%')
       </if>
       <if test="author != null">
         and author like concat('%',#{author},'%')
@@ -171,8 +163,11 @@
       <if test="type != null">
         and type = #{type}
       </if>
+      <if test="publishStatus != null">
+        and publish_status = #{publishStatus}
+      </if>
     </where>
-    order by id desc
+    order by created_time desc
     limit #{offset}, #{size}
   </select>
 

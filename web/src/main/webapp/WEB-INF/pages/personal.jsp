@@ -1,99 +1,102 @@
 <%--
   Created by IntelliJ IDEA.
-  User: kzn
-  Overall version 1.6
-  This version 1.6
+  User: 斌
+  Date: 2020/1/4
+  Time: 20:18
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<%=request.getContextPath()%>/resources/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"
-          rel="stylesheet" type="text/css"/>
-    <link href="<%=request.getContextPath()%>/resources/css/sweetalert/sweetalert.css" media="all" rel="stylesheet"
-          type="text/css"/>
-    <link href="<%=request.getContextPath()%>/resources/ace/css/jquery-ui.css" rel="stylesheet">
-    <link href="<%=request.getContextPath()%>/resources/css/common.css" rel="stylesheet" type="text/css">
-    <link href="<%=request.getContextPath()%>/resources/css/personal.css" rel="stylesheet" type="text/css">
-    <script src="<%=request.getContextPath()%>/resources/ace/js/jquery.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/ace/js/jquery-ui.js"></script>
-    <script src="<%=request.getContextPath()%>/resources/js/validate.js"></script>
-    <script>
-        document.onreadystatechange=function(){
-            if(document.readyState=="complete"){
-                $(".myContent").removeClass("hidden");
-                $(".loading").css("display","none");
-            }
-        }
-    </script>
-</head>
-<body>
-<%@ include file="include/header.jsp" %>
-<div class="myContainer">
-    <div class="myContent hidden">
-        <div class="left">
-            <ul>
-                <li><a class="selected-li">个人管理</a></li>
-            </ul>
-        </div>
-        <div class="right">
-            <div class="right-main" style="position: relative">
-                <div class="l-title">个人管理</div>
-                <div class="s-title">个人管理/个人信息</div>
-                <div class="editUser">
+    <meta charset="utf-8">
+    <title>杭州师范大学·新闻管理</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-                    <input type="text">
-                    <input type="password">
-                    <div class="pop-tip" style="margin-top: 0">基本信息</div>
-                    <div class="pop-lines">
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <label><span style="visibility: hidden;margin-left: 14px">*</span><span>用户名：</span><span
-                            class="username"></span><img id="ewm" src="<%=request.getContextPath()%>/resources/icon/ewm.png"></label>
-                    <label><span style="visibility: hidden;">*</span><span>您的姓名：</span><span
-                            class="name"></span></label>
-                    <label><span>*</span><span>移动电话：</span><input
-                            class="normal-input mobile"></label>
-                    <label><span>*</span><span>办公电话：</span><input
-                            class="normal-input telephone"></label>
-                    <label><span style="visibility: hidden;margin-left: 28px">*</span><span>职位：</span><input
-                            class="normal-input position"></label>
-                    <div class="pop-tip">修改密码<span style="color: #fb2020;font-size: 12px">(如不修改请勿填写)</span></div>
-                    <div class="pop-lines">
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <label><span style="margin-left: 14px">*</span><span>原密码：</span><input
-                            class="normal-input oldPassword" type="password"></label>
-                    <label><span style="visibility: hidden;margin-left: 14px">*</span><span>新密码：</span><input
-                            class="normal-input newPassword" type="password"></label>
-                    <label><span style="visibility: hidden">*</span><span>确认密码：</span><input
-                            class="normal-input confirmPassword" type="password"></label>
-                </div>
-                <div class="bottom-buttons">
-                    <button id="cancel" class="normal-button">取&nbsp;消</button>
-                    <button id="confirm" class="main-button">确&nbsp;认</button>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/theme.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/lib/font-awesome/css/font-awesome.css">
+    <script src="<%=request.getContextPath()%>/resources/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        #line-chart {
+            height:300px;
+            width:800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+        .brand { font-family: georgia, serif; }
+        .brand .first {
+            color:#FFFFFF;
+            font-style: italic;
+        }
+        .brand .second {
+            color:#FFFFFF;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+</head>
+
+
+
+<body class="">
+<div class="navbar">
+    <div class="navbar-inner">
+        <a class="brand" href="<%=request.getContextPath()%>/manage/index"><span class="first">杭州师范大学</span> <span class="second">新闻管理中心</span></a>
+    </div>
+</div>
+
+
+<div class="row-fluid">
+    <div class="dialog">
+        <div class="block">
+            <p class="block-heading">更改密码</p>
+            <div class="block-body">
+                <div>
+                    <label>请输入您的邮箱</label>
+                    <input type="email" class="span12">
+                    <a id="sendMessage" class="btn btn-primary pull-right">发送</a>
+                    <div class="clearfix"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="myContent loading">
-        <div id="loading">
-            <img src="<%=request.getContextPath()%>/resources/icon/loading.gif">
-        </div>
+        <a href="<%=request.getContextPath()%>/manage/logout">重新登陆</a>
     </div>
 </div>
-</body>
-<script src="<%=request.getContextPath()%>/resources/js/util/bootstrap.min.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/resources/ace/js/bootbox.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/resources/js/util/util-common.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/resources/js/util/sweetalert.min.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/personal.js"></script>
 
+<script src="<%=request.getContextPath()%>/resources/lib/bootstrap/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/personal.js"></script>
+<script type="text/javascript">
+    $("[rel=tooltip]").tooltip();
+    $(function() {
+        $('.demo-cancel-click').click(function(){return false;});
+    });
+    $.ajax({
+        type: "POST",
+        url: rootPath + "/getCurrentUser",
+        dataType: "json",
+        data: {},
+        success: function (response) {
+            if (response.status === 200) {
+                $("#currentUser").html("<i class=\"icon-user\"></i>" + response.data.name + "\n" +
+                    "                    <i class=\"icon-caret-down\"></i>")
+            }
+        },
+        error: function () {
+
+        }
+    })
+</script>
+
+</body>
 </html>
+
+

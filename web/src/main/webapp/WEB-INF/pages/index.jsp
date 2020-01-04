@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/theme.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/lib/font-awesome/css/font-awesome.css">
     <script src="<%=request.getContextPath()%>/resources/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/ace/js/bootbox.js" type="text/javascript"></script>
     <style type="text/css">
         #line-chart {
             height:300px;
@@ -50,11 +51,11 @@
     <div class="navbar-inner">
         <ul class="nav pull-right">
 
-            <li><a href="<%=request.getContextPath()%>/manage/index" class="hidden-phone visible-tablet visible-desktop" role="button">
+            <li><a href="<%=request.getContextPath()%>/" class="hidden-phone visible-tablet visible-desktop" role="button">
                 首页</a></li>
 
             <li id="fat-menu" class="dropdown">
-                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" id="currentUser">
                     <i class="icon-user"></i>管理员
                     <i class="icon-caret-down"></i>
                 </a>
@@ -79,7 +80,7 @@
     <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>数据操作</a>
     <ul id="dashboard-menu" class="nav nav-list collapse in">
         <li><a href="<%=request.getContextPath()%>/manage/index">全部新闻</a></li>
-        <li ><a href="<%=request.getContextPath()%>/manage/edit">内容编辑</a></li>
+        <li ><a onclick="javascript:localStorage.removeItem('editId')" href="<%=request.getContextPath()%>/manage/edit">内容编辑</a></li>
         <li ><a href="<%=request.getContextPath()%>/manage/search">新闻查找</a></li>
     </ul>
 
@@ -115,7 +116,7 @@
         <div class="row-fluid">
 
             <div class="btn-toolbar">
-                <button class="btn btn-primary"><i class="icon-plus"></i>新建内容</button>
+                <button class="btn btn-primary" id="insertNews"><i class="icon-plus"></i>新建内容</button>
                 <div class="btn-group">
                 </div>
             </div>
@@ -123,119 +124,120 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>日期</th>
+                        <th>创建日期</th>
                         <th>新闻标题</th>
                         <th>新闻类别</th>
                         <th>作者</th>
+                        <th>发布状态</th>
                         <th style="width: 26px;"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>2019.12.19</td>
-                        <td>《Science Translational Medicine》发表医学院谢恬教授国际合作研究成果</td>
-                        <td>师大要闻</td>
-                        <td>陈鑫</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.18</td>
-                        <td>学校召开2019年招生就业工作会议</td>
-                        <td>师大要闻</td>
-                        <td>单蔚</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.17</td>
-                        <td>张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号</td>
-                        <td>师大要闻</td>
-                        <td>曾红月</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.16</td>
-                        <td>学校召开2019年情况通报会</td>
-                        <td>通知公告</td>
-                        <td>邱璐</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.17</td>
-                        <td>陈春雷率团访问南非、坦桑尼亚高校</td>
-                        <td>通知公告</td>
-                        <td>谢曼萍</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.12</td>
-                        <td>人文学院学生“老字号立法”调研项目获省委常委、市委书记周江勇批示</td>
-                        <td>人文学院</td>
-                        <td>媒体师大</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.11</td>
-                        <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>通知公告</td>
-                        <td>邱璐、许嘉璐、方艺</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.11</td>
-                        <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>党建文化</td>
-                        <td>邱璐、许嘉璐、方艺</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.11</td>
-                        <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>党建文化</td>
-                        <td>邱璐、许嘉璐、方艺</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2019.12.11</td>
-                        <td>【星耀师大】聚焦“美”，一直在路上</td>
-                        <td>学术预告</td>
-                        <td>邱璐、许嘉璐、方艺</td>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>
-                            <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-                        </td>
-                    </tr>
+                    <tbody id="newsList">
+                    <%--<tr>--%>
+                        <%--<td>2019.12.19</td>--%>
+                        <%--<td>《Science Translational Medicine》发表医学院谢恬教授国际合作研究成果</td>--%>
+                        <%--<td>师大要闻</td>--%>
+                        <%--<td>陈鑫</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.18</td>--%>
+                        <%--<td>学校召开2019年招生就业工作会议</td>--%>
+                        <%--<td>师大要闻</td>--%>
+                        <%--<td>单蔚</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.17</td>--%>
+                        <%--<td>张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号</td>--%>
+                        <%--<td>师大要闻</td>--%>
+                        <%--<td>曾红月</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.16</td>--%>
+                        <%--<td>学校召开2019年情况通报会</td>--%>
+                        <%--<td>通知公告</td>--%>
+                        <%--<td>邱璐</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.17</td>--%>
+                        <%--<td>陈春雷率团访问南非、坦桑尼亚高校</td>--%>
+                        <%--<td>通知公告</td>--%>
+                        <%--<td>谢曼萍</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.12</td>--%>
+                        <%--<td>人文学院学生“老字号立法”调研项目获省委常委、市委书记周江勇批示</td>--%>
+                        <%--<td>人文学院</td>--%>
+                        <%--<td>媒体师大</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.11</td>--%>
+                        <%--<td>【星耀师大】聚焦“美”，一直在路上</td>--%>
+                        <%--<td>通知公告</td>--%>
+                        <%--<td>邱璐、许嘉璐、方艺</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.11</td>--%>
+                        <%--<td>【星耀师大】聚焦“美”，一直在路上</td>--%>
+                        <%--<td>党建文化</td>--%>
+                        <%--<td>邱璐、许嘉璐、方艺</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.11</td>--%>
+                        <%--<td>【星耀师大】聚焦“美”，一直在路上</td>--%>
+                        <%--<td>党建文化</td>--%>
+                        <%--<td>邱璐、许嘉璐、方艺</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                        <%--<td>2019.12.11</td>--%>
+                        <%--<td>【星耀师大】聚焦“美”，一直在路上</td>--%>
+                        <%--<td>学术预告</td>--%>
+                        <%--<td>邱璐、许嘉璐、方艺</td>--%>
+                        <%--<td>--%>
+                            <%--<a href="<%=request.getContextPath()%>/manage/edit"><i class="icon-pencil"></i></a>--%>
+                            <%--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--%>
+                        <%--</td>--%>
+                    <%--</tr>--%>
                     </tbody>
                 </table>
             </div>
             <div class="pagination">
-                <ul>
+                <ul id="pageList">
                     <li><a href="#">上一页</a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -255,7 +257,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
-                    <button class="btn btn-danger" data-dismiss="modal">删除</button>
+                    <button class="btn btn-danger" data-dismiss="modal" id="indexToDelete">删除</button>
                 </div>
             </div>
             <footer>
@@ -268,6 +270,8 @@
 
 
 <script src="<%=request.getContextPath()%>/resources/lib/bootstrap/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/index.js"></script>
 <script type="text/javascript">
     $("[rel=tooltip]").tooltip();
     $(function() {

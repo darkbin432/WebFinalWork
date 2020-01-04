@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>管理员</title>
+    <title>杭州师范大学·管理云</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/images/favicon.png" />
     <link href="<%=request.getContextPath()%>/resources/css/manage/min.css" rel="stylesheet" type="text/css">
@@ -65,7 +65,7 @@
         <div class="container">
             <h2>管理员登录</h2>
             <ul>
-                <li><a href="<%=request.getContextPath()%>/manage/index">首页</a></li>
+                <li><a href="<%=request.getContextPath()%>/">首页</a></li>
                 <li><a href="#">管理员登录</a></li>
             </ul>
         </div>
@@ -78,7 +78,7 @@
                         <h2>登录</h2>
                         <div class="form-content">
                             <input type="text" id="username" placeholder="用户名" />
-                            <input type="text" id="password" placeholder="密码" />
+                            <input type="password" id="password" placeholder="密码" />
                             <div class="text-center">
                                 <input type="button" class="btn-default" id="btn_login" value="登录" />
                             </div>

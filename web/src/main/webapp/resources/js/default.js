@@ -13,13 +13,14 @@ jQuery(
                 data: {
                     type: 2,
                     offset: 0,
-                    size: 7
+                    size: 7,
+                    publishStatus: 1
                 },
                 success: function (response) {
                     if (response.status === 200) {
                         var html = "<h3 class=\"xs-font20\">通知公告</h3>";
                         for (var i = 0; i < response.data.length; i++) {
-                            html += "<p id='" + response.data[i].id + "'>" + response.data[i].title + "</p>";
+                            html += "<p id='" + response.data[i].id + "'><a>" + response.data[i].title + "</a></p>";
                         }
                         $("#notice").html(html);
                     }

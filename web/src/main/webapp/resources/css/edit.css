@@ -1,0 +1,54 @@
+#contentText{
+    min-height: 500px;
+    height: 75% !important;
+    overflow-y: auto;
+}
+
+.wangEditor-container{
+    position: static!important;
+    width: 50% !important;
+}
+
+.wangEditor-menu-container{
+    position: static!important;
+    width: 98% !important;
+}
+
+.main-cover{
+    margin-left: 24px;
+    margin-top: 32px;
+    min-height:75px;
+    height: auto;
+    overflow: hidden;
+}
+
+.main-cover>#addCover>img{
+    height: 150px;
+    width: 200px;
+}
+
+.deleteImg{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.deleteImg img{
+    cursor: pointer;
+}
+
+.main-cover .mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    opacity: 0.2;
+    z-index: 999;
+    background-color: #000;
+    margin: 0;
+    border-radius: 4px;
+}

@@ -12,6 +12,8 @@
     <meta name="description" content="overview &amp; stats"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
+    <link rel="shortcut icon"  href="<%=request.getContextPath()%>/resources/images/favicon.ico" >
+
 </head>
 
 <body class="no-skin">

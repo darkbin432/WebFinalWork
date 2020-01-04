@@ -51,7 +51,7 @@
         <ul class="nav pull-right">
             <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">首页</a></li>
             <li id="fat-menu" class="dropdown">
-                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" id="currentUser">
                     <i class="icon-user"></i>管理员
                     <i class="icon-caret-down"></i>
                 </a>
@@ -83,8 +83,8 @@
 
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>用户</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
-        <li ><a href="<%=request.getContextPath()%>/manage/index">重新登陆</a></li>
-        <li ><a href="reset-password.html">更改密码</a></li>
+        <li ><a href="<%=request.getContextPath()%>/manage/logout">重新登陆</a></li>
+        <li ><a href="<%=request.getContextPath()%>/manage/personal">更改密码</a></li>
     </ul>
 
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>更多<i class="icon-chevron-up"></i></a>
@@ -152,11 +152,38 @@
 
 
 <script src="<%=request.getContextPath()%>/resources/lib/bootstrap/js/bootstrap.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
 <script type="text/javascript">
     $("[rel=tooltip]").tooltip();
     $(function() {
         $('.demo-cancel-click').click(function(){return false;});
     });
+
+</script>
+
+<script type="text/javascript">
+    jQuery(
+        function ($) {
+            function getCurrentUser() {
+                $.ajax({
+                    type: "POST",
+                    url: rootPath + "/getCurrentUser",
+                    dataType: "json",
+                    data: {},
+                    success: function (response) {
+                        if (response.status === 200) {
+                            $("#currentUser").html("<i class=\"icon-user\"></i>" + response.data.name + "\n" +
+                                "                    <i class=\"icon-caret-down\"></i>")
+                        }
+                    },
+                    error: function () {
+
+                    }
+                })
+            }
+
+            getCurrentUser();
+        })
 </script>
 
 </body>

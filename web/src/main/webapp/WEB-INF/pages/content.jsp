@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home</title>
-    <link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/images/favicon.png" />
+    <title>师大要闻</title>
+    <%--<link rel="shortcut icon" href="<%=request.getContextPath()%>/resources/images/favicon.png" />--%>
     <link href="<%=request.getContextPath()%>/resources/css/manage/min.css" rel="stylesheet" type="text/css">
     <link href="<%=request.getContextPath()%>/resources/css/manage/sans.css" rel="stylesheet" type="text/css">
     <link href="<%=request.getContextPath()%>/resources/css/manage/font-awesome.css" rel="stylesheet" type="text/css">
@@ -24,9 +24,9 @@
 
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/easy-responsive-tabs.css " />
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/flexslider.css " />
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/default/css/plugins/owl.carousel.css">
     <!--[if lt IE 8]><!-->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/ie7/ie7.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/ie7/ie7.css">
     <!--<![endif]-->
     <link href="<%=request.getContextPath()%>/resources/css/manage/style-m.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
@@ -60,7 +60,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/important">
                     师大<span>要闻</span>
                 </a>
                 <p>首页<b>&gt师大要闻</b></p>
@@ -68,19 +68,19 @@
             <div class="collapse navbar-collapse navbar-main-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="default.html">首页</a>
+                        <a href="<%=request.getContextPath()%>/">首页</a>
                     </li>
                     <li>
-                        <a href="gaik.html">学校概况</a>
+                        <a href="<%=request.getContextPath()%>/general">学校概况</a>
                     </li>
                     <li>
-                        <a href="jigou.html">机构设置</a>
+                        <a href="<%=request.getContextPath()%>/discipline">机构设置</a>
                     </li>
                     <li>
-                        <a href="shizi.html">师资队伍</a>
+                        <a href="<%=request.getContextPath()%>/teachers">师资队伍</a>
                     </li>
                     <li>
-                        <a href="xueke.html">学科建设</a>
+                        <a href="<%=request.getContextPath()%>/mechanism">学科建设</a>
                     </li>
                     <li>
                         <a href="#" class="btn-default">新闻首页</a>
@@ -93,7 +93,7 @@
 <div class="clear"></div>
 <div id="page-content">
     <section class="flexslider">
-        <img src="<%=request.getContextPath()%>/resources/images/content--bg.png" />
+        <%--<img src="<%=request.getContextPath()%>/resources/images/content--bg.png" />--%>
     </section>
 </div>
 <section class="blog-page">
@@ -102,15 +102,15 @@
             <div class="col-sm-8">
                 <div class="single-post">
                     <div class="blog-img">
-                        <a href="">
+                        <a disabled>
                             <img src="<%=request.getContextPath()%>/resources/images/4.jpg" class="img-responsive">
                         </a>
                     </div>
                     <h2 class="blog-title">张杭君教授获“2019年浙江省突出贡献青年科技人才”称号</h2>
                     <div class="blog-meta">
-                        <a href="" class="ml-0"><i class="blue-text fa fa-calendar"></i>2019-12-17 </a>
-                        <a href=""><i class="blue-text fa fa-user"></i>曾红月</a>
-                        <a href=""><i class="blue-text fa fa-eye"></i>2204</a>
+                        <a disabled class="ml-0"><i class="blue-text fa fa-calendar"></i>2019-12-17 </a>
+                        <a disabled><i class="blue-text fa fa-user"></i>曾红月</a>
+                        <a disabled><i class="blue-text fa fa-eye"></i>2204</a>
                     </div>
                     <p>近日，浙江省科学技术协会公布2019年浙江省有突出贡献青年科技人才名单，我校生命与环境科学学院张杭君教授入选。</p>
 

@@ -15,6 +15,8 @@ public interface INewsService {
 
     ApiResult update(News news);
 
+    ApiResult publish(Integer id);
+
     ApiResult selectById(Integer id);
 
     ApiResult listNews(NewsParam newsParam);

@@ -62,6 +62,11 @@ public class HomeController extends ApplicationController {
         return buildMAV("content.jsp");
     }
 
+    @RequestMapping({"/teach"})
+    public ModelAndView teach() {
+        return buildMAV("teach.jsp");
+    }
+
     @RequestMapping({"/manage/index"})
     public ModelAndView manage() {
         return buildMAV("index.jsp");
@@ -75,6 +80,11 @@ public class HomeController extends ApplicationController {
     @RequestMapping({"/manage/search"})
     public ModelAndView search() {
         return buildMAV("search.jsp");
+    }
+
+    @RequestMapping({"/manage/personal"})
+    public ModelAndView personal() {
+        return buildMAV("personal.jsp");
     }
 
     @RequestMapping(value = "/login")

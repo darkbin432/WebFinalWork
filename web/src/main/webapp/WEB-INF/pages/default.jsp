@@ -11,17 +11,17 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html class="no-js" lang="zxx">
+<html lang="zh-cn">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta name="description" content="overview &amp; stats"/>
 
     <title>杭州师范大学</title>
 
     <!--====== FAVICON ICON =======-->
-    <link rel="shortcut icon" type="image/ico" href="" />
 
     <!--====== STYLESHEETS ======-->
     <link href="<%=request.getContextPath()%>/resources/css/default/css/plugins.css" rel="stylesheet">
@@ -72,7 +72,7 @@
                             <li><a href="<%=request.getContextPath()%>/mechanism">机构设置</a></li>
                             <li><a href="<%=request.getContextPath()%>/teachers">师资队伍</a></li>
                             <li><a href="<%=request.getContextPath()%>/discipline">学科建设</a></li>
-                            <li><a onclick="window.open('manage/index')"><span class="fa fa-user" aria-hidden="true"></span></a></li>
+                            <%--<li><a onclick="window.open('manage/index')"><span class="fa fa-user" aria-hidden="true"></span></a></li>--%>
                         </ul>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                 <div class="text-icon-box mb20 xs-mb0 wow fadeInUp padding30" data-wow-delay="0.1s">
                     <a href="http://xiaoyou.hznu.edu.cn/" title="师大校友">
                         <div class="box-icon">
-                            <img src="<%=request.getContextPath()%>/resources/images/sdxy.png">
+                            <img src="" data-src="<%=request.getContextPath()%>/resources/images/sdxy.png">
                         </div>
                         <h3 class="box-title">师大校友</h3>
                     </a>
@@ -149,7 +149,7 @@
                 <div class="text-icon-box relative mb20 xs-mb0  wow fadeInUp padding30" data-wow-delay="0.2s">
                     <a href="https://www.hznu.edu.cn/xnxsg/" title="网上校史馆">
                         <div class="box-icon">
-                            <img src="<%=request.getContextPath()%>/resources/images/wsxsg.png">
+                            <img src="" data-src="<%=request.getContextPath()%>/resources/images/wsxsg.png">
                         </div>
                         <h3 class="box-title">网上校史馆</h3>
                     </a>
@@ -161,7 +161,7 @@
                     <a href="https://www.hznu.edu.cn/xnxsg/" title="师大校报">
                         <div class="box-icon">
                             <div class="box-icon">
-                                <img src="<%=request.getContextPath()%>/resources/images/xb.png">
+                                <img src="" data-src="<%=request.getContextPath()%>/resources/images/xb.png">
                             </div>
                         </div>
                         <h3 class="box-title">师大校报</h3>
@@ -187,7 +187,7 @@
         <div class="row course-list" id="sdywList">
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
-                    <img src="<%=request.getContextPath()%>/resources/images/1.jpg" alt="" class="sdyw">
+                    <img src="" data-src="<%=request.getContextPath()%>/resources/images/1.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
                         <h3 class="font18">陈春雷率团访问南非、坦桑尼亚高校</h3>
                         <p>12月4日至11日，校党委书记陈春雷受邀率团访问南非、坦桑尼亚合作高校。</p>
@@ -197,7 +197,7 @@
             </div>
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
-                    <img src="<%=request.getContextPath()%>/resources/images/2.jpg" alt="" class="sdyw">
+                    <img src="" data-src="<%=request.getContextPath()%>/resources/images/2.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
                         <h3 class="font18">周江勇来校宣讲党的十九届四中全会精神</h3>
                         <p>省委常委、杭州市委书记周江勇到我校宣讲党的十九届四中全会精神。</p>
@@ -207,7 +207,7 @@
             </div>
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
-                    <img src="<%=request.getContextPath()%>/resources/images/3.jpg" alt="" class="sdyw">
+                    <img src="" data-src="<%=request.getContextPath()%>/resources/images/3.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
                         <h3 class="font18">【星耀师大】聚焦“美”，一直在路上</h3>
                         <p>总有一种力量让我们热泪盈眶，总有一种感动让我们深刻铭记。</p>
@@ -217,7 +217,7 @@
             </div>
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12 listItem">
                 <div class="single-course mb20">
-                    <img src="<%=request.getContextPath()%>/resources/images/4.jpg" alt="" class="sdyw">
+                    <img src="" data-src="<%=request.getContextPath()%>/resources/images/4.jpg" alt="" class="sdyw">
                     <div class="course-details padding30">
                         <h3 class="font18">张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号</h3>
                         <p>浙江省科学技术协会公布2019年浙江省有突出贡献青年科技人才名单，我校生命与环境科学学院张杭君教授入选。</p>
@@ -237,14 +237,14 @@
         <div class="row flex-v-center">
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
                 <div class="admition-content xs-center xs-mb30" id="notice">
-                    <h3 class="xs-font20">通知公告</h3>
-                    <p><a href="tongzhi.html">关于第九届中国声乐论坛的预通知</a></p>
-                    <p>关于鼓励党外师生加入“学习强国”学习平台的实施通知</p>
-                    <p>关于我校工程硕士专业学位授权点名称调整的公告</p>
-                    <p>关于举办“翰墨丹青——庆祝新中国成立70周年”师生书画摄影作品征集活动的通知</p>
-                    <p>关于第七届杭州师范大学“马云青春领袖奖” 十佳大学生获得者名单的公示</p>
-                    <p>杭州师范大学文化创意学院面向全校启动钱塘江流域传统节日文化视觉传播项目</p>
-                    <p>关于开展第七届杭州师范大学“马云青春领袖奖”十佳大学生评选活动终评环节的通知</p>
+                    <%--<h3 class="xs-font20">通知公告</h3>--%>
+                    <%--<p><a>关于第九届中国声乐论坛的预通知</a></p>--%>
+                    <%--<p>关于鼓励党外师生加入“学习强国”学习平台的实施通知</p>--%>
+                    <%--<p>关于我校工程硕士专业学位授权点名称调整的公告</p>--%>
+                    <%--<p>关于举办“翰墨丹青——庆祝新中国成立70周年”师生书画摄影作品征集活动的通知</p>--%>
+                    <%--<p>关于第七届杭州师范大学“马云青春领袖奖” 十佳大学生获得者名单的公示</p>--%>
+                    <%--<p>杭州师范大学文化创意学院面向全校启动钱塘江流域传统节日文化视觉传播项目</p>--%>
+                    <%--<p>关于开展第七届杭州师范大学“马云青春领袖奖”十佳大学生评选活动终评环节的通知</p>--%>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -271,7 +271,7 @@
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="single-blog-item sm-mb30 xs-mb30 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="blog-thumb">
-                        <a href="blog.html"><img src="<%=request.getContextPath()%>/resources/images/jx1.jpg" alt=""></a>
+                        <a href="blog.html"><img src="" data-src="<%=request.getContextPath()%>/resources/images/jx1.jpg" alt=""></a>
                     </div>
                     <div class="blog-details padding30">
                         <h3 class="blog-title font20 mb30"><a href="blog.html">青年教师教学能力培养走向深入</a></h3>
@@ -282,10 +282,10 @@
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="single-blog-item sm-mb30 xs-mb30 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="blog-thumb">
-                        <a href="blog.html"><img src="<%=request.getContextPath()%>/resources/images/jx2.jpg" alt=""></a>
+                        <a onclick="window.open('teach')"><img src="" data-src="<%=request.getContextPath()%>/resources/images/jx2.jpg" alt=""></a>
                     </div>
                     <div class="blog-details padding30">
-                        <h3 class="blog-title font20 mb30"><a href="blog.html">广西柳州市城中区“百人优师”培养工程启动仪式在我校举行</a></h3>
+                        <h3 class="blog-title font20 mb30"><a onclick="window.open('teach')">广西柳州市城中区“百人优师”培养工程启动仪式在我校举行</a></h3>
                         <p class="blog-meta font14 mt20"><a href="#">2019-12-18 </a><a href="#">孙一秀</a></p>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="single-blog-item sm-mb30 xs-mb30 wow fadeInUp" data-wow-delay="0.4s">
                     <div class="blog-thumb">
-                        <a href="blog.html"><img src="<%=request.getContextPath()%>/resources/images/jx3.png" alt=""></a>
+                        <a href="blog.html"><img src="" data-src="<%=request.getContextPath()%>/resources/images/jx3.png" alt=""></a>
                     </div>
                     <div class="blog-details padding30">
                         <h3 class="blog-title font20 mb30"><a href="blog.html">第二届全国古典教育论坛在我校举行</a></h3>
@@ -304,7 +304,7 @@
             <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                 <div class="single-blog-item wow fadeInUp visible-sm" data-wow-delay="0.4s">
                     <div class="blog-thumb">
-                        <a href="blog.html"><img src="<%=request.getContextPath()%>/resources/images/jx4.jpg" alt=""></a>
+                        <a href="blog.html"><img src="" data-src="<%=request.getContextPath()%>/resources/images/jx4.jpg" alt=""></a>
                     </div>
                     <div class="blog-details padding30">
                         <h3 class="blog-title font20 mb30"><a href="blog.html">社会保障“高质量发展”高峰论坛在杭召开</a></h3>
@@ -424,27 +424,27 @@
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                 <div class="client-slider">
                     <div class="single-client">
-                        <img src="<%=request.getContextPath()%>/resources/images/weibo.png" alt="">
+                        <img src="" data-src="<%=request.getContextPath()%>/resources/images/weibo.png" alt="">
                         <p class="footer-wz">官方微博</p>
                     </div>
                     <div class="single-client">
-                        <img src="<%=request.getContextPath()%>/resources/images/weixin.png" alt="">
+                        <img src="" data-src="<%=request.getContextPath()%>/resources/images/weixin.png" alt="">
                         <p class="footer-wz">官方微信</p>
                     </div>
                     <div class="single-client">
-                        <img src="<%=request.getContextPath()%>/resources/images/sydw.png" alt="">
+                        <img src="" data-src="<%=request.getContextPath()%>/resources/images/sydw.png" alt="">
                         <p class="footer-wz">事业单位</p>
                     </div>
                     <div class="single-client">
-                        <img src="<%=request.getContextPath()%>/resources/images/tsg.png" alt="" style="padding-top: 40px;">
+                        <img src="" data-src="<%=request.getContextPath()%>/resources/images/tsg.png" alt="" style="padding-top: 40px;">
                         <p class="footer-wz">图书馆</p>
                     </div>
                     <div class="single-client" style="padding-top: 40px;">
-                        <img src="<%=request.getContextPath()%>/resources/images/xxgkw.png" alt="">
+                        <img src="" data-src="<%=request.getContextPath()%>/resources/images/xxgkw.png" alt="">
                         <p class="footer-wz">信息公开网</p>
                     </div>
                     <div class="single-client">
-                        <img src="<%=request.getContextPath()%>/resources/images/app.png" alt="">
+                        <img src="" data-src="<%=request.getContextPath()%>/resources/images/app.png" alt="">
                         <p class="footer-wz">智慧校园APP</p>
                     </div>
                 </div>
@@ -472,7 +472,7 @@
                 <div class="col-md-2 col-lg-2 col-sm-4 col-xs-12">
                     <div class="single-footer footer-list white xs-center xs-mb50">
                         <ul>
-                            <li><a href="#">师大要闻</a></li>
+                            <li><a onclick="window.open('important')">师大要闻</a></li>
                             <li><a href="#">通知公告</a></li>
                             <li><a href="#">教学科研</a></li>
                             <li><a href="#">党建文化</a></li>
@@ -542,6 +542,7 @@
 <script src="<%=request.getContextPath()%>/resources/css/default/js/jquery.sticky.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/resources/js/default.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/base.js"></script>
 
 <!--===== ACTIVE JS=====-->
 <script src="<%=request.getContextPath()%>/resources/css/default/js/main.js"></script>

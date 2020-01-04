@@ -5,6 +5,8 @@ import com.hznu.lwb.model.param.NewsParam;
 import com.hznu.lwb.model.result.ApiResult;
 import com.hznu.lwb.persistence.NewsDao;
 import com.hznu.lwb.service.INewsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,6 +18,8 @@ import java.util.Random;
  */
 @Service
 public class NewsService implements INewsService {
+
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
     private NewsDao newsDao;
@@ -57,6 +61,18 @@ public class NewsService implements INewsService {
     }
 
     @Override
+    public ApiResult publish(Integer id) {
+        ApiResult apiResult = new ApiResult();
+        try {
+            newsDao.publishById(id);
+            apiResult.success();
+        }catch (Exception e){
+            apiResult.fail();
+        }
+        return apiResult;
+    }
+
+    @Override
     public ApiResult selectById(Integer id) {
         ApiResult apiResult = new ApiResult();
         try {
@@ -75,6 +91,7 @@ public class NewsService implements INewsService {
             apiResult.success(newsDao.selectByCondition(newsParam));
         }catch (Exception e){
             apiResult.fail();
+            logger.error(e.getMessage(), e);
         }
         return apiResult;
     }
@@ -83,6 +100,7 @@ public class NewsService implements INewsService {
     public ApiResult selectByPage(NewsParam newsParam) {
         ApiResult apiResult = new ApiResult();
         try {
+            newsParam.initOffset();
             Integer totalCount = newsDao.getCount();
             List<News> newsList = newsDao.selectByPage(newsParam);
             apiResult.dataTable(new Random(10).nextInt(), totalCount, newsList.size(), newsList);

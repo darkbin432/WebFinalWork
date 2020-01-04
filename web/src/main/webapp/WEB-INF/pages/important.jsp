@@ -24,9 +24,9 @@
     </script>
 
     <!-- css文件 -->
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="<%=request.getContextPath()%>/resources/css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="<%=request.getContextPath()%>/resources/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 
@@ -36,14 +36,14 @@
         <!-- 导航栏 -->
         <nav class="pt-2">
             <div id="logo">
-                <a href="default.html"><img src="images/hznu.png"></a>
+                <a href="<%=request.getContextPath()%>/"><img src="<%=request.getContextPath()%>/resources/images/hznu.png"></a>
             </div>
             <ul class="menu mt-md-2 ml-auto">
-                <li class="mr-lg-4 mr-2 active"><a href="default.html">首页</a></li>
-                <li class="mr-lg-4 mr-2"><a href="gaik.html">学校概况</a></li>
-                <li class="mr-lg-4 mr-2"><a href="jigou.html">机构设置</a></li>
-                <li class="mr-lg-4 mr-2"><a href="shizi.html">师资队伍</a></li>
-                <li class="mr-lg-4 mr-2"><a href="xueke.html">学科建设</a></li>
+                <li class="mr-lg-4 mr-2 active"><a href="<%=request.getContextPath()%>/">首页</a></li>
+                <li class="mr-lg-4 mr-2"><a href="<%=request.getContextPath()%>/general">学校概况</a></li>
+                <li class="mr-lg-4 mr-2"><a href="<%=request.getContextPath()%>/mechanism">机构设置</a></li>
+                <li class="mr-lg-4 mr-2"><a href="<%=request.getContextPath()%>/teachers">师资队伍</a></li>
+                <li class="mr-lg-4 mr-2"><a href="<%=request.getContextPath()%>/discipline">学科建设</a></li>
             </ul>
         </nav>
         <!-- //导航栏 -->
@@ -63,21 +63,21 @@
         </div>
         <div class="choose text-center position-absolute d-lg-flex">
             <div class="choose-icon">
-                <img src="images/11.png">
+                <img src="<%=request.getContextPath()%>/resources/images/11.png">
                 <div class=" choose-grid">
                     <h3 class="mt-4">2019.12.19</h3>
                     <p class="">《Science Translational...</p>
                 </div>
             </div>
             <div class="choose-icon">
-                <img src="images/2.jpg">
+                <img src="<%=request.getContextPath()%>/resources/images/2.jpg">
                 <div class="choose-grid">
                     <h3 class="mt-4">2019.12.18</h3>
                     <p class="">学校召开2019年招生就业工作会议</p>
                 </div>
             </div>
             <div class="choose-icon">
-                <img src="images/4.jpg">
+                <img src="<%=request.getContextPath()%>/resources/images/4.jpg">
                 <div class="choose-grid">
                     <a href="content.html">
                         <h3 class="mt-4">2019.12.17</h3>
@@ -85,14 +85,14 @@
                 </div>
             </div>
             <div class="choose-icon">
-                <img src="images/3.jpg">
+                <img src="<%=request.getContextPath()%>/resources/images/3.jpg">
                 <div class="choose-grid">
                     <h3 class="mt-4">2019.12.16</h3>
                     <p class="">学校召开2019年情况通报会</p>
                 </div>
             </div>
             <div class="choose-icon mr-0">
-                <img src="images/5.jpg">
+                <img src="<%=request.getContextPath()%>/resources/images/5.jpg">
                 <div class="choose-grid">
                     <h3 class="mt-4">2019.12.16</h3>
                     <p class="">陈春雷率团访问南非、坦桑尼亚高校</p>
@@ -208,7 +208,7 @@
                 <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left">
                     <div class="card img">
                         <div class="card-body img">
-                            <img src="images/11.png" alt="" class="img-fluid">
+                            <img src="<%=request.getContextPath()%>/resources/images/11.png" alt="" class="img-fluid">
                             <div class="blog-des mt-3">
                                 <h5 class="card-title mt-4">2019.12.19</h5>
                                 <p class="card-text">《Science Translational Medicine》发表医学院谢恬教授国际合作研究成果...
@@ -221,7 +221,7 @@
                 <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-md-0 mt-5">
                     <div class="card img">
                         <div class="card-body img">
-                            <img src="images/2.jpg" alt="" class="img-fluid">
+                            <img src="<%=request.getContextPath()%>/resources/images/2.jpg" alt="" class="img-fluid">
                             <div class="blog-des mt-3">
                                 <h5 class="card-title mt-4">2019.12.18</h5>
                                 <p class="card-text">学校召开2019年招生就业工作会议<br>12月17日下午，学校召开2019年招生就业...
@@ -234,7 +234,7 @@
                 <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-md-0 mt-5">
                     <div class="card img">
                         <div class="card-body img">
-                            <img src="images/4.jpg" alt="" class="img-fluid">
+                            <img src="<%=request.getContextPath()%>/resources/images/4.jpg" alt="" class="img-fluid">
                             <div class="blog-des mt-3">
                                 <h5 class="card-title mt-4">2019.12.17</h5>
                                 <p class="card-text">张杭君教授获“2019年浙江省有突出贡献青年科技人才”称号...
@@ -247,7 +247,7 @@
                 <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-md-0 mt-5">
                     <div class="card img">
                         <div class="card-body img">
-                            <img src="images/3.jpg" alt="" class="img-fluid">
+                            <img src="<%=request.getContextPath()%>/resources/images/3.jpg" alt="" class="img-fluid">
                             <div class="blog-des mt-3">
                                 <h5 class="card-title mt-4">2019.12.16</h5>
                                 <p class="card-text">学校召开2019年情况通报会<br>12月16日上午，2019年学校情况通报会在...
@@ -260,7 +260,7 @@
                 <div class="col-lg-4 col-md-6 about-in blog-grid-info text-left mt-md-0 mt-5">
                     <div class="card img">
                         <div class="card-body img">
-                            <img src="images/5.jpg" alt="" class="img-fluid">
+                            <img src="<%=request.getContextPath()%>/resources/images/5.jpg" alt="" class="img-fluid">
                             <div class="blog-des mt-3">
                                 <h5 class="card-title mt-4">2019.12.16</h5>
                                 <p class="card-text">陈春雷率团访问南非、坦桑尼亚高校<br>12月4日至11日，校党委书记陈春雷受邀率...

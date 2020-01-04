@@ -54,26 +54,26 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="<%=request.getContextPath()%>/general">
                     学校<span>概况</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse navbar-main-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="default.html">首页</a>
+                        <a href="<%=request.getContextPath()%>/">首页</a>
                     </li>
                     <li>
-                        <a href="gaik.html">学校概况</a>
+                        <a href="<%=request.getContextPath()%>/general">学校概况</a>
                     </li>
                     <li>
-                        <a href="jigou.html">机构设置</a>
+                        <a href="<%=request.getContextPath()%>/mechanism">机构设置</a>
                     </li>
                     <li>
-                        <a href="shizi.html">师资队伍</a>
+                        <a href="<%=request.getContextPath()%>/teachers">师资队伍</a>
                     </li>
                     <li>
-                        <a href="xueke.html">学科建设</a>
+                        <a href="<%=request.getContextPath()%>/discipline">学科建设</a>
                     </li>
                 </ul>
             </div>

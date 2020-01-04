@@ -19,9 +19,13 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/lib/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/theme.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/lib/font-awesome/css/font-awesome.css">
+    <link href="<%=request.getContextPath()%>/resources/ace/css/select2.css" rel="stylesheet">
     <link href="<%=request.getContextPath()%>/resources/wangeditor/css/wangEditor.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/resources/css/edit.css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/resources/lib/jquery-1.7.2.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/resources/wangeditor/js/wangEditor.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/ace/js/bootbox.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/resources/ace/js/select2.js"></script>
     <style type="text/css">
         #line-chart {
             height:300px;
@@ -55,7 +59,7 @@
 
             <li><a href="#" class="hidden-phone visible-tablet visible-desktop" role="button">首页</a></li>
             <li id="fat-menu" class="dropdown">
-                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" id="currentUser">
                     <i class="icon-user"></i>管理员
                     <i class="icon-caret-down"></i>
                 </a>
@@ -86,8 +90,8 @@
 
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>用户</a>
     <ul id="accounts-menu" class="nav nav-list collapse">
-        <li ><a href="manage.html">重新登陆</a></li>
-        <li ><a href="reset-password.html">更改密码</a></li>
+        <li ><a href="<%=request.getContextPath()%>/manage/logout">重新登陆</a></li>
+        <li ><a href="<%=request.getContextPath()%>/manage/personal">更改密码</a></li>
     </ul>
 
     <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>更多<i class="icon-chevron-up"></i></a>
@@ -107,14 +111,14 @@
     </div>
     <ul class="breadcrumb">
         <li><a href="<%=request.getContextPath()%>/manage/index">数据操作</a> <span class="divider">/</span></li>
-        <li><a href="users.html">全部新闻</a> <span class="divider">/</span></li>
+        <li><a href="<%=request.getContextPath()%>/manage/index">全部新闻</a> <span class="divider">/</span></li>
         <li class="active">内容编辑</li>
     </ul>
 
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="btn-toolbar">
-                <button class="btn btn-primary"><i class="icon-save"></i>保存</button>
+                <button class="btn btn-primary" id="saveEdit"><i class="icon-save"></i>保存</button>
                 <a href="#myModal" data-toggle="modal" class="btn">删除</a>
                 <a href="#myModal2" data-toggle="modal" class="btn btn2">发布</a>
             </div>
@@ -122,16 +126,44 @@
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane active in" id="home">
                         <form id="tab">
-                            <label>新闻标题</label>
-                            <input type="text" class="input-xlarge">
-                            <label>日期</label>
-                            <input type="text" value="如：2019.12.12" class="input-xlarge">
+                            <label>标题</label>
+                            <input type="text" class="input-xlarge" id="titleText">
+                            <label>类别</label>
+                            <label>
+                                <select class="type-select" data-searchplaceholder="--新闻类别--">
+                                    <option value="1">师大要闻</option>
+                                    <option value="2">通知公告</option>
+                                    <option value="3">党建文化</option>
+                                    <option value="4">媒体师大</option>
+                                    <option value="5">教学科研</option>
+                                    <option value="6">学术预告</option>
+                                </select>
+                            </label>
                             <label>来源</label>
-                            <input type="text" class="input-xlarge">
+                            <input type="text" class="input-xlarge" id="sourceText">
                             <label>作者</label>
-                            <input type="text" class="input-xlarge">
+                            <input type="text" class="input-xlarge" id="authorText">
+                            <label>封面</label>
+                            <div class="main-cover" id="headPic">
+                                <div><img src="<%=request.getContextPath()%>/resources/images/fm.png"></div>
+                                <label><input id="image-src" class="hidden"></label>
+                                <div id="addCover">
+
+                                </div>
+                                <label><input type="file" class="hidden" accept="image/jpeg,image/png"></label>
+                            </div>
+
+                            <label>附件</label>
+                            <div class="main-cover" id="fujian">
+                                <div><img src="<%=request.getContextPath()%>/resources/images/fm.png"></div>
+                                <label><input id="fujian-src" class="hidden"></label>
+                                <div id="addCover1">
+
+                                </div>
+                                <label><input type="file" class="hidden" accept="application/pdf"></label>
+                            </div>
                             <label>内容</label>
-                            <textarea rows="15" class="input-xlarge" id="inputTest"></textarea>
+                            <div id="contentText"></div>
                         </form>
                     </div>
                 </div>
@@ -145,9 +177,38 @@
     </div>
 </div>
 
+<div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">重要提示</h3>
+    </div>
+    <div class="modal-body">
+        <p class="error-text"><i class="icon-warning-sign modal-icon"></i>真的要删除它吗？</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-danger" data-dismiss="modal" id="editToDelete">删除</button>
+    </div>
+</div>
+
+<div class="modal small hide fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel2">重要提示</h3>
+    </div>
+    <div class="modal-body">
+        <p class="error-text"><i class="icon-warning-sign modal-icon"></i>确定要发布吗？</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-danger" data-dismiss="modal" id="editToPublish">确定</button>
+    </div>
+</div>
+
 
 <script src="<%=request.getContextPath()%>/resources/lib/bootstrap/js/bootstrap.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/util/staticUrl.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/resources/js/edit.js"></script>
 <script type="text/javascript">
     $("[rel=tooltip]").tooltip();
     $(function() {
@@ -156,6 +217,31 @@
 </script>
 
 </body>
+
+<script type="text/javascript">
+    jQuery(
+        function ($) {
+            function getCurrentUser() {
+                $.ajax({
+                    type: "POST",
+                    url: rootPath + "/getCurrentUser",
+                    dataType: "json",
+                    data: {},
+                    success: function (response) {
+                        if (response.status === 200) {
+                            $("#currentUser").html("<i class=\"icon-user\"></i>" + response.data.name + "\n" +
+                                "                    <i class=\"icon-caret-down\"></i>")
+                        }
+                    },
+                    error: function () {
+
+                    }
+                })
+            }
+
+            getCurrentUser();
+        })
+</script>
 
 <script>
     var E = window.wangEditor;
@@ -195,8 +281,8 @@
         }
     }
 
-    var inputArea = new E('inputTest');
-    inputArea.create()
+    var contentText = new E('contentText');
+    contentText.create()
 </script>
 </html>
 

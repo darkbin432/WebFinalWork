@@ -10,15 +10,17 @@ import java.util.List;
  */
 public interface NewsDao {
 
-    int deleteByPrimaryKey(Integer id);
+    Integer deleteByPrimaryKey(Integer id);
 
-    int insert(News record);
+    Integer insert(News record);
 
-    int insertSelective(News record);
+    Integer insertSelective(News record);
 
     News selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(News record);
+    Integer updateByPrimaryKeySelective(News record);
+
+    Integer publishById(Integer id);
 
     List<News> selectByCondition(NewsParam newsParam);
 

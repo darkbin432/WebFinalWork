@@ -1,5 +1,8 @@
 package com.hznu.lwb.model.param;
 
+/**
+ * @author 斌
+ */
 public class NewsParam extends BasicParam {
     private String title;
 
@@ -8,6 +11,8 @@ public class NewsParam extends BasicParam {
     private String author;
 
     private Integer num;
+
+    private Integer publishStatus;
 
     public String getTitle() {
         return title;
@@ -39,5 +44,13 @@ public class NewsParam extends BasicParam {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getPublishStatus() {
+        return publishStatus;
+    }
+
+    public void setPublishStatus(Integer publishStatus) {
+        this.publishStatus = publishStatus;
     }
 }

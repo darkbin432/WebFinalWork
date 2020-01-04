@@ -39,6 +39,12 @@ public class NewsController {
         return newsService.update(news);
     }
 
+    @RequestMapping(value = "/publishNews", method = RequestMethod.POST)
+    @ResponseBody
+    public ApiResult publishNews(Integer id){
+        return newsService.publish(id);
+    }
+
     @RequestMapping(value = "/selectOneNews", method = RequestMethod.POST)
     @ResponseBody
     public ApiResult selectOneNews(Integer id){
