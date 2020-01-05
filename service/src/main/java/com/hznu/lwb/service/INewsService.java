@@ -21,7 +21,5 @@ public interface INewsService {
 
     ApiResult listNews(NewsParam newsParam);
 
-    ApiResult selectByPage(NewsParam newsParam);
-
     ApiResult selectByCondition(NewsParam newsParam);
 }

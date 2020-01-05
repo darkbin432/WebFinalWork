@@ -24,7 +24,7 @@ public interface NewsDao {
 
     List<News> selectByCondition(NewsParam newsParam);
 
-    Integer getCount();
+    Integer getCount(NewsParam newsParam);
 
     Integer addReadCount(Integer id);
 

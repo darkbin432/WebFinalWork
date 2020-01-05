@@ -60,12 +60,7 @@ public class NewsController {
     @RequestMapping(value = "/selectList", method = RequestMethod.POST)
     @ResponseBody
     public ApiResult selectList(NewsParam newsParam){
-        return newsService.selectByPage(newsParam);
-    }
-
-    @RequestMapping(value = "/selectByCondition", method = RequestMethod.POST)
-    @ResponseBody
-    public ApiResult selectByCondition(NewsParam newsParam){
         return newsService.selectByCondition(newsParam);
     }
+
 }

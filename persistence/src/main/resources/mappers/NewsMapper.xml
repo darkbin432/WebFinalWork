@@ -129,10 +129,27 @@
     where id = #{id};
   </update>
 
-  <select id="getCount" resultType="Integer">
+  <select id="getCount" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="Integer">
     select count(*)
     from news
-    where status = 1;
+    <where>
+      status = 1
+      <if test="title != null">
+        and title like concat('%',#{title},'%')
+      </if>
+      <if test="author != null">
+        and author like concat('%',#{author},'%')
+      </if>
+      <if test="type != null">
+        and type = #{type}
+      </if>
+      <if test="publishStatus != null">
+        and publish_status = #{publishStatus}
+      </if>
+      <if test="text != null">
+        and (title like concat('%',#{text},'%') or author like concat('%',#{text},'%'))
+      </if>
+    </where>
   </select>
 
   <update id="addReadCount" parameterType="Integer">
@@ -150,7 +167,7 @@
   </select>
 
   <select id="selectByCondition" parameterType="com.hznu.lwb.model.param.NewsParam" resultType="com.hznu.lwb.model.News">
-    select id, title, author, publish_status, publish_time, type, pic, source
+    select *
     from news
     <where>
     status = 1
@@ -165,6 +182,9 @@
       </if>
       <if test="publishStatus != null">
         and publish_status = #{publishStatus}
+      </if>
+      <if test="text != null">
+        and (title like concat('%',#{text},'%') or author like concat('%',#{text},'%'))
       </if>
     </where>
     order by created_time desc

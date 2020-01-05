@@ -81,7 +81,7 @@
     <ul id="dashboard-menu" class="nav nav-list collapse in">
         <li><a href="<%=request.getContextPath()%>/manage/index">全部新闻</a></li>
         <li ><a onclick="javascript:localStorage.removeItem('editId')" href="<%=request.getContextPath()%>/manage/edit">内容编辑</a></li>
-        <li ><a href="<%=request.getContextPath()%>/manage/search">新闻查找</a></li>
+        <%--<li ><a href="<%=request.getContextPath()%>/manage/search">新闻查找</a></li>--%>
     </ul>
 
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>用户</a>
@@ -117,8 +117,7 @@
 
             <div class="btn-toolbar">
                 <button class="btn btn-primary" id="insertNews"><i class="icon-plus"></i>新建内容</button>
-                <div class="btn-group">
-                </div>
+                <label style="display: inline;margin-left: 40px;vertical-align: middle;">条件查询：<input type="text" placeholder="请输入新闻标题或作者" class="span12" style="width: 300px;margin-top: 10px;" id="searchText"><a id="toSearch" class="btn btn-primary" style="margin-left: 10px;">查询</a></label>
             </div>
             <div class="well">
                 <table class="table">

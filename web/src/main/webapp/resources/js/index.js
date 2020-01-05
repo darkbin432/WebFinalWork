@@ -8,8 +8,6 @@ var pageLimit = 1;
 
 jQuery(
 	function ($) {
-
-
 		
 		function getTypeText(type) {
 			switch (type) {
@@ -34,7 +32,8 @@ jQuery(
 				url: rootPath + "/api/selectList",
 				dataType: "json",
 				data: {
-					pageNow: page
+					pageNow: page,
+					text: $("#searchText").val()
 				},
 				success: function (response) {
 					if (response.status === 200) {
@@ -92,8 +91,15 @@ jQuery(
 			})
 		}
 
+		$("#searchText").val("");
+
 		getNewsList(currentPage);
 		getCurrentUser();
+		
+		$("#toSearch").click(function () {
+			currentPage = 1;
+			getNewsList(1);
+		})
 
 		$("#newsList").on('click','.edit',function () {
 			localStorage.setItem("editId", $(this).attr("id"))

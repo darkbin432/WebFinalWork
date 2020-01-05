@@ -85,7 +85,7 @@
     <ul id="dashboard-menu" class="nav nav-list collapse in">
         <li><a href="<%=request.getContextPath()%>/manage/index">全部新闻</a></li>
         <li class="active"><a href="<%=request.getContextPath()%>/manage/edit">内容编辑</a></li>
-        <li ><a href="<%=request.getContextPath()%>/manage/search">新闻查找</a></li>
+        <%--<li ><a href="<%=request.getContextPath()%>/manage/search">新闻查找</a></li>--%>
     </ul>
 
     <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>用户</a>

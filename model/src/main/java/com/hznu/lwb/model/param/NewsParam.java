@@ -4,6 +4,9 @@ package com.hznu.lwb.model.param;
  * @author 斌
  */
 public class NewsParam extends BasicParam {
+
+    private String text;
+
     private String title;
 
     private Integer type;
@@ -13,6 +16,14 @@ public class NewsParam extends BasicParam {
     private Integer num;
 
     private Integer publishStatus;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public String getTitle() {
         return title;

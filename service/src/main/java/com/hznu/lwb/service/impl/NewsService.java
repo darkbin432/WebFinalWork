@@ -97,24 +97,11 @@ public class NewsService implements INewsService {
     }
 
     @Override
-    public ApiResult selectByPage(NewsParam newsParam) {
-        ApiResult apiResult = new ApiResult();
-        try {
-            newsParam.initOffset();
-            Integer totalCount = newsDao.getCount();
-            List<News> newsList = newsDao.selectByPage(newsParam);
-            apiResult.dataTable(new Random(10).nextInt(), totalCount, newsList.size(), newsList);
-        }catch (Exception e){
-            apiResult.fail();
-        }
-        return apiResult;
-    }
-
-    @Override
     public ApiResult selectByCondition(NewsParam newsParam) {
         ApiResult apiResult = new ApiResult();
         try {
-            Integer totalCount = newsDao.getCount();
+            newsParam.initOffset();
+            Integer totalCount = newsDao.getCount(newsParam);
             List<News> newsList = newsDao.selectByCondition(newsParam);
             apiResult.dataTable(new Random(10).nextInt(), totalCount, newsList.size(), newsList);
         }catch (Exception e){
