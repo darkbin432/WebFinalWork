@@ -1,0 +1,19 @@
+前端
+  --bootstrap
+  --JQuery
+
+后端
+  --java（Spring + SpringMVC + Mybatis框架）
+  --JQuery（页面交互设计）
+  --jsp（页面渲染）
+  --shiro（用户登录控制）
+
+数据库
+  --mysql
+
+服务器
+  --腾讯云
+  --centOS7
+
+插件
+  --wangeditor（富文本编辑器）
